@@ -117,3 +117,14 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+
+/* Hide navbar and disable overflow when project details modal is active */
+body.modal-open {
+  overflow: hidden !important;
+}
+body.modal-open nav {
+  transform: translateY(-100%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: transform 0.5s ease, opacity 0.5s ease !important;
+}

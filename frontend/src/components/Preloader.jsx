@@ -80,7 +80,8 @@ const Preloader = ({ onComplete }) => {
       duration: 1.8, // Brisk loading timeline
       ease: "power2.out",
       onUpdate: () => {
-        setCount(Math.floor(loaderObj.val));
+        const newVal = Math.floor(loaderObj.val);
+        setCount(prev => (prev >= 100 ? prev : Math.min(newVal, 100)));
       },
       onComplete: () => {
         triggerExitAnimation();

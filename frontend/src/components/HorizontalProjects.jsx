@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Cpu, Layers, Radio, Orbit } from 'lucide-react';
@@ -14,7 +15,14 @@ const projects = [
     tagline: "Building neural intelligence tools for enterprise cloud systems.",
     icon: <Cpu className="h-5 w-5 text-accent-gold-dark" />,
     color: "from-accent-gold/15 to-accent-gold-dark/5",
-    image: "/images/neural-net.png"
+    image: "/images/neural-net.png",
+    description: "Neural Net is a cutting-edge artificial intelligence platform designed to automate enterprise cloud scaling and optimization. By leveraging advanced deep learning models, it predicts infrastructure bottlenecks before they occur, reducing server overhead by up to 43% and ensuring 99.999% uptime for global systems.",
+    specs: [
+      { label: "Client", value: "Neural Technologies Inc." },
+      { label: "Role", value: "Creative Direction & Frontend" },
+      { label: "Stack", value: "React, GSAP, Tailwind, Node.js" },
+      { label: "Deliverable", value: "Cloud Dashboard & Design System" }
+    ]
   },
   {
     id: "02",
@@ -24,7 +32,14 @@ const projects = [
     tagline: "Sculpting immersive physical-digital brand experiences.",
     icon: <Orbit className="h-5 w-5 text-accent-gold-dark" />,
     color: "from-accent-gold-dark/15 to-stone-400/5",
-    image: "/images/kinetic-labs.png"
+    image: "/images/kinetic-labs.png",
+    description: "Kinetic Labs is a physical-digital experimental installation showcasing interactive kinetic sculptures. Our frontend engineering integrates live WebSockets and physical sensors to mirror mechanical motions in high-fidelity 3D browser canvases in real-time, creating a fully synchronized dual-sensory experience.",
+    specs: [
+      { label: "Client", value: "Kinetic Art Gallery" },
+      { label: "Role", value: "Creative Direction" },
+      { label: "Stack", value: "React, Three.js, WebSockets, GSAP" },
+      { label: "Deliverable", value: "Immersive Exhibit & Frontend" }
+    ]
   },
   {
     id: "03",
@@ -34,7 +49,14 @@ const projects = [
     tagline: "Generating explosive viral campaigns across neural feeds.",
     icon: <Radio className="h-5 w-5 text-accent-gold-dark" />,
     color: "from-amber-600/10 to-accent-gold/5",
-    image: "/images/eclipse-corp.png"
+    image: "/images/eclipse-corp.png",
+    description: "Eclipse Corp is a digital marketing ecosystem automating high-density search index scaling and content distribution. Our implementation features self-optimizing semantic funnels and interactive data boards, increasing viral reach by 260% across decentralized networks.",
+    specs: [
+      { label: "Client", value: "Eclipse Holdings" },
+      { label: "Role", value: "UX Strategy & Development" },
+      { label: "Stack", value: "Astro, GSAP, Serverless Functions" },
+      { label: "Deliverable", value: "Marketing Funnels & Analytics" }
+    ]
   },
   {
     id: "04",
@@ -44,14 +66,168 @@ const projects = [
     tagline: "Forging next-generation smart contract visual explorers.",
     icon: <Layers className="h-5 w-5 text-accent-gold-dark" />,
     color: "from-stone-500/10 to-accent-gold-dark/5",
-    image: "/images/cyber-dock.png"
+    image: "/images/cyber-dock.png",
+    description: "Cyber Dock is a Web3 visual explorer and analytics dashboard for smart contracts. By transforming raw cryptographic transactions into flowing node topologies, users can inspect transaction histories, state mutations, and contract dependencies with unprecedented visual clarity.",
+    specs: [
+      { label: "Client", value: "CyberDock Protocol" },
+      { label: "Role", value: "UI/UX Engineering" },
+      { label: "Stack", value: "Next.js, Three.js, Solidity, Tailwind" },
+      { label: "Deliverable", value: "Visual Block Explorer" }
+    ]
   }
 ];
+
+const ProjectModal = ({ project, onClose }) => {
+  const modalRef = useRef(null);
+  const backdropRef = useRef(null);
+  const boxRef = useRef(null);
+
+  useEffect(() => {
+    if (!project) return;
+
+    const tl = gsap.timeline();
+    
+    gsap.set(backdropRef.current, { opacity: 0 });
+    gsap.set(boxRef.current, { opacity: 0, y: 50, scale: 0.95 });
+
+    tl.to(backdropRef.current, {
+      opacity: 1,
+      duration: 0.45,
+      ease: "power2.out"
+    })
+    .to(boxRef.current, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.55,
+      ease: "back.out(1.2)"
+    }, "-=0.25");
+
+    return () => {
+      tl.kill();
+    };
+  }, [project]);
+
+  const handleClose = () => {
+    const tl = gsap.timeline({
+      onComplete: onClose
+    });
+
+    tl.to(boxRef.current, {
+      opacity: 0,
+      y: 30,
+      scale: 0.96,
+      duration: 0.35,
+      ease: "power2.in"
+    })
+    .to(backdropRef.current, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.in"
+    }, "-=0.2");
+  };
+
+  return (
+    <div 
+      ref={modalRef} 
+      className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-10 select-none"
+    >
+      <div 
+        ref={backdropRef}
+        className="absolute inset-0 bg-dark-bg/60 backdrop-blur-2xl" 
+        onClick={handleClose}
+      />
+      
+      <div 
+        ref={boxRef}
+        className="relative w-full max-w-5xl h-[85vh] md:h-[75vh] bg-dark-card border border-obsidian/10 rounded-[32px] overflow-hidden flex flex-col md:flex-row z-10 shadow-2xl"
+      >
+        <div className="w-full md:w-1/2 h-[30vh] md:h-full overflow-hidden relative border-b md:border-b-0 md:border-r border-obsidian/10">
+          <img 
+            src={project.image} 
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-obsidian/20 via-transparent to-transparent" />
+        </div>
+
+        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-between overflow-y-auto bg-dark-card">
+          <div>
+            <div className="flex items-center justify-between mb-4 md:mb-6 pr-12">
+              <span className="text-[10px] font-bold tracking-[0.25em] text-accent-gold-dark uppercase">
+                {project.category}
+              </span>
+              <span className="font-mono text-[10px] text-obsidian/45 tracking-wider">
+                [ {project.year} ]
+              </span>
+            </div>
+
+            <h2 className="text-2xl md:text-4xl font-serif font-black uppercase text-obsidian tracking-wide mb-3 md:mb-4">
+              {project.title}
+            </h2>
+
+            <p className="text-xs md:text-sm font-serif italic text-accent-gold-dark mb-4 md:mb-6 leading-relaxed">
+              {project.tagline}
+            </p>
+
+            <p className="text-xs md:text-sm text-obsidian/75 font-serif italic font-light leading-relaxed mb-6 md:mb-8">
+              {project.description}
+            </p>
+
+            <div className="grid grid-cols-2 gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-4 pt-4 md:pt-6 border-t border-obsidian/10">
+              {project.specs.map((spec, index) => (
+                <div key={index}>
+                  <span className="block text-[8px] font-bold tracking-widest text-obsidian/40 uppercase mb-1">
+                    {spec.label}
+                  </span>
+                  <span className="text-xs font-serif italic text-obsidian font-medium">
+                    {spec.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-obsidian/10 flex items-center justify-between">
+            <span className="font-mono text-[9px] text-obsidian/45 uppercase">[ CASE STUDY // DEPT ]</span>
+            <button 
+              onClick={handleClose}
+              className="flex h-10 px-6 items-center justify-center rounded-full bg-obsidian text-dark-bg hover:bg-accent-gold hover:text-white transition-all duration-300 font-sans text-[10px] font-bold uppercase tracking-wider cursor-pointer"
+            >
+              Close Project
+            </button>
+          </div>
+        </div>
+
+          <button 
+          onClick={handleClose}
+          className="absolute top-4 right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-obsidian/5 border border-obsidian/10 hover:bg-obsidian hover:text-dark-bg transition-all duration-300 text-obsidian cursor-pointer font-bold text-lg"
+        >
+          &times;
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const HorizontalProjects = () => {
   const scrollRef = useRef(null);
   const containerRef = useRef(null);
   const progressFillRef = useRef(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.classList.add('modal-open');
+      if (window.lenis) window.lenis.stop();
+    } else {
+      document.body.classList.remove('modal-open');
+      if (window.lenis) window.lenis.start();
+    }
+    return () => {
+      document.body.classList.remove('modal-open');
+    };
+  }, [selectedProject]);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -63,49 +239,30 @@ const HorizontalProjects = () => {
     const getScrollWidth = () => scrollContainer.scrollWidth - window.innerWidth;
     const getScrollLimit = () => Math.max(0, getScrollWidth() - window.innerWidth * 0.08);
 
-    const scrollTween = gsap.timeline({
+    // Smooth horizontal scroll with refined easing for a buttery experience
+    const scrollTween = gsap.to(scrollContainer, {
+      x: () => -getScrollLimit(),
+      // Using a subtle ease for smoother motion instead of a harsh linear feel
+      ease: "power2.out",
       scrollTrigger: {
         trigger: container,
         pin: true,
-        scrub: 1.2,
+        // Increased scrub duration for more fluid scrolling
+        scrub: 2.5,
         start: "top top",
         end: () => `+=${getScrollLimit()}`,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          gsap.to(progressFill, {
+            scaleX: self.progress,
+            duration: 0.1,
+            ease: "none",
+            overwrite: "auto"
+          });
+        }
       }
     });
 
-    scrollTween.to(scrollContainer, {
-      x: () => -getScrollLimit(),
-      ease: "power2.inOut",
-    }, 0);
-
-    scrollTween.fromTo(progressFill,
-      { scaleX: 0 },
-      {
-        scaleX: 1,
-        ease: "power2.inOut",
-      },
-      0
-    );
-
-    // Parallax on images inside horizontal sliding cards
-    const images = scrollContainer.querySelectorAll('.project-image');
-    images.forEach((img) => {
-      gsap.fromTo(img, 
-        { xPercent: -15 },
-        {
-          xPercent: 15,
-          ease: "none",
-          scrollTrigger: {
-            trigger: img.closest('.project-card'),
-            containerAnimation: scrollTween,
-            start: "left right",
-            end: "right left",
-            scrub: 1.2
-          }
-        }
-      );
-    });
 
     // Subtle card velocity skew
     const cards = scrollContainer.querySelectorAll('.project-card');
@@ -181,7 +338,7 @@ const HorizontalProjects = () => {
         {projects.map((project) => (
           <div 
             key={project.id}
-            onClick={handleLinkClick}
+            onClick={() => setSelectedProject(project)}
             className="project-card relative shrink-0 flex h-[68vh] w-[75vw] sm:w-[50vw] md:w-[34vw] flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/50 p-6 md:p-8 backdrop-blur-md overflow-hidden group select-none cursor-none transition-[background-color,border-color,box-shadow,color] duration-300"
             data-cursor="view"
             style={{ 
@@ -207,8 +364,7 @@ const HorizontalProjects = () => {
               <img 
                 src={project.image} 
                 alt={project.title}
-                className="project-image absolute top-0 left-[-15%] w-[130%] h-full object-cover object-center"
-                style={{ willChange: "transform" }}
+                className="w-full h-full object-cover object-center"
               />
             </div>
 
@@ -249,6 +405,14 @@ const HorizontalProjects = () => {
         </div>
         <span className="font-mono text-[9px] text-obsidian/45">[ {projects.length.toString().padStart(2, '0')} ]</span>
       </div>
+
+      {selectedProject && createPortal(
+        <ProjectModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+        />,
+        document.body
+      )}
     </div>
   );
 };
