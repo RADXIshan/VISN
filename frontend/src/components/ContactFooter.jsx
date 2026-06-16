@@ -170,7 +170,7 @@ const ContactFooter = () => {
 
         {/* Giant footer wordmark (Editorial Serif) */}
         <div className="w-full flex items-center justify-center mt-20 select-none pointer-events-none">
-          <h2 className="text-[18vw] font-serif font-bold leading-none uppercase tracking-tighter text-obsidian/[0.03] text-center">
+          <h2 className="text-[18vw] font-serif font-bold leading-none uppercase tracking-tighter text-obsidian/3 text-center">
             VISN<span className="text-accent-gold">.</span>
           </h2>
         </div>

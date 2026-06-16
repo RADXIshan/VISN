@@ -1,5 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import gsap from 'gsap';
+
+const words = [
+  "CURATING DIGITAL FORM",
+  "SCULPTING CYBER SPACE",
+  "VISUAL INTELLIGENCE",
+  "EDITORIAL DESIGN",
+  "VISN STUDIO"
+];
 
 const Preloader = ({ onComplete }) => {
   const [count, setCount] = useState(0);
@@ -8,41 +16,9 @@ const Preloader = ({ onComplete }) => {
   const textContainerRef = useRef(null);
   const artworkFrameRef = useRef(null);
   
-  const words = [
-    "CURATING DIGITAL FORM",
-    "SCULPTING CYBER SPACE",
-    "VISUAL INTELLIGENCE",
-    "EDITORIAL DESIGN",
-    "VISN STUDIO"
-  ];
   const [wordIdx, setWordIdx] = useState(0);
 
-  // Cycle words
-  useEffect(() => {
-    if (count >= 100) return;
-    const interval = setInterval(() => {
-      setWordIdx((prev) => (prev + 1) % words.length);
-    }, 400);
-    return () => clearInterval(interval);
-  }, [count]);
-
-  // Animate counter and load trigger
-  useEffect(() => {
-    const loaderObj = { val: 0 };
-    gsap.to(loaderObj, {
-      val: 100,
-      duration: 1.8, // Brisk loading timeline
-      ease: "power2.out",
-      onUpdate: () => {
-        setCount(Math.floor(loaderObj.val));
-      },
-      onComplete: () => {
-        triggerExitAnimation();
-      }
-    });
-  }, []);
-
-  const triggerExitAnimation = () => {
+  const triggerExitAnimation = useCallback(() => {
     const path = pathRef.current;
     const container = containerRef.current;
     const textContainer = textContainerRef.current;
@@ -85,7 +61,32 @@ const Preloader = ({ onComplete }) => {
       pointerEvents: 'none',
       duration: 0.1
     }, "-=0.4");
-  };
+  }, [onComplete]);
+
+  // Cycle words
+  useEffect(() => {
+    if (count >= 100) return;
+    const interval = setInterval(() => {
+      setWordIdx((prev) => (prev + 1) % words.length);
+    }, 400);
+    return () => clearInterval(interval);
+  }, [count]);
+
+  // Animate counter and load trigger
+  useEffect(() => {
+    const loaderObj = { val: 0 };
+    gsap.to(loaderObj, {
+      val: 100,
+      duration: 1.8, // Brisk loading timeline
+      ease: "power2.out",
+      onUpdate: () => {
+        setCount(Math.floor(loaderObj.val));
+      },
+      onComplete: () => {
+        triggerExitAnimation();
+      }
+    });
+  }, [triggerExitAnimation]);
 
   return (
     <div 
@@ -94,7 +95,7 @@ const Preloader = ({ onComplete }) => {
     >
       {/* SVG Liquid morph wipe (Colored in Obsidian dark mode curtain) */}
       <svg 
-        className="absolute inset-0 h-full w-full fill-[#151515] pointer-events-none"
+        className="absolute inset-0 h-full w-full fill-obsidian pointer-events-none"
         viewBox="0 0 100 100" 
         preserveAspectRatio="none"
       >
@@ -107,10 +108,10 @@ const Preloader = ({ onComplete }) => {
       {/* Symmetrical Luxury Grid Content */}
       <div 
         ref={textContainerRef}
-        className="relative z-10 w-full h-full max-w-6xl mx-auto flex flex-col justify-between p-8 md:p-12 text-[#FAF8F5] select-none"
+        className="relative z-10 w-full h-full max-w-6xl mx-auto flex flex-col justify-between p-8 md:p-12 text-dark-bg select-none"
       >
         {/* Top Metadata row */}
-        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-bold tracking-[0.35em] text-[#FAF8F5]/40 uppercase">
+        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-bold tracking-[0.35em] text-dark-bg/40 uppercase">
           <span>VISN STUDIO // EST. 2026</span>
           <span className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75] animate-pulse" />
@@ -127,7 +128,7 @@ const Preloader = ({ onComplete }) => {
             className="relative h-60 w-60 md:h-72 md:w-72 rounded-2xl border border-accent-gold/20 bg-obsidian/30 overflow-hidden flex items-center justify-center shadow-2xl p-4"
           >
             {/* Fine framing lines */}
-            <div className="absolute inset-2 border border-[#FAF8F5]/5 rounded-xl pointer-events-none" />
+            <div className="absolute inset-2 border border-dark-bg/5 rounded-xl pointer-events-none" />
             
             {/* Generated Luxury Art Asset */}
             <img 
@@ -146,14 +147,14 @@ const Preloader = ({ onComplete }) => {
 
             {/* Serif counter */}
             <div className="flex items-baseline gap-1 mt-1">
-              <span className="text-4xl md:text-5xl font-serif font-light tracking-tight text-[#FAF8F5]">
+              <span className="text-4xl md:text-5xl font-serif font-light tracking-tight text-dark-bg">
                 {count.toString().padStart(3, '0')}
               </span>
               <span className="text-xs font-sans font-bold text-accent-gold % ml-1">%</span>
             </div>
 
             {/* Fine loading bar indicator */}
-            <div className="w-32 h-[1px] bg-[#FAF8F5]/10 mt-3 relative overflow-hidden rounded-full">
+            <div className="w-32 h-px bg-dark-bg/10 mt-3 relative overflow-hidden rounded-full">
               <div 
                 className="absolute top-0 left-0 h-full bg-accent-gold transition-all duration-150 ease-out"
                 style={{ width: `${count}%` }}
@@ -163,7 +164,7 @@ const Preloader = ({ onComplete }) => {
         </div>
 
         {/* Bottom Coordinates & Time */}
-        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-mono text-[#FAF8F5]/30 tracking-widest uppercase">
+        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-mono text-dark-bg/30 tracking-widest uppercase">
           <span>LAT: 37.7749° N // LON: 122.4194° W</span>
           <span>© 2026 // ALL RIGHTS RESERVED</span>
         </div>

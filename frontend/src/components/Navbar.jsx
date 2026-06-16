@@ -6,8 +6,6 @@ const Navbar = () => {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [time, setTime] = useState(new Date());
-  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [scrolled, setScrolled] = useState(typeof window !== 'undefined' ? window.scrollY > 20 : false);
 
   const isFirstRender = useRef(true);
@@ -53,26 +51,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY, menuOpen]);
 
-  // Live ticking clock for SF time (America/Los_Angeles timezone)
-  useEffect(() => {
-    if (!menuOpen) return;
-    
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-    
-    return () => clearInterval(timer);
-  }, [menuOpen]);
 
-  const formatTime = (date) => {
-    return date.toLocaleTimeString('en-US', {
-      timeZone: 'America/Los_Angeles',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true
-    });
-  };
 
   const navItems = [
     { name: 'Manifesto', href: '#manifesto', num: '01', tag: 'Ideology' },
@@ -196,7 +175,7 @@ const Navbar = () => {
           visible ? 'translate-y-0' : '-translate-y-full'
         } ${
           scrolled && !menuOpen 
-            ? 'bg-dark-bg/75 backdrop-blur-md border-b border-obsidian/[0.03] shadow-[0_4px_30px_rgba(0,0,0,0.01)]' 
+            ? 'bg-dark-bg/75 backdrop-blur-md border-b border-obsidian/3 shadow-[0_4px_30px_rgba(0,0,0,0.01)]' 
             : 'bg-transparent'
         }`}
       >
@@ -226,7 +205,7 @@ const Navbar = () => {
               <button
                 ref={buttonRef}
                 onClick={() => setMenuOpen(!menuOpen)}
-                className={`px-5 py-2.5 rounded-full border flex items-center gap-3 text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] relative group overflow-hidden ${
+                className={`w-28 h-10 rounded-full border flex items-center justify-center text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] relative group overflow-hidden ${
                   menuOpen 
                     ? 'bg-dark-bg text-obsidian border-dark-bg shadow-inner' 
                     : 'border-obsidian/10 text-obsidian hover:text-dark-bg hover:border-accent-gold'
@@ -238,21 +217,46 @@ const Navbar = () => {
                   <span className="absolute top-1/2 left-1/2 w-[150%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-gold scale-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100 -z-0" />
                 )}
 
-                {/* Custom animated lines */}
-                <div className="relative z-10 flex flex-col justify-center items-center gap-1 w-3.5 h-3.5">
-                  <span className={`block h-[1.2px] w-3.5 bg-current rounded-full transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? 'rotate-45 translate-y-[2.6px]' : ''}`} />
-                  <span className={`block h-[1.2px] w-3.5 bg-current rounded-full transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? '-rotate-45 -translate-y-[2.6px]' : ''}`} />
+                {/* Relative container holding both layered contents */}
+                <div className="relative w-full h-full flex items-center justify-center z-10">
+                  {/* MENU Group (Hamburger Icon + MENU Text beside it) */}
+                  <div 
+                    className={`absolute flex items-center gap-2.5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      menuOpen 
+                        ? '-translate-y-8 opacity-0 pointer-events-none' 
+                        : 'translate-y-0 opacity-100'
+                    }`}
+                  >
+                    {/* Hamburger Icon */}
+                    <div className="flex flex-col justify-center items-center gap-1 w-3.5 h-3.5">
+                      <span className="block h-[1.2px] w-3.5 bg-current rounded-full" />
+                      <span className="block h-[1.2px] w-3.5 bg-current rounded-full" />
+                    </div>
+                    {/* MENU Text */}
+                    <span className="block h-3 text-left">
+                      MENU
+                    </span>
+                  </div>
+
+                  {/* CLOSE Group (X Icon + CLOSE Text beside it) */}
+                  <div 
+                    className={`absolute flex items-center gap-2.5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      menuOpen 
+                        ? 'translate-y-0 opacity-100' 
+                        : 'translate-y-8 opacity-0 pointer-events-none'
+                    }`}
+                  >
+                    {/* X Icon */}
+                    <div className="flex flex-col justify-center items-center gap-1 w-3.5 h-3.5 relative">
+                      <span className="block h-[1.2px] w-3.5 bg-current rounded-full rotate-45 absolute" />
+                      <span className="block h-[1.2px] w-3.5 bg-current rounded-full -rotate-45 absolute" />
+                    </div>
+                    {/* CLOSE Text */}
+                    <span className="block h-3 text-left">
+                      CLOSE
+                    </span>
+                  </div>
                 </div>
-                
-                {/* Text sliding label */}
-                <span className="relative z-10 block h-3 w-14 overflow-hidden text-left">
-                  <span className={`absolute left-0 top-0 transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? '-translate-y-full' : 'translate-y-0'}`}>
-                    MENU
-                  </span>
-                  <span className={`absolute left-0 top-0 transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? 'translate-y-0' : 'translate-y-full'}`}>
-                    CLOSE
-                  </span>
-                </span>
               </button>
             </Magnetic>
           </div>
@@ -279,16 +283,14 @@ const Navbar = () => {
               [ INDEX DIRECTORY ]
             </span>
             <div className="flex flex-col w-full">
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <div key={item.name} className="overflow-hidden w-full relative">
                   {/* Underline line animation */}
-                  <div className="menu-border-line absolute bottom-0 left-0 w-full h-[1px] bg-dark-bg/10 origin-left" />
+                  <div className="menu-border-line absolute bottom-0 left-0 w-full h-px bg-dark-bg/10 origin-left" />
                   
                   <a 
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
                     className="menu-nav-link group flex items-baseline py-4 md:py-6 w-full text-left"
                     data-cursor="magnetic"
                     style={{ perspective: "1000px" }}
@@ -325,7 +327,7 @@ const Navbar = () => {
                 className="relative text-2xl font-serif font-light text-dark-bg hover:text-accent-gold transition-colors duration-300 pb-1 group/mail inline-block"
               >
                 hello@visn.studio
-                <span className="absolute left-0 bottom-0 w-full h-[1px] bg-accent-gold scale-x-0 origin-left transition-transform duration-300 ease-out group-hover/mail:scale-x-100" />
+                <span className="absolute left-0 bottom-0 w-full h-px bg-accent-gold scale-x-0 origin-left transition-transform duration-300 ease-out group-hover/mail:scale-x-100" />
               </a>
               <p className="text-[11px] text-dark-bg/40 mt-2 font-light">
                 San Francisco, California.
@@ -350,7 +352,7 @@ const Navbar = () => {
                       className="relative text-xs font-serif font-light tracking-wide text-dark-bg/75 hover:text-accent-gold transition-colors duration-300 pb-0.5 group/social"
                     >
                       {social.name}
-                      <span className="absolute left-0 bottom-0 w-full h-[1px] bg-accent-gold scale-x-0 origin-left transition-transform duration-300 ease-out group-hover/social:scale-x-100" />
+                      <span className="absolute left-0 bottom-0 w-full h-px bg-accent-gold scale-x-0 origin-left transition-transform duration-300 ease-out group-hover/social:scale-x-100" />
                     </a>
                   </Magnetic>
                 ))}

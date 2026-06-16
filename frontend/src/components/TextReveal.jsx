@@ -70,6 +70,7 @@ const TextReveal = () => {
               <span 
                 key={index} 
                 className="reveal-word inline-block"
+                style={{ willChange: "transform, opacity" }}
               >
                 {word}
               </span>

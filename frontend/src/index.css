@@ -111,3 +111,9 @@
     transform: translate3d(-50%, 0, 0);
   }
 }
+
+@utility will-change-transform {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

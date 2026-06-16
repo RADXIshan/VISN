@@ -208,7 +208,7 @@ const Hero = ({ isLoaded }) => {
 
           {/* Top Row */}
           <div ref={badgeRef} className="w-full flex justify-center items-center">
-            <div className="flex items-center gap-3 px-4 py-1.5 rounded-full border border-obsidian/5 bg-obsidian/[0.01]">
+            <div className="flex items-center gap-3 px-4 py-1.5 rounded-full border border-obsidian/5 bg-obsidian/1">
               <span className="flex h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75] animate-pulse" />
               <span className="text-[9px] font-bold tracking-[0.32em] text-obsidian/60 uppercase select-none">
                 VISN STUDIO // EDITION 2026
@@ -227,7 +227,7 @@ const Hero = ({ isLoaded }) => {
             <div className="overflow-hidden mb-6" style={{ perspective: "1200px" }}>
               <h1 
                 ref={brandTitleRef}
-                className="text-[18vw] sm:text-[15vw] md:text-[12vw] font-serif font-black leading-[0.8] tracking-[0.05em] uppercase text-obsidian select-none"
+                className="text-[18vw] sm:text-[15vw] md:text-[12vw] font-serif font-black leading-[0.8] tracking-wider uppercase text-obsidian select-none"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {splitLetters("VISN")}
@@ -288,7 +288,7 @@ const Hero = ({ isLoaded }) => {
         {/* Layer 2: The Transition Zoom Slide (z-20) */}
         <div 
           ref={transitionSlideRef}
-          className="absolute inset-0 z-20 bg-[#FAF8F5] overflow-hidden"
+          className="absolute inset-0 z-20 bg-dark-bg overflow-hidden"
           style={{ 
             transform: 'translateY(100%)',
             willChange: 'transform' 
@@ -335,7 +335,7 @@ const Hero = ({ isLoaded }) => {
                 <h2 className="fade-item text-3xl md:text-5xl lg:text-6xl font-serif font-medium tracking-tight text-white leading-[1.1] mb-4">
                   engineering tactile digital monuments
                 </h2>
-                <p className="fade-item text-xs font-sans font-light tracking-[0.1em] text-white/70 max-w-md uppercase">
+                <p className="fade-item text-xs font-sans font-light tracking-widest text-white/70 max-w-md uppercase">
                   Combining high-performance frontend logic with luxury design paradigms.
                 </p>
               </div>

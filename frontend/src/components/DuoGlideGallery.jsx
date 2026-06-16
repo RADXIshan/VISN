@@ -83,7 +83,7 @@ const DuoGlideGallery = () => {
         </div>
 
         {/* Right column: Counter scrolling dual columns */}
-        <div className="lg:col-span-8 grid grid-cols-2 gap-4 md:gap-8 h-[100vh] lg:h-[110vh] overflow-hidden items-center relative">
+        <div className="lg:col-span-8 grid grid-cols-2 gap-4 md:gap-8 h-screen lg:h-[110vh] overflow-hidden items-center relative">
           
           {/* Column A: Moving upwards */}
           <div ref={colARef} className="flex flex-col gap-4 md:gap-8 will-change-transform">
@@ -141,7 +141,7 @@ const DuoGlideGallery = () => {
             </div>
 
             {/* Plate A3: Deconstructed Text Grid */}
-            <div className="rounded-3xl border border-obsidian/10 bg-dark-card/30 p-4 md:p-6 backdrop-blur-md flex flex-col justify-between h-[280px] md:h-[360px] hidden md:flex">
+            <div className="rounded-3xl border border-obsidian/10 bg-dark-card/30 p-4 md:p-6 backdrop-blur-md hidden md:flex flex-col justify-between h-[280px] md:h-[360px]">
               <div className="flex items-center justify-between text-[8px] font-mono text-obsidian/40 uppercase tracking-wider">
                 <span>[ TYPOGRAPHY ]</span>
                 <span>BLU 03</span>
@@ -215,7 +215,7 @@ const DuoGlideGallery = () => {
             </div>
 
             {/* Plate B3: Celestial Chart */}
-            <div className="rounded-3xl border border-obsidian/10 bg-dark-card/30 p-4 md:p-6 backdrop-blur-md flex flex-col justify-between h-[280px] md:h-[360px] hidden md:flex">
+            <div className="rounded-3xl border border-obsidian/10 bg-dark-card/30 p-4 md:p-6 backdrop-blur-md hidden md:flex flex-col justify-between h-[280px] md:h-[360px]">
               <div className="flex items-center justify-between text-[8px] font-mono text-obsidian/40 uppercase tracking-wider">
                 <span>[ CONSTELLATION ]</span>
                 <span>STR 03</span>

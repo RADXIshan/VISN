@@ -149,13 +149,31 @@ const BentoServices = () => {
     };
   }, []);
 
-  // 3D Card Hover Tilts and Offset handlers
+  // 3D Card Hover Tilts and Offset handlers using optimized gsap.quickTo
   const card1Ref = useRef(null);
   const card2Ref = useRef(null);
   const card3Ref = useRef(null);
   const card4Ref = useRef(null);
+  const cardTweens = useRef({});
 
-  const handleCardMouseMove = (e, ref) => {
+  const getCardTweens = (cardId, card) => {
+    if (!cardTweens.current[cardId]) {
+      const icon = card.querySelector('.bento-icon');
+      const text = card.querySelector('.bento-text');
+      cardTweens.current[cardId] = {
+        rotateY: gsap.quickTo(card, "rotateY", { duration: 0.4, ease: "power2.out" }),
+        rotateX: gsap.quickTo(card, "rotateX", { duration: 0.4, ease: "power2.out" }),
+        iconX: icon ? gsap.quickTo(icon, "x", { duration: 0.4, ease: "power2.out" }) : null,
+        iconY: icon ? gsap.quickTo(icon, "y", { duration: 0.4, ease: "power2.out" }) : null,
+        textX: text ? gsap.quickTo(text, "x", { duration: 0.4, ease: "power2.out" }) : null,
+        textY: text ? gsap.quickTo(text, "y", { duration: 0.4, ease: "power2.out" }) : null,
+      };
+      gsap.set(card, { transformPerspective: 1000 });
+    }
+    return cardTweens.current[cardId];
+  };
+
+  const handleCardMouseMove = (e, ref, cardId) => {
     const card = ref.current;
     if (!card) return;
     const rect = card.getBoundingClientRect();
@@ -167,66 +185,50 @@ const BentoServices = () => {
     const dx = (x - xc) / xc; // value between -1 and 1
     const dy = (y - yc) / yc; // value between -1 and 1
     
-    // Smooth 3D tilt rotation
-    gsap.to(card, {
-      rotateY: dx * 6,
-      rotateX: -dy * 6,
-      transformPerspective: 1000,
-      ease: "power2.out",
-      duration: 0.4
-    });
-
-    // Content offsets
-    const icon = card.querySelector('.bento-icon');
-    if (icon) {
-      gsap.to(icon, {
-        x: dx * 8,
-        y: dy * 8,
-        ease: "power2.out",
-        duration: 0.4
-      });
+    const tweens = getCardTweens(cardId, card);
+    tweens.rotateY(dx * 6);
+    tweens.rotateX(-dy * 6);
+    if (tweens.iconX) {
+      tweens.iconX(dx * 8);
+      tweens.iconY(dy * 8);
     }
-
-    const text = card.querySelector('.bento-text');
-    if (text) {
-      gsap.to(text, {
-        x: dx * 4,
-        y: dy * 4,
-        ease: "power2.out",
-        duration: 0.4
-      });
+    if (tweens.textX) {
+      tweens.textX(dx * 4);
+      tweens.textY(dy * 4);
     }
   };
 
-  const handleCardMouseLeave = (ref) => {
+  const handleCardMouseLeave = (ref, cardId) => {
     const card = ref.current;
     if (!card) return;
 
-    gsap.to(card, {
-      rotateY: 0,
-      rotateX: 0,
-      ease: "power3.out",
-      duration: 0.7
-    });
-
-    const icon = card.querySelector('.bento-icon');
-    if (icon) {
-      gsap.to(icon, {
-        x: 0,
-        y: 0,
+    const tweens = cardTweens.current[cardId];
+    if (tweens) {
+      tweens.rotateY(0);
+      tweens.rotateX(0);
+      if (tweens.iconX) {
+        tweens.iconX(0);
+        tweens.iconY(0);
+      }
+      if (tweens.textX) {
+        tweens.textX(0);
+        tweens.textY(0);
+      }
+    } else {
+      gsap.to(card, {
+        rotateY: 0,
+        rotateX: 0,
         ease: "power3.out",
         duration: 0.7
       });
-    }
-
-    const text = card.querySelector('.bento-text');
-    if (text) {
-      gsap.to(text, {
-        x: 0,
-        y: 0,
-        ease: "power3.out",
-        duration: 0.7
-      });
+      const icon = card.querySelector('.bento-icon');
+      if (icon) {
+        gsap.to(icon, { x: 0, y: 0, ease: "power3.out", duration: 0.7 });
+      }
+      const text = card.querySelector('.bento-text');
+      if (text) {
+        gsap.to(text, { x: 0, y: 0, ease: "power3.out", duration: 0.7 });
+      }
     }
   };
 
@@ -262,8 +264,8 @@ const BentoServices = () => {
           {/* Card 1: Interactive Dev */}
           <div 
             ref={card1Ref}
-            onMouseMove={(e) => handleCardMouseMove(e, card1Ref)}
-            onMouseLeave={() => handleCardMouseLeave(card1Ref)}
+            onMouseMove={(e) => handleCardMouseMove(e, card1Ref, 1)}
+            onMouseLeave={() => handleCardMouseLeave(card1Ref, 1)}
             className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
@@ -296,8 +298,8 @@ const BentoServices = () => {
           {/* Card 2: Branding */}
           <div 
             ref={card2Ref}
-            onMouseMove={(e) => handleCardMouseMove(e, card2Ref)}
-            onMouseLeave={() => handleCardMouseLeave(card2Ref)}
+            onMouseMove={(e) => handleCardMouseMove(e, card2Ref, 2)}
+            onMouseLeave={() => handleCardMouseLeave(card2Ref, 2)}
             className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
@@ -333,8 +335,8 @@ const BentoServices = () => {
           {/* Card 3: Campaigns */}
           <div 
             ref={card3Ref}
-            onMouseMove={(e) => handleCardMouseMove(e, card3Ref)}
-            onMouseLeave={() => handleCardMouseLeave(card3Ref)}
+            onMouseMove={(e) => handleCardMouseMove(e, card3Ref, 3)}
+            onMouseLeave={() => handleCardMouseLeave(card3Ref, 3)}
             className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
@@ -374,8 +376,8 @@ const BentoServices = () => {
           {/* Card 4: Creative Direction */}
           <div 
             ref={card4Ref}
-            onMouseMove={(e) => handleCardMouseMove(e, card4Ref)}
-            onMouseLeave={() => handleCardMouseLeave(card4Ref)}
+            onMouseMove={(e) => handleCardMouseMove(e, card4Ref, 4)}
+            onMouseLeave={() => handleCardMouseLeave(card4Ref, 4)}
             className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',

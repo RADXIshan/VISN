@@ -62,11 +62,11 @@ const HorizontalProjects = () => {
 
     const scrollTween = gsap.to(scrollContainer, {
       x: () => -getScrollWidth(),
-      ease: "none",
+      ease: "power2.inOut",
       scrollTrigger: {
         trigger: container,
         pin: true,
-        scrub: 0.5,
+        scrub: 1.2,
         start: "top top",
         end: () => `+=${getScrollWidth()}`,
         invalidateOnRefresh: true
@@ -86,7 +86,7 @@ const HorizontalProjects = () => {
             containerAnimation: scrollTween,
             start: "left right",
             end: "right left",
-            scrub: true
+            scrub: 1.2
           }
         }
       );
@@ -103,7 +103,7 @@ const HorizontalProjects = () => {
           containerAnimation: scrollTween,
           start: "left right",
           end: "right left",
-          scrub: true
+          scrub: 1.2
         }
       });
       
@@ -115,7 +115,7 @@ const HorizontalProjects = () => {
           containerAnimation: scrollTween,
           start: "right left",
           end: "right left",
-          scrub: true
+          scrub: 1.2
         }
       });
     });
@@ -136,14 +136,14 @@ const HorizontalProjects = () => {
     <div 
       ref={containerRef}
       id="projects"
-      className="relative h-screen bg-transparent"
+      className="relative h-screen w-full overflow-hidden bg-transparent"
     >
       <div 
         ref={scrollRef}
         className="absolute top-0 left-0 flex h-full items-center pl-6 md:pl-24 pr-[15vw] gap-10 md:gap-16 whitespace-nowrap"
       >
         {/* Introduction Slide */}
-        <div className="flex-shrink-0 flex h-[55vh] w-[300px] md:w-[420px] flex-col justify-between whitespace-normal select-none pr-8">
+        <div className="shrink-0 flex h-[55vh] w-[300px] md:w-[420px] flex-col justify-between whitespace-normal select-none pr-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
@@ -167,10 +167,11 @@ const HorizontalProjects = () => {
           <div 
             key={project.id}
             onClick={handleLinkClick}
-            className="project-card relative flex-shrink-0 flex h-[75vh] w-[80vw] sm:w-[55vw] md:w-[38vw] flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/50 p-6 md:p-8 backdrop-blur-md overflow-hidden group select-none cursor-none transition-all duration-300"
+            className="project-card relative shrink-0 flex h-[75vh] w-[80vw] sm:w-[55vw] md:w-[38vw] flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/50 p-6 md:p-8 backdrop-blur-md overflow-hidden group select-none cursor-none transition-[background-color,border-color,box-shadow,color] duration-300"
             data-cursor="view"
             style={{ 
-              boxShadow: `inset 0 0 30px rgba(0,0,0,0.01), 0 15px 35px rgba(0,0,0,0.03)`
+              boxShadow: `inset 0 0 30px rgba(0,0,0,0.01), 0 15px 35px rgba(0,0,0,0.03)`,
+              willChange: "transform"
             }}
           >
             {/* Elegant champagne background shadows */}
@@ -191,7 +192,8 @@ const HorizontalProjects = () => {
               <img 
                 src={project.image} 
                 alt={project.title}
-                className="project-image absolute top-0 -left-[15%] w-[130%] h-full object-cover object-center"
+                className="project-image absolute top-0 left-[-15%] w-[130%] h-full object-cover object-center"
+                style={{ willChange: "transform" }}
               />
             </div>
 

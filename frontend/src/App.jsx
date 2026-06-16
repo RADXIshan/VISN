@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Import bespoke creative components
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
-import InteractiveCanvas from './components/InteractiveCanvas';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
 import TextReveal from './components/TextReveal';
@@ -54,7 +53,7 @@ const App = () => {
       // Recalculate ScrollTrigger offsets once the preloader resolves and layout is visible
       refreshTimer = setTimeout(() => {
         ScrollTrigger.refresh();
-      }, 200);
+      }, 1200);
     }
 
     return () => {
@@ -69,9 +68,6 @@ const App = () => {
     <>
       {/* Screen Percentage preloader wipe */}
       <Preloader onComplete={() => setIsLoaded(true)} />
-
-      {/* Spring physics grid background mesh */}
-      <InteractiveCanvas />
 
       {/* Main landing layout structure */}
       <div 

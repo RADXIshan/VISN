@@ -5,8 +5,7 @@ const sections = [
   { id: 'manifesto', num: '02', name: 'MANIFESTO' },
   { id: 'projects', num: '03', name: 'PORTFOLIO' },
   { id: 'services', num: '04', name: 'SERVICES' },
-  { id: 'playground', num: '05', name: 'LABS' },
-  { id: 'contact', num: '06', name: 'CONTACT' }
+  { id: 'contact', num: '05', name: 'CONTACT' }
 ];
 
 const ScrollProgress = () => {
@@ -14,33 +13,45 @@ const ScrollProgress = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // 1. Calculate scroll progress percentage (lightweight scroll check)
     const handleScroll = () => {
-      // 1. Calculate overall scroll percentage
       const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalScrollHeight > 0) {
         setProgress(window.scrollY / totalScrollHeight);
       }
-
-      // 2. Locate active viewport section
-      let currentActive = sections[0];
-      for (const sec of sections) {
-        const el = document.getElementById(sec.id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          // Active threshold is if section top reaches 45% height of window
-          if (rect.top <= window.innerHeight * 0.45) {
-            currentActive = sec;
-          }
-        }
-      }
-      setActiveSection(currentActive);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Run once initially to calibrate positions
     handleScroll();
-    
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // 2. Locate active viewport section using IntersectionObserver to avoid layout thrashing
+    const observerOptions = {
+      root: null,
+      rootMargin: '-45% 0px -55% 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sec = sections.find((s) => s.id === entry.target.id);
+          if (sec) {
+            setActiveSection(sec);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((sec) => {
+      const el = document.getElementById(sec.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   return (
