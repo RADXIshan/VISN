@@ -6,7 +6,7 @@ const Preloader = ({ onComplete }) => {
   const containerRef = useRef(null);
   const pathRef = useRef(null);
   const textContainerRef = useRef(null);
-  const counterRef = useRef(null);
+  const artworkFrameRef = useRef(null);
   
   const words = [
     "CURATING DIGITAL FORM",
@@ -17,21 +17,21 @@ const Preloader = ({ onComplete }) => {
   ];
   const [wordIdx, setWordIdx] = useState(0);
 
-  // Cycle through creative terms
+  // Cycle words
   useEffect(() => {
     if (count >= 100) return;
     const interval = setInterval(() => {
       setWordIdx((prev) => (prev + 1) % words.length);
-    }, 450);
+    }, 400);
     return () => clearInterval(interval);
   }, [count]);
 
-  // Animate progress value
+  // Animate counter and load trigger
   useEffect(() => {
     const loaderObj = { val: 0 };
     gsap.to(loaderObj, {
       val: 100,
-      duration: 2.3,
+      duration: 1.8, // Brisk loading timeline
       ease: "power2.out",
       onUpdate: () => {
         setCount(Math.floor(loaderObj.val));
@@ -52,40 +52,39 @@ const Preloader = ({ onComplete }) => {
       return;
     }
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        if (onComplete) onComplete();
-      }
-    });
+    // Snappy transition: trigger Hero entrance IMMEDIATELY as the exit timeline starts
+    if (onComplete) onComplete();
 
-    // 1. Fade out preloader typography
+    const tl = gsap.timeline();
+
+    // 1. Fade out preloader content
     tl.to(textContainer, {
       opacity: 0,
-      y: -60,
-      scale: 0.98,
-      duration: 0.5,
+      y: -50,
+      scale: 0.96,
+      duration: 0.45,
       ease: "power3.in"
     });
 
-    // 2. Liquid morph wipe upwards (colored in soft parchment)
+    // 2. Liquid curtain wipe upwards (reveals the cream content behind)
     tl.to(path, {
-      attr: { d: "M0 0 L100 0 L100 70 Q50 35 0 70 Z" },
+      attr: { d: "M0 0 L100 0 L100 65 Q50 30 0 65 Z" },
       duration: 0.45,
       ease: "power2.in"
     }, "-=0.25");
 
     tl.to(path, {
       attr: { d: "M0 0 L100 0 L100 0 Q50 0 0 0 Z" },
-      duration: 0.65,
+      duration: 0.6,
       ease: "power4.out"
     });
 
-    // 4. Hide overall container
+    // 3. Hide preloader overlay
     tl.to(container, {
       opacity: 0,
       pointerEvents: 'none',
       duration: 0.1
-    }, "-=0.45");
+    }, "-=0.4");
   };
 
   return (
@@ -93,9 +92,9 @@ const Preloader = ({ onComplete }) => {
       ref={containerRef}
       className="fixed inset-0 z-99999 flex items-center justify-center bg-transparent"
     >
-      {/* SVG Canvas to do liquid curves (Soft Parchment colored curtain) */}
+      {/* SVG Liquid morph wipe (Colored in Obsidian dark mode curtain) */}
       <svg 
-        className="absolute inset-0 h-full w-full fill-[#F3F1ED] pointer-events-none"
+        className="absolute inset-0 h-full w-full fill-[#151515] pointer-events-none"
         viewBox="0 0 100 100" 
         preserveAspectRatio="none"
       >
@@ -105,33 +104,68 @@ const Preloader = ({ onComplete }) => {
         />
       </svg>
 
-      {/* Editorial loader text UI */}
+      {/* Symmetrical Luxury Grid Content */}
       <div 
         ref={textContainerRef}
-        className="relative z-10 flex flex-col items-center justify-center text-obsidian select-none"
+        className="relative z-10 w-full h-full max-w-6xl mx-auto flex flex-col justify-between p-8 md:p-12 text-[#FAF8F5] select-none"
       >
-        {/* Classy Serif loader numerals */}
-        <h1 
-          ref={counterRef}
-          className="text-8xl sm:text-[10rem] md:text-[13rem] font-serif font-light tracking-tighter text-obsidian/10 mb-2"
-          style={{ lineHeight: 1 }}
-        >
-          {count.toString().padStart(3, '0')}
-        </h1>
-        
-        {/* Rotating actions */}
-        <div className="h-6 overflow-hidden flex flex-col items-center justify-center">
-          <span className="text-[10px] md:text-xs font-bold tracking-[0.35em] uppercase text-accent-gold-dark">
-            {words[wordIdx]}
+        {/* Top Metadata row */}
+        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-bold tracking-[0.35em] text-[#FAF8F5]/40 uppercase">
+          <span>VISN STUDIO // EST. 2026</span>
+          <span className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75] animate-pulse" />
+            LOADING CREATIVE SUITE
           </span>
         </div>
-        
-        {/* Elegant Gold Progress Wireframe */}
-        <div className="mt-8 w-28 h-px bg-obsidian/10 relative overflow-hidden rounded-full">
+
+        {/* Central Gallery Frame */}
+        <div className="my-auto flex flex-col items-center justify-center gap-8">
+          
+          {/* Framed Artwork Display */}
           <div 
-            className="absolute top-0 left-0 h-full bg-accent-gold"
-            style={{ width: `${count}%`, transition: 'width 0.1s ease-out' }}
-          />
+            ref={artworkFrameRef}
+            className="relative h-60 w-60 md:h-72 md:w-72 rounded-2xl border border-accent-gold/20 bg-obsidian/30 overflow-hidden flex items-center justify-center shadow-2xl p-4"
+          >
+            {/* Fine framing lines */}
+            <div className="absolute inset-2 border border-[#FAF8F5]/5 rounded-xl pointer-events-none" />
+            
+            {/* Generated Luxury Art Asset */}
+            <img 
+              src="/preloader-artwork.png" 
+              alt="VISN Loading Artwork" 
+              className="h-full w-full object-cover rounded-lg scale-105 animate-[pulse_6s_infinite_ease-in-out]"
+            />
+          </div>
+
+          {/* Loader values */}
+          <div className="flex flex-col items-center gap-2">
+            {/* Rotating terms */}
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.32em] text-accent-gold uppercase h-4">
+              {words[wordIdx]}
+            </span>
+
+            {/* Serif counter */}
+            <div className="flex items-baseline gap-1 mt-1">
+              <span className="text-4xl md:text-5xl font-serif font-light tracking-tight text-[#FAF8F5]">
+                {count.toString().padStart(3, '0')}
+              </span>
+              <span className="text-xs font-sans font-bold text-accent-gold % ml-1">%</span>
+            </div>
+
+            {/* Fine loading bar indicator */}
+            <div className="w-32 h-[1px] bg-[#FAF8F5]/10 mt-3 relative overflow-hidden rounded-full">
+              <div 
+                className="absolute top-0 left-0 h-full bg-accent-gold transition-all duration-150 ease-out"
+                style={{ width: `${count}%` }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Coordinates & Time */}
+        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-mono text-[#FAF8F5]/30 tracking-widest uppercase">
+          <span>LAT: 37.7749° N // LON: 122.4194° W</span>
+          <span>© 2026 // ALL RIGHTS RESERVED</span>
         </div>
       </div>
     </div>

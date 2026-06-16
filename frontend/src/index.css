@@ -18,7 +18,19 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    cursor: none; /* Hide default cursor for standard desktop */
+  }
+
+  /* Override cursor-none to use default pointer/cursor when custom cursor is disabled */
+  .cursor-none,
+  [class*="cursor-none"] {
+    cursor: auto !important;
+  }
+  a.cursor-none,
+  button.cursor-none,
+  a[class*="cursor-none"],
+  button[class*="cursor-none"],
+  [data-cursor="magnetic"] {
+    cursor: pointer !important;
   }
 
   /* Lenis smooth scrolling rules */

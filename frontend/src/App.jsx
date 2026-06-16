@@ -4,18 +4,15 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Import bespoke creative components
-import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import InteractiveCanvas from './components/InteractiveCanvas';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
-import ZoomParallaxSection from './components/ZoomParallaxSection';
 import TextReveal from './components/TextReveal';
 import DuoGlideGallery from './components/DuoGlideGallery';
 import HorizontalProjects from './components/HorizontalProjects';
 import BentoServices from './components/BentoServices';
-import InteractivePlayground from './components/InteractivePlayground';
 import ContactFooter from './components/ContactFooter';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -70,9 +67,6 @@ const App = () => {
 
   return (
     <>
-      {/* Premium custom mouse dot and trailing ring */}
-      <CustomCursor />
-
       {/* Screen Percentage preloader wipe */}
       <Preloader onComplete={() => setIsLoaded(true)} />
 
@@ -88,12 +82,10 @@ const App = () => {
         <ScrollProgress />
         <Navbar />
         <Hero isLoaded={isLoaded} />
-        <ZoomParallaxSection />
         <TextReveal />
         <DuoGlideGallery />
         <HorizontalProjects />
         <BentoServices />
-        <InteractivePlayground />
         <ContactFooter />
       </div>
     </>
