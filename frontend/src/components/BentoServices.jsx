@@ -12,7 +12,7 @@ const BentoServices = () => {
   // States to count up statistical indicators
   const [stats, setStats] = useState({ speed: 0, conversion: 0 });
 
-  // Canvas interaction inside Interactive Development Bento Box
+  // Canvas interaction inside Interactive Development Bento Box (Champagne theme)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -29,9 +29,9 @@ const BentoServices = () => {
       constructor(x, y) {
         this.x = x || Math.random() * width;
         this.y = y || Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 1.6;
-        this.vy = (Math.random() - 0.5) * 1.6;
-        this.radius = Math.random() * 1.8 + 0.8;
+        this.vx = (Math.random() - 0.5) * 1.5;
+        this.vy = (Math.random() - 0.5) * 1.5;
+        this.radius = Math.random() * 1.6 + 0.6;
         this.alpha = 1;
         this.life = Math.random() * 50 + 50;
         this.maxLife = this.life;
@@ -51,7 +51,7 @@ const BentoServices = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 240, 255, ${this.alpha * 0.4})`;
+        ctx.fillStyle = `rgba(181, 155, 117, ${this.alpha * 0.4})`; // Champagne gold
         ctx.fill();
       }
     }
@@ -81,7 +81,7 @@ const BentoServices = () => {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(0, 240, 255, ${(1 - dist / 55) * 0.12})`;
+            ctx.strokeStyle = `rgba(181, 155, 117, ${(1 - dist / 55) * 0.14})`; // Champagne gold lines
             ctx.stroke();
           }
         }
@@ -149,6 +149,87 @@ const BentoServices = () => {
     };
   }, []);
 
+  // 3D Card Hover Tilts and Offset handlers
+  const card1Ref = useRef(null);
+  const card2Ref = useRef(null);
+  const card3Ref = useRef(null);
+  const card4Ref = useRef(null);
+
+  const handleCardMouseMove = (e, ref) => {
+    const card = ref.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const xc = rect.width / 2;
+    const yc = rect.height / 2;
+    const dx = (x - xc) / xc; // value between -1 and 1
+    const dy = (y - yc) / yc; // value between -1 and 1
+    
+    // Smooth 3D tilt rotation
+    gsap.to(card, {
+      rotateY: dx * 6,
+      rotateX: -dy * 6,
+      transformPerspective: 1000,
+      ease: "power2.out",
+      duration: 0.4
+    });
+
+    // Content offsets
+    const icon = card.querySelector('.bento-icon');
+    if (icon) {
+      gsap.to(icon, {
+        x: dx * 8,
+        y: dy * 8,
+        ease: "power2.out",
+        duration: 0.4
+      });
+    }
+
+    const text = card.querySelector('.bento-text');
+    if (text) {
+      gsap.to(text, {
+        x: dx * 4,
+        y: dy * 4,
+        ease: "power2.out",
+        duration: 0.4
+      });
+    }
+  };
+
+  const handleCardMouseLeave = (ref) => {
+    const card = ref.current;
+    if (!card) return;
+
+    gsap.to(card, {
+      rotateY: 0,
+      rotateX: 0,
+      ease: "power3.out",
+      duration: 0.7
+    });
+
+    const icon = card.querySelector('.bento-icon');
+    if (icon) {
+      gsap.to(icon, {
+        x: 0,
+        y: 0,
+        ease: "power3.out",
+        duration: 0.7
+      });
+    }
+
+    const text = card.querySelector('.bento-text');
+    if (text) {
+      gsap.to(text, {
+        x: 0,
+        y: 0,
+        ease: "power3.out",
+        duration: 0.7
+      });
+    }
+  };
+
   return (
     <section 
       ref={containerRef}
@@ -156,22 +237,22 @@ const BentoServices = () => {
       className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-transparent z-10"
     >
       <div className="mx-auto max-w-6xl">
-        {/* Title and stats summary */}
+        {/* Title and description */}
         <div className="flex flex-col md:flex-row items-start justify-between gap-6 mb-16 select-none">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="h-2 w-2 rounded-full bg-accent-cyan shadow-[0_0_8px_#00f0ff]" />
-              <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+              <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
                 CAPABILITIES
               </h2>
             </div>
-            <h3 className="text-3xl md:text-5xl font-display font-black leading-tight uppercase text-white">
+            <h3 className="text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
               WHAT WE DO <br />
-              <span className="text-stroke-glow text-glow-cyan">BEST</span>
+              <span className="text-stroke-glow text-glow-gold">BEST</span>
             </h3>
           </div>
-          <p className="max-w-xs text-xs md:text-sm text-neutral-400 font-light leading-relaxed">
-            By combining high-performance code engineering and digital art, we forge websites that look like custom awards.
+          <p className="max-w-xs text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">
+            By combining high-performance code engineering and editorial visual layout, we form websites that define your brand.
           </p>
         </div>
 
@@ -180,8 +261,14 @@ const BentoServices = () => {
           
           {/* Card 1: Interactive Dev */}
           <div 
-            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-white/4 bg-[#070707]/40 p-8 overflow-hidden group select-none"
-            style={{ boxShadow: 'inset 0 0 30px rgba(255,255,255,0.01)' }}
+            ref={card1Ref}
+            onMouseMove={(e) => handleCardMouseMove(e, card1Ref)}
+            onMouseLeave={() => handleCardMouseLeave(card1Ref)}
+            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            style={{ 
+              boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
+              transformStyle: "preserve-3d"
+            }}
           >
             {/* Hover Canvas particle mesh */}
             <canvas 
@@ -190,48 +277,54 @@ const BentoServices = () => {
             />
             
             <div className="relative z-10 flex items-center justify-between">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/6 text-white">
-                <Code className="h-5 w-5 text-accent-cyan" />
+              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+                <Code className="h-5 w-5" />
               </div>
-              <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-wider">[ DEV // LABS ]</span>
+              <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">[ DEV // LABS ]</span>
             </div>
 
-            <div className="relative z-10 mt-16">
-              <h4 className="text-lg md:text-xl font-display font-black text-white mb-2 uppercase tracking-wide">
+            <div className="bento-text relative z-10 mt-16">
+              <h4 className="text-lg md:text-xl font-serif font-bold text-obsidian mb-2 uppercase tracking-wide">
                 INTERACTIVE DEVELOPMENT
               </h4>
-              <p className="max-w-md text-xs text-neutral-400 font-light leading-relaxed">
-                We craft fluid React websites, interactive Canvas apps, and high-performance layouts that load instantly. Hover and move your mouse above this panel to test connection physics.
+              <p className="max-w-md text-xs text-obsidian/75 font-serif italic font-light leading-relaxed">
+                We craft fluid React websites, interactive Canvas apps, and high-performance layouts that load instantly. Hover and move your mouse above this panel to test gold particle physics.
               </p>
             </div>
           </div>
 
           {/* Card 2: Branding */}
           <div 
-            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-white/4 bg-[#070707]/40 p-8 overflow-hidden group select-none"
-            style={{ boxShadow: 'inset 0 0 30px rgba(255,255,255,0.01)' }}
+            ref={card2Ref}
+            onMouseMove={(e) => handleCardMouseMove(e, card2Ref)}
+            onMouseLeave={() => handleCardMouseLeave(card2Ref)}
+            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            style={{ 
+              boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
+              transformStyle: "preserve-3d"
+            }}
           >
             <div className="flex items-center justify-between">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/6 text-white">
-                <Compass className="h-5 w-5 text-purple-400" />
+              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+                <Compass className="h-5 w-5" />
               </div>
-              <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-wider">[ IDENTITY // ART ]</span>
+              <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">[ IDENTITY // ART ]</span>
             </div>
 
             {/* Rotating SVG orbits layout */}
-            <div className="my-5 flex items-center justify-center relative h-24">
-              <div className="absolute h-20 w-20 rounded-full border border-white/5 flex items-center justify-center animate-[spin_16s_linear_infinite]" />
-              <div className="absolute h-14 w-14 rounded-full border border-accent-cyan/15 flex items-center justify-center animate-[spin_10s_linear_infinite_reverse]">
-                <div className="h-1.5 w-1.5 rounded-full bg-accent-cyan absolute top-0 shadow-[0_0_8px_#00f0ff]" />
+            <div className="my-5 flex items-center justify-center relative h-24 pointer-events-none">
+              <div className="absolute h-20 w-20 rounded-full border border-obsidian/5 flex items-center justify-center animate-[spin_16s_linear_infinite]" />
+              <div className="absolute h-14 w-14 rounded-full border border-accent-gold/20 flex items-center justify-center animate-[spin_10s_linear_infinite_reverse]">
+                <div className="h-1.5 w-1.5 rounded-full bg-accent-gold absolute top-0 shadow-[0_0_6px_#B59B75]" />
               </div>
-              <div className="absolute h-8 w-8 rounded-full border border-purple-500/20 animate-[spin_6s_linear_infinite]" />
+              <div className="absolute h-8 w-8 rounded-full border border-obsidian/10 animate-[spin_6s_linear_infinite]" />
             </div>
 
-            <div>
-              <h4 className="text-lg font-display font-black text-white mb-2 uppercase tracking-wide">
+            <div className="bento-text">
+              <h4 className="text-lg font-serif font-bold text-obsidian mb-2 uppercase tracking-wide">
                 BRANDING & IDENTITY
               </h4>
-              <p className="text-xs text-neutral-400 font-light leading-relaxed">
+              <p className="text-xs text-obsidian/75 font-serif italic font-light leading-relaxed">
                 Responsive design systems, typography blueprints, and high-contrast digital interfaces engineered to build immediate digital authority.
               </p>
             </div>
@@ -239,34 +332,40 @@ const BentoServices = () => {
 
           {/* Card 3: Campaigns */}
           <div 
-            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-white/4 bg-[#070707]/40 p-8 overflow-hidden group select-none"
-            style={{ boxShadow: 'inset 0 0 30px rgba(255,255,255,0.01)' }}
+            ref={card3Ref}
+            onMouseMove={(e) => handleCardMouseMove(e, card3Ref)}
+            onMouseLeave={() => handleCardMouseLeave(card3Ref)}
+            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            style={{ 
+              boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
+              transformStyle: "preserve-3d"
+            }}
           >
             <div className="flex items-center justify-between">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/6 text-white">
-                <Megaphone className="h-5 w-5 text-rose-400" />
+              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+                <Megaphone className="h-5 w-5" />
               </div>
-              <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-wider">[ GROWTH // CODE ]</span>
+              <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">[ GROWTH // CODE ]</span>
             </div>
 
             {/* Live metric counters */}
-            <div className="my-5 flex items-end gap-6 h-20">
+            <div className="my-5 flex items-end gap-6 h-20 pointer-events-none">
               <div>
-                <p className="text-3xl font-display font-black text-white">{stats.speed}%</p>
-                <p className="text-[9px] text-neutral-500 uppercase tracking-wider mt-1">Page Speed</p>
+                <p className="text-3xl font-serif font-bold text-obsidian">{stats.speed}%</p>
+                <p className="text-[9px] text-obsidian/45 tracking-wider mt-1">Page Speed</p>
               </div>
-              <div className="h-10 w-px bg-white/5" />
+              <div className="h-10 w-px bg-obsidian/10" />
               <div>
-                <p className="text-3xl font-display font-black text-accent-cyan text-glow-cyan">+{stats.conversion}%</p>
-                <p className="text-[9px] text-neutral-500 uppercase tracking-wider mt-1">Conversion</p>
+                <p className="text-3xl font-serif font-bold text-accent-gold-dark">+{stats.conversion}%</p>
+                <p className="text-[9px] text-obsidian/45 tracking-wider mt-1">Conversion</p>
               </div>
             </div>
 
-            <div>
-              <h4 className="text-lg font-display font-black text-white mb-2 uppercase tracking-wide">
+            <div className="bento-text">
+              <h4 className="text-lg font-serif font-bold text-obsidian mb-2 uppercase tracking-wide">
                 MARKETING SYSTEMS
               </h4>
-              <p className="text-xs text-neutral-400 font-light leading-relaxed">
+              <p className="text-xs text-obsidian/75 font-serif italic font-light leading-relaxed">
                 Tailored search engine index automation, data funnels, user conversion pathways, and strategy.
               </p>
             </div>
@@ -274,31 +373,37 @@ const BentoServices = () => {
 
           {/* Card 4: Creative Direction */}
           <div 
-            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-white/4 bg-[#070707]/40 p-8 overflow-hidden group select-none"
-            style={{ boxShadow: 'inset 0 0 30px rgba(255,255,255,0.01)' }}
+            ref={card4Ref}
+            onMouseMove={(e) => handleCardMouseMove(e, card4Ref)}
+            onMouseLeave={() => handleCardMouseLeave(card4Ref)}
+            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            style={{ 
+              boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
+              transformStyle: "preserve-3d"
+            }}
           >
             <div className="flex items-center justify-between">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/6 text-white">
-                <Eye className="h-5 w-5 text-accent-cyan" />
+              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+                <Eye className="h-5 w-5" />
               </div>
-              <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-wider">[ CREATIVE // ART ]</span>
+              <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">[ CREATIVE // ART ]</span>
             </div>
 
             {/* CSS Marquee Loops */}
-            <div className="my-6 overflow-hidden flex flex-col gap-2 pointer-events-none opacity-20 select-none">
-              <div className="marquee-wrapper flex whitespace-nowrap gap-4 text-[10px] font-black uppercase tracking-widest">
+            <div className="my-6 overflow-hidden flex flex-col gap-2 pointer-events-none opacity-30 select-none">
+              <div className="marquee-wrapper flex whitespace-nowrap gap-4 text-[10px] font-bold uppercase tracking-widest text-obsidian/70">
                 <span className="animate-[marquee_20s_linear_infinite]">Art Direction • UI Design • Copywriting • motion concepts • concept board • Art Direction • UI Design • Copywriting • motion concepts • concept board •</span>
               </div>
-              <div className="marquee-wrapper flex whitespace-nowrap gap-4 text-[10px] font-black uppercase tracking-widest text-stroke text-white/30">
+              <div className="marquee-wrapper flex whitespace-nowrap gap-4 text-[10px] font-bold uppercase tracking-widest text-stroke text-obsidian/20">
                 <span className="animate-[marquee_15s_linear_infinite_reverse]">Photoreal renders • audio soundscapes • VFX styling • video reels • Photoreal renders • audio soundscapes • VFX styling • video reels •</span>
               </div>
             </div>
 
-            <div>
-              <h4 className="text-lg md:text-xl font-display font-black text-white mb-2 uppercase tracking-wide">
+            <div className="bento-text">
+              <h4 className="text-lg md:text-xl font-serif font-bold text-obsidian mb-2 uppercase tracking-wide">
                 CREATIVE DIRECTION
               </h4>
-              <p className="max-w-md text-xs text-neutral-400 font-light leading-relaxed">
+              <p className="max-w-md text-xs text-obsidian/75 font-serif italic font-light leading-relaxed">
                 We blueprint modern visual languages, responsive video mockups, structural design grids, and sound effects to unify creative software projects.
               </p>
             </div>

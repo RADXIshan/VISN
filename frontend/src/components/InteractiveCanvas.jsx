@@ -8,15 +8,12 @@ const InteractiveCanvas = () => {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
-    let animationFrameId;
+    let animationId;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
+    const mouse = { x: -1000, y: -1000, radius: 155, active: false };
 
-    // Track cursor location and push radius
-    const mouse = { x: -1000, y: -1000, radius: 150, active: false };
-
-    // Node representing individual grid intersections
+    // Node representing individual grid intersections in light theme
     class Node {
       constructor(x, y) {
         this.anchorX = x;
@@ -25,8 +22,8 @@ const InteractiveCanvas = () => {
         this.y = y;
         this.vx = 0;
         this.vy = 0;
-        this.size = 1;
-        this.color = 'rgba(255, 255, 255, 0.12)';
+        this.size = 0.75;
+        this.color = 'rgba(21, 21, 21, 0.04)';
       }
 
       update() {
@@ -36,41 +33,40 @@ const InteractiveCanvas = () => {
           const dist = Math.hypot(dx, dy);
 
           if (dist < mouse.radius) {
-            // Push intensity drops off linearly
+            // Push intensity dropoff
             const force = (mouse.radius - dist) / mouse.radius;
             const angle = Math.atan2(dy, dx);
             
             // Push vector target
-            const targetX = this.x - Math.cos(angle) * force * 55;
-            const targetY = this.y - Math.sin(angle) * force * 55;
+            const targetX = this.x - Math.cos(angle) * force * 52;
+            const targetY = this.y - Math.sin(angle) * force * 52;
 
-            // Shift velocity toward target
             this.vx += (targetX - this.x) * 0.12;
             this.vy += (targetY - this.y) * 0.12;
           }
         }
 
-        // Hooke's Law spring back force to return nodes home
+        // Spring force back to base anchor
         const ax = (this.anchorX - this.x) * 0.06;
         const ay = (this.anchorY - this.y) * 0.06;
         
         this.vx += ax;
         this.vy += ay;
         
-        // Apply friction drag to stabilize spring oscillation
+        // Apply friction drag
         this.vx *= 0.8;
         this.vy *= 0.8;
 
         this.x += this.vx;
         this.y += this.vy;
 
-        // Visual coloring shifts based on offset
+        // Visual coloring shifts to gold on offset
         const displacement = Math.hypot(this.x - this.anchorX, this.y - this.anchorY);
         if (displacement > 4) {
-          this.color = `rgba(0, 240, 255, ${Math.min(0.12 + displacement / 40, 0.7)})`;
+          this.color = `rgba(181, 155, 117, ${Math.min(0.08 + displacement / 35, 0.65)})`;
           this.size = 1.25;
         } else {
-          this.color = 'rgba(255, 255, 255, 0.08)';
+          this.color = 'rgba(21, 21, 21, 0.04)';
           this.size = 0.75;
         }
       }
@@ -151,10 +147,10 @@ const InteractiveCanvas = () => {
                 Math.hypot(rightNode.x - rightNode.anchorX, rightNode.y - rightNode.anchorY)
               );
               
-              // Shift color to glowing cyan if grid is distorted
+              // Shift color to glowing gold if grid is distorted
               ctx.strokeStyle = disp > 4 
-                ? `rgba(0, 240, 255, ${Math.min(0.015 + disp / 200, 0.15)})`
-                : 'rgba(255, 255, 255, 0.015)';
+                ? `rgba(181, 155, 117, ${Math.min(0.015 + disp / 220, 0.14)})`
+                : 'rgba(21, 21, 21, 0.015)';
               ctx.stroke();
             }
           }
@@ -172,17 +168,16 @@ const InteractiveCanvas = () => {
                 Math.hypot(bottomNode.x - bottomNode.anchorX, bottomNode.y - bottomNode.anchorY)
               );
               
-              // Shift color to glowing purple on vertical distortion
               ctx.strokeStyle = disp > 4 
-                ? `rgba(112, 0, 255, ${Math.min(0.015 + disp / 200, 0.15)})`
-                : 'rgba(255, 255, 255, 0.015)';
+                ? `rgba(181, 155, 117, ${Math.min(0.015 + disp / 220, 0.14)})`
+                : 'rgba(21, 21, 21, 0.015)';
               ctx.stroke();
             }
           }
         }
       }
 
-      animationFrameId = requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
 
     animate();
@@ -191,14 +186,14 @@ const InteractiveCanvas = () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 
   return (
     <canvas 
       ref={canvasRef}
-      className="fixed inset-0 -z-10 h-full w-full bg-[#030303] pointer-events-none"
+      className="fixed inset-0 -z-10 h-full w-full bg-[#FAF8F5] pointer-events-none"
     />
   );
 };

@@ -20,11 +20,11 @@ const TextReveal = () => {
     const wordSpans = textEl.querySelectorAll('.reveal-word');
     
     gsap.fromTo(wordSpans, 
-      { opacity: 0.12, y: 4 },
+      { opacity: 0.12, y: 3 },
       {
         opacity: 1,
         y: 0,
-        stagger: 0.1,
+        stagger: 0.08,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -42,28 +42,29 @@ const TextReveal = () => {
       id="manifesto"
       className="relative flex min-h-[85vh] w-full flex-col justify-center px-6 py-28 md:px-12 bg-transparent z-10"
     >
-      {/* Visual separators */}
-      <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+      {/* Hairline top border in light mode */}
+      <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-obsidian/10 to-transparent" />
       
       <div className="mx-auto max-w-6xl flex flex-col md:flex-row gap-10 md:gap-20">
-        {/* Metadata tag label */}
+        
+        {/* Left column metadata */}
         <div className="w-full md:w-1/4 flex flex-col justify-start select-none">
           <div className="flex items-center gap-3 mb-3">
-            <span className="h-2 w-2 rounded-full bg-accent-purple shadow-[0_0_8px_#7000ff]" />
-            <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
               OUR MANIFESTO
             </h2>
           </div>
-          <p className="text-[9px] font-mono text-neutral-500 tracking-wider">
-            [ SECTION 01 // CRITICAL THINKING ]
+          <p className="text-[9px] font-mono text-obsidian/40 tracking-wider">
+            [ SEC. 01 // CORE ETHOS ]
           </p>
         </div>
 
-        {/* Kinetic sentence */}
+        {/* Right column text reveal */}
         <div className="w-full md:w-3/4">
           <p 
             ref={textRef} 
-            className="text-2xl sm:text-3xl md:text-[38px] lg:text-[44px] font-display font-bold leading-relaxed tracking-tight text-white flex flex-wrap gap-x-2.5 gap-y-2 select-none"
+            className="text-2xl sm:text-3xl md:text-[36px] lg:text-[40px] font-serif font-light leading-relaxed tracking-normal text-obsidian flex flex-wrap gap-x-2 gap-y-1.5 select-none"
           >
             {words.map((word, index) => (
               <span 
@@ -77,7 +78,8 @@ const TextReveal = () => {
         </div>
       </div>
       
-      <div className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+      {/* Hairline bottom border in light mode */}
+      <div className="absolute left-0 right-0 bottom-0 h-px bg-linear-to-r from-transparent via-obsidian/10 to-transparent" />
     </section>
   );
 };

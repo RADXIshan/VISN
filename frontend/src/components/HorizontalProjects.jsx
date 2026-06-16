@@ -12,8 +12,9 @@ const projects = [
     category: "AI Platform / Strategy",
     year: "2026",
     tagline: "Building neural intelligence tools for enterprise cloud systems.",
-    icon: <Cpu className="h-5 w-5 text-accent-cyan text-glow-cyan" />,
-    color: "from-accent-cyan/15 to-blue-600/5"
+    icon: <Cpu className="h-5 w-5 text-accent-gold-dark" />,
+    color: "from-accent-gold/15 to-accent-gold-dark/5",
+    image: "/images/neural-net.png"
   },
   {
     id: "02",
@@ -21,8 +22,9 @@ const projects = [
     category: "Interactive Brand",
     year: "2025",
     tagline: "Sculpting immersive physical-digital brand experiences.",
-    icon: <Orbit className="h-5 w-5 text-purple-400 text-glow-purple" />,
-    color: "from-[#7000ff]/15 to-pink-600/5"
+    icon: <Orbit className="h-5 w-5 text-accent-gold-dark" />,
+    color: "from-accent-gold-dark/15 to-stone-400/5",
+    image: "/images/kinetic-labs.png"
   },
   {
     id: "03",
@@ -30,8 +32,9 @@ const projects = [
     category: "Creative Campaign",
     year: "2026",
     tagline: "Generating explosive viral campaigns across neural feeds.",
-    icon: <Radio className="h-5 w-5 text-rose-400" />,
-    color: "from-rose-500/15 to-orange-600/5"
+    icon: <Radio className="h-5 w-5 text-accent-gold-dark" />,
+    color: "from-amber-600/10 to-accent-gold/5",
+    image: "/images/eclipse-corp.png"
   },
   {
     id: "04",
@@ -39,8 +42,9 @@ const projects = [
     category: "Web3 Platform",
     year: "2026",
     tagline: "Forging next-generation smart contract visual explorers.",
-    icon: <Layers className="h-5 w-5 text-emerald-400" />,
-    color: "from-emerald-500/15 to-teal-600/5"
+    icon: <Layers className="h-5 w-5 text-accent-gold-dark" />,
+    color: "from-stone-500/10 to-accent-gold-dark/5",
+    image: "/images/cyber-dock.png"
   }
 ];
 
@@ -69,11 +73,30 @@ const HorizontalProjects = () => {
       }
     });
 
+    // Parallax on images inside horizontal sliding cards
+    const images = scrollContainer.querySelectorAll('.project-image');
+    images.forEach((img) => {
+      gsap.fromTo(img, 
+        { xPercent: -15 },
+        {
+          xPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: img.closest('.project-card'),
+            containerAnimation: scrollTween,
+            start: "left right",
+            end: "right left",
+            scrub: true
+          }
+        }
+      );
+    });
+
     // Subtle card velocity skew
     const cards = scrollContainer.querySelectorAll('.project-card');
     cards.forEach((card) => {
       gsap.to(card, {
-        skewX: -1.5,
+        skewX: -1.0,
         ease: "power1.out",
         scrollTrigger: {
           trigger: card,
@@ -120,68 +143,77 @@ const HorizontalProjects = () => {
         className="absolute top-0 left-0 flex h-full items-center pl-6 md:pl-24 pr-[15vw] gap-10 md:gap-16 whitespace-nowrap"
       >
         {/* Introduction Slide */}
-        <div className="flex h-[55vh] w-[300px] md:w-[420px] flex-col justify-between whitespace-normal select-none pr-8">
+        <div className="flex-shrink-0 flex h-[55vh] w-[300px] md:w-[420px] flex-col justify-between whitespace-normal select-none pr-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <span className="h-2 w-2 rounded-full bg-accent-cyan shadow-[0_0_8px_#00f0ff]" />
-              <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+              <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
                 SELECTED WORKS
               </h2>
             </div>
-            <h3 className="text-4xl md:text-5xl font-display font-black leading-tight uppercase text-white">
+            <h3 className="text-4xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
               CRAFTING <br />
-              <span className="text-stroke-glow text-glow-cyan">DIGITAL</span> <br />
-              ARTWORK
+              <span className="text-stroke text-obsidian/10 text-stroke-glow text-glow-gold">DIGITAL</span> <br />
+              INSTALLATIONS
             </h3>
           </div>
-          <p className="text-xs md:text-sm text-neutral-400 font-light max-w-xs leading-relaxed">
-            Scroll down or swipe to traverse our digital installations. Hovering exposes specialized detail panels.
+          <p className="text-xs md:text-sm text-obsidian/70 font-serif italic font-light max-w-xs leading-relaxed">
+            Scroll down or swipe to traverse our physical-digital installations. Hovering exposes detail coordinates.
           </p>
         </div>
 
-        {/* Dynamic Project Nodes */}
+        {/* Dynamic Project Cards */}
         {projects.map((project) => (
           <div 
             key={project.id}
             onClick={handleLinkClick}
-            className="project-card relative flex h-[60vh] w-[80vw] sm:w-[55vw] md:w-[40vw] flex-col justify-between rounded-3xl border border-white/4 bg-[#070707]/60 p-8 md:p-10 backdrop-blur-md overflow-hidden group select-none cursor-none transition-all duration-300"
+            className="project-card relative flex-shrink-0 flex h-[75vh] w-[80vw] sm:w-[55vw] md:w-[38vw] flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/50 p-6 md:p-8 backdrop-blur-md overflow-hidden group select-none cursor-none transition-all duration-300"
             data-cursor="view"
             style={{ 
-              boxShadow: `inset 0 0 30px rgba(255,255,255,0.01), 0 20px 40px rgba(0,0,0,0.5)`
+              boxShadow: `inset 0 0 30px rgba(0,0,0,0.01), 0 15px 35px rgba(0,0,0,0.03)`
             }}
           >
-            {/* Color flares */}
-            <div className={`absolute -right-24 -bottom-24 -z-10 h-64 w-64 rounded-full bg-linear-to-tr ${project.color} blur-[70px] group-hover:scale-125 transition-transform duration-750`} />
+            {/* Elegant champagne background shadows */}
+            <div className={`absolute -right-24 -bottom-24 -z-10 h-64 w-64 rounded-full bg-linear-to-tr ${project.color} blur-[60px] group-hover:scale-125 transition-transform duration-750`} />
             
             {/* Top row */}
             <div className="flex items-center justify-between">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/5 border border-white/6 text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-obsidian">
                 {project.icon}
               </div>
-              <span className="font-mono text-[10px] text-neutral-500 tracking-wider">
+              <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">
                 [ {project.year} ]
               </span>
             </div>
 
+            {/* Parallax Image Frame */}
+            <div className="w-full h-[32vh] overflow-hidden rounded-2xl relative border border-obsidian/10 bg-stone-100 my-4">
+              <img 
+                src={project.image} 
+                alt={project.title}
+                className="project-image absolute top-0 -left-[15%] w-[130%] h-full object-cover object-center"
+              />
+            </div>
+
             {/* Core titles */}
-            <div className="my-auto whitespace-normal">
-              <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-accent-cyan mb-1.5 block">
+            <div className="my-2 whitespace-normal">
+              <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-accent-gold-dark mb-1 block">
                 {project.category}
               </span>
-              <h4 className="text-2xl md:text-4xl font-display font-black leading-none uppercase tracking-tighter text-white mb-3 group-hover:text-accent-cyan transition-all duration-300">
+              <h4 className="text-xl md:text-2xl font-serif font-bold leading-none uppercase tracking-wide text-obsidian mb-2 group-hover:text-accent-gold-dark transition-all duration-300">
                 {project.title}
               </h4>
-              <p className="max-w-xs text-xs text-neutral-400 font-light leading-relaxed">
+              <p className="max-w-xs text-xs text-obsidian/75 font-serif italic font-light leading-relaxed">
                 {project.tagline}
               </p>
             </div>
 
             {/* Bottom links */}
-            <div className="flex items-center justify-between border-t border-white/5 pt-5">
-              <span className="font-display font-bold text-[10px] tracking-[0.3em] text-white">
+            <div className="flex items-center justify-between border-t border-obsidian/10 pt-4">
+              <span className="font-serif italic font-medium text-[11px] tracking-wide text-obsidian">
                 CASE STUDY
               </span>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 border border-white/5 group-hover:bg-white group-hover:text-black transition-all duration-300">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-obsidian/5 border border-obsidian/10 group-hover:bg-obsidian group-hover:text-dark-bg transition-all duration-300">
                 <ArrowRight className="h-4 w-4" />
               </div>
             </div>

@@ -37,7 +37,7 @@ const CustomCursor = () => {
       setDotX(mouse.x);
       setDotY(mouse.y);
 
-      // Ring follows with a lag (GSAP property getter to check current coordinates)
+      // Ring follows with a lag
       const ringX = gsap.getProperty(ring, "x") || mouse.x;
       const ringY = gsap.getProperty(ring, "y") || mouse.y;
       
@@ -50,7 +50,7 @@ const CustomCursor = () => {
 
     gsap.ticker.add(ticker);
 
-    // Hover state management
+    // Hover state management for light editorial theme
     const handleMouseOver = (e) => {
       const target = e.target.closest('[data-cursor]');
       const isClickable = e.target.closest('a, button, [role="button"], input, textarea, select');
@@ -61,55 +61,55 @@ const CustomCursor = () => {
         if (mode === 'view') {
           setCursorText('VIEW');
           gsap.to(ring, { 
-            width: 70, 
-            height: 70, 
-            backgroundColor: 'rgba(255, 255, 255, 1)', 
+            width: 72, 
+            height: 72, 
+            backgroundColor: '#B59B75', // Champagne gold fill
             borderColor: 'transparent',
-            mixBlendMode: 'difference',
+            mixBlendMode: 'normal',
             duration: 0.3 
           });
           gsap.to(dot, { scale: 0, duration: 0.2 });
-          gsap.to(textEl, { opacity: 1, scale: 1, color: '#000000', duration: 0.3 });
+          gsap.to(textEl, { opacity: 1, scale: 1, color: '#FFFFFF', duration: 0.3 });
         } else if (mode === 'drag') {
           setCursorText('DRAG');
           gsap.to(ring, { 
-            width: 70, 
-            height: 70, 
-            backgroundColor: 'rgba(255, 255, 255, 1)', 
+            width: 72, 
+            height: 72, 
+            backgroundColor: '#B59B75', // Champagne gold fill
             borderColor: 'transparent',
-            mixBlendMode: 'difference',
+            mixBlendMode: 'normal',
             duration: 0.3 
           });
           gsap.to(dot, { scale: 0, duration: 0.2 });
-          gsap.to(textEl, { opacity: 1, scale: 1, color: '#000000', duration: 0.3 });
+          gsap.to(textEl, { opacity: 1, scale: 1, color: '#FFFFFF', duration: 0.3 });
         } else if (mode === 'magnetic') {
           gsap.to(ring, { 
             width: 44, 
             height: 44, 
-            borderColor: '#00f0ff', 
-            borderWidth: 2, 
+            borderColor: '#B59B75', 
+            borderWidth: 1.5, 
             scale: 1.15,
+            backgroundColor: 'transparent',
             mixBlendMode: 'normal',
             duration: 0.3 
           });
-          gsap.to(dot, { scale: 1.5, backgroundColor: '#00f0ff', duration: 0.2 });
+          gsap.to(dot, { scale: 1.4, backgroundColor: '#B59B75', duration: 0.2 });
         }
       } else if (isClickable) {
         gsap.to(ring, { 
           width: 40, 
           height: 40, 
-          borderColor: '#00f0ff', 
-          backgroundColor: 'rgba(0, 240, 255, 0.1)',
+          borderColor: '#151515', 
+          backgroundColor: 'rgba(21, 21, 21, 0.04)',
           scale: 1.1, 
           mixBlendMode: 'normal',
           duration: 0.25 
         });
-        gsap.to(dot, { scale: 0.5, backgroundColor: '#00f0ff', duration: 0.2 });
+        gsap.to(dot, { scale: 0.4, backgroundColor: '#151515', duration: 0.2 });
       }
     };
 
     const handleMouseOut = (e) => {
-      // If we are leaving the current hovered target
       const target = e.target.closest('[data-cursor]');
       const isClickable = e.target.closest('a, button, [role="button"], input, textarea, select');
       
@@ -119,13 +119,13 @@ const CustomCursor = () => {
           width: 28, 
           height: 28, 
           backgroundColor: 'transparent', 
-          borderColor: 'rgba(255, 255, 255, 0.5)', 
+          borderColor: 'rgba(21, 21, 21, 0.28)', // Light charcoal border
           borderWidth: 1, 
           mixBlendMode: 'normal',
           scale: 1, 
           duration: 0.3 
         });
-        gsap.to(dot, { scale: 1, backgroundColor: '#00f0ff', duration: 0.3 });
+        gsap.to(dot, { scale: 1, backgroundColor: '#B59B75', duration: 0.3 });
         gsap.to(textEl, { opacity: 0, scale: 0.5, duration: 0.2 });
       }
     };
@@ -133,7 +133,6 @@ const CustomCursor = () => {
     document.addEventListener('mouseover', handleMouseOver);
     document.addEventListener('mouseout', handleMouseOut);
 
-    // Hide/Show when mouse leaves browser window
     const handleMouseLeave = () => {
       gsap.to([dot, ring], { opacity: 0, scale: 0, duration: 0.3 });
     };
@@ -159,12 +158,12 @@ const CustomCursor = () => {
       {/* Outer Ring */}
       <div 
         ref={ringRef}
-        className="fixed top-0 left-0 flex h-7 w-7 items-center justify-center rounded-full border border-white/50 bg-transparent transition-[opacity,transform] duration-75 pointer-events-none"
+        className="fixed top-0 left-0 flex h-7 w-7 items-center justify-center rounded-full border border-obsidian/30 bg-transparent transition-[opacity,transform] duration-75 pointer-events-none"
         style={{ transform: 'translate3d(-50%, -50%, 0)' }}
       >
         <span 
           ref={textRef}
-          className="text-[9px] font-extrabold tracking-widest text-black opacity-0 scale-50 font-sans"
+          className="text-[9px] font-bold tracking-widest text-white opacity-0 scale-50 font-sans"
         >
           {cursorText}
         </span>
@@ -173,7 +172,7 @@ const CustomCursor = () => {
       {/* Inner Dot */}
       <div 
         ref={dotRef}
-        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-accent-cyan transition-transform duration-75 pointer-events-none"
+        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-accent-gold transition-transform duration-75 pointer-events-none"
         style={{ transform: 'translate3d(-50%, -50%, 0)' }}
       />
     </div>

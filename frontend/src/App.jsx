@@ -8,8 +8,11 @@ import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import InteractiveCanvas from './components/InteractiveCanvas';
+import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
+import ZoomParallaxSection from './components/ZoomParallaxSection';
 import TextReveal from './components/TextReveal';
+import DuoGlideGallery from './components/DuoGlideGallery';
 import HorizontalProjects from './components/HorizontalProjects';
 import BentoServices from './components/BentoServices';
 import InteractivePlayground from './components/InteractivePlayground';
@@ -44,17 +47,24 @@ const App = () => {
     gsap.ticker.add(handleRaf);
     gsap.ticker.lagSmoothing(0);
 
+    let refreshTimer;
+
     // 3. Freeze scroll lifecycle until preloader resolves
     if (!isLoaded) {
       lenis.stop();
     } else {
       lenis.start();
+      // Recalculate ScrollTrigger offsets once the preloader resolves and layout is visible
+      refreshTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200);
     }
 
     return () => {
       lenis.destroy();
       gsap.ticker.remove(handleRaf);
       window.lenis = null;
+      if (refreshTimer) clearTimeout(refreshTimer);
     };
   }, [isLoaded]);
 
@@ -75,9 +85,12 @@ const App = () => {
           isLoaded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
+        <ScrollProgress />
         <Navbar />
         <Hero isLoaded={isLoaded} />
+        <ZoomParallaxSection />
         <TextReveal />
+        <DuoGlideGallery />
         <HorizontalProjects />
         <BentoServices />
         <InteractivePlayground />

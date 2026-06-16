@@ -3,10 +3,26 @@ import gsap from 'gsap';
 import Magnetic from './Magnetic';
 import { ArrowDownRight } from 'lucide-react';
 
+const splitLetters = (text, className = "") => {
+  return text.split("").map((char, index) => (
+    <span 
+      key={index} 
+      className={`char-span inline-block ${className}`}
+      style={{ 
+        display: char === " " ? "inline" : "inline-block",
+        transformOrigin: "center center 20px",
+        willChange: "transform, opacity"
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
+};
+
 const Hero = ({ isLoaded }) => {
   const containerRef = useRef(null);
-  const titleLine1Ref = useRef(null);
-  const titleLine2Ref = useRef(null);
+  const brandTitleRef = useRef(null);
+  const tagLineRef = useRef(null);
   const subtitleRef = useRef(null);
   const ctaRef = useRef(null);
   const badgeRef = useRef(null);
@@ -18,40 +34,70 @@ const Hero = ({ isLoaded }) => {
     // Create entrance animation timeline
     const tl = gsap.timeline();
 
-    // Set layout elements to starting positions
-    gsap.set([titleLine1Ref.current, titleLine2Ref.current], { y: "110%" });
-    gsap.set(subtitleRef.current, { opacity: 0, y: 35 });
-    gsap.set(ctaRef.current, { scale: 0.8, opacity: 0 });
-    gsap.set(badgeRef.current, { opacity: 0, x: -30 });
-    gsap.set(scrollIndicatorRef.current, { opacity: 0, y: 25 });
+    const brandChars = brandTitleRef.current.querySelectorAll('.char-span');
+    const tagChars = tagLineRef.current.querySelectorAll('.char-span');
 
-    tl.to([titleLine1Ref.current, titleLine2Ref.current], {
-      y: "0%",
-      duration: 1.3,
-      stagger: 0.12,
-      ease: "power4.out",
-      delay: 0.3
+    // Initial starting states
+    gsap.set(brandChars, { 
+      y: "140%", 
+      rotateX: -70,
+      scale: 0.8,
+      opacity: 0 
+    });
+    gsap.set(tagChars, { 
+      y: "100%", 
+      opacity: 0 
+    });
+    gsap.set(subtitleRef.current, { opacity: 0, y: 20 });
+    gsap.set(ctaRef.current, { scale: 0.8, opacity: 0 });
+    gsap.set(badgeRef.current, { opacity: 0, y: -20 });
+    gsap.set(scrollIndicatorRef.current, { opacity: 0, y: 20 });
+
+    tl.to(badgeRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.15
     })
+    .to(brandChars, {
+      y: "0%",
+      rotateX: 0,
+      scale: 1,
+      opacity: 1,
+      duration: 1.45,
+      stagger: 0.08,
+      ease: "power4.out"
+    }, "-=0.6")
+    .to(tagLineRef.current, {
+      opacity: 1,
+      duration: 0.5
+    }, "-=0.9")
+    .to(tagChars, {
+      y: "0%",
+      opacity: 1,
+      duration: 0.85,
+      stagger: 0.02,
+      ease: "power3.out"
+    }, "-=0.85")
     .to(subtitleRef.current, {
       opacity: 1,
       y: 0,
       duration: 0.9,
       ease: "power3.out"
-    }, "-=0.75")
+    }, "-=0.65")
     .to(ctaRef.current, {
       scale: 1,
       opacity: 1,
-      duration: 0.6,
-      ease: "back.out(1.8)"
-    }, "-=0.55")
-    .to([badgeRef.current, scrollIndicatorRef.current], {
+      duration: 0.65,
+      ease: "back.out(1.5)"
+    }, "-=0.5")
+    .to(scrollIndicatorRef.current, {
       opacity: 1,
-      x: 0,
       y: 0,
-      duration: 0.9,
-      stagger: 0.12,
+      duration: 0.8,
       ease: "power3.out"
-    }, "-=0.5");
+    }, "-=0.4");
 
   }, [isLoaded]);
 
@@ -67,96 +113,94 @@ const Hero = ({ isLoaded }) => {
     <section 
       ref={containerRef}
       id="hero"
-      className="relative flex min-h-screen w-full flex-col justify-between px-6 pt-32 pb-10 md:px-12 bg-transparent overflow-hidden"
+      className="relative flex min-h-screen w-full flex-col justify-between px-6 pt-36 pb-12 md:px-12 bg-transparent overflow-hidden"
     >
-      {/* Glow highlight */}
-      <div className="absolute top-[35%] left-[50%] -z-10 h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-purple/10 blur-[130px] pointer-events-none" />
+      {/* Symmetrical Champagne Glow in the center */}
+      <div className="absolute top-1/2 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-gold/5 blur-[130px] pointer-events-none" />
       
-      {/* Background grid */}
-      <div className="absolute inset-0 -z-20 bg-grid-pattern opacity-[0.25] pointer-events-none" />
+      {/* Background grid matrix */}
+      <div className="absolute inset-0 -z-20 bg-grid-pattern opacity-45 pointer-events-none" />
 
-      {/* Top Section */}
-      <div className="flex w-full items-start justify-between">
-        <div ref={badgeRef} className="flex items-center gap-3">
-          <span className="flex h-2 w-2 rounded-full bg-accent-cyan shadow-[0_0_8px_#00f0ff] animate-pulse" />
-          <span className="text-[9px] font-bold tracking-[0.35em] text-neutral-400">
-            VISN STUDIO // BEYOND DIGITAL CODE
+      {/* Top Header Row (Centered Symmetrically) */}
+      <div ref={badgeRef} className="w-full flex justify-center items-center">
+        <div className="flex items-center gap-3 px-4 py-1.5 rounded-full border border-obsidian/5 bg-obsidian/[0.01]">
+          <span className="flex h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75] animate-pulse" />
+          <span className="text-[9px] font-bold tracking-[0.32em] text-obsidian/60 uppercase select-none">
+            VISN STUDIO // EDITION 2026
           </span>
-        </div>
-        <div className="hidden sm:block text-right select-none">
-          <p className="text-[9px] font-mono text-neutral-500 uppercase tracking-widest">SF CORP // 2026</p>
-          <p className="text-[9px] font-mono text-neutral-500">40.7128° N, 74.0060° W</p>
         </div>
       </div>
 
-      {/* Main Kinetic Typography Header */}
-      <div className="my-auto max-w-5xl select-none">
-        <div className="overflow-hidden mb-1">
-          <h1 
-            ref={titleLine1Ref}
-            className="text-[9vw] sm:text-[8vw] md:text-[6.5vw] font-display font-black leading-[0.95] tracking-tighter uppercase text-white"
-          >
-            ARCHITECTS OF
-          </h1>
+      {/* Main Symmetrical Editorial Typography */}
+      <div className="my-auto max-w-4xl mx-auto flex flex-col items-center text-center select-none">
+        
+        {/* Sleek Subtagline Above */}
+        <div ref={tagLineRef} className="overflow-hidden mb-4 opacity-0">
+          <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] uppercase text-accent-gold">
+            {splitLetters("CREATIVE DIRECTION & HIGH-END ENGINEERING")}
+          </span>
         </div>
-        <div className="overflow-hidden mb-6 md:mb-8">
+
+        {/* Massive Centered Title with Brand Emphasis */}
+        <div className="overflow-hidden mb-6" style={{ perspective: "1200px" }}>
           <h1 
-            ref={titleLine2Ref}
-            className="text-[10vw] sm:text-[9vw] md:text-[7vw] font-display font-black leading-[0.95] tracking-tighter uppercase text-stroke text-white/5 inline-flex items-center gap-3"
+            ref={brandTitleRef}
+            className="text-[18vw] sm:text-[15vw] md:text-[12vw] font-serif font-black leading-[0.8] tracking-[0.05em] uppercase text-obsidian select-none"
+            style={{ transformStyle: "preserve-3d" }}
           >
-            DIGITAL <span className="text-white text-stroke-glow text-glow-cyan">VISN</span>
+            {splitLetters("VISN")}
           </h1>
         </div>
 
-        {/* Descriptive Manifesto line */}
+        {/* Elegant Serif Description Below */}
         <p 
           ref={subtitleRef}
-          className="max-w-xl text-sm md:text-[17px] leading-relaxed text-neutral-400 font-light"
+          className="max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed text-obsidian/75 font-serif italic font-light tracking-wide px-4"
         >
-          We engineer high-fidelity digital interfaces, interactive web experiences, and immersive branding setups that turn complex code into fluid visual art.
+          We translate complex logic into graceful digital experiences, custom high-performance interfaces, and branding systems that elevate products into pieces of luxury.
         </p>
 
-        {/* Circular Action Loop */}
-        <div ref={ctaRef} className="mt-8 flex flex-wrap items-center gap-5">
+        {/* Centered Magnetic Explore Button */}
+        <div ref={ctaRef} className="mt-10 flex flex-col items-center gap-3">
           <Magnetic strength={0.25} range={55}>
             <a 
-              href="#projects"
+              href="#manifesto"
               onClick={handleScrollClick}
-              className="group flex h-14 w-14 items-center justify-center rounded-full bg-white text-black hover:bg-accent-cyan hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-all duration-300 cursor-none"
+              className="group flex h-16 w-16 items-center justify-center rounded-full bg-obsidian text-dark-bg hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_25px_rgba(181,155,117,0.35)] transition-all duration-300 cursor-none"
               data-cursor="magnetic"
             >
-              <ArrowDownRight className="h-5 w-5 group-hover:rotate-45 transition-transform duration-300" />
+              <ArrowDownRight className="h-6 w-6 group-hover:rotate-45 transition-transform duration-300" />
             </a>
           </Magnetic>
-          <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-neutral-400">
+          <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-obsidian/50">
             Explore Portfolio
           </span>
         </div>
       </div>
 
-      {/* Bottom Grid stats */}
+      {/* Bottom Symmetrical Row */}
       <div 
         ref={scrollIndicatorRef}
-        className="flex w-full flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/5 pt-8"
+        className="flex w-full flex-col md:flex-row items-center justify-between gap-6 border-t border-obsidian/10 pt-8 max-w-6xl mx-auto"
       >
-        <div className="flex gap-12 text-neutral-400 select-none">
+        <div className="flex justify-center gap-16 text-obsidian/50 select-none text-center md:text-left">
           <div>
-            <p className="text-[9px] font-bold tracking-widest text-neutral-500 uppercase">Core Capability</p>
-            <p className="text-xs font-semibold text-white mt-1">Creative Code & Strategy</p>
+            <p className="text-[9px] font-bold tracking-widest text-obsidian/40 uppercase">Focus Area</p>
+            <p className="text-xs font-semibold text-obsidian mt-1 font-serif italic">Digital Engineering & Art</p>
           </div>
           <div>
-            <p className="text-[9px] font-bold tracking-widest text-neutral-500 uppercase">Agency Status</p>
-            <p className="text-xs font-semibold text-white mt-1">Awwwards Nominee '26</p>
+            <p className="text-[9px] font-bold tracking-widest text-obsidian/40 uppercase">Awards</p>
+            <p className="text-xs font-semibold text-obsidian mt-1 font-serif italic">CSS Design nominee '26</p>
           </div>
         </div>
 
         <a 
           href="#manifesto"
           onClick={handleScrollClick}
-          className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase text-neutral-400 hover:text-accent-cyan transition-colors cursor-none"
+          className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase text-obsidian/50 hover:text-accent-gold-dark transition-colors cursor-none"
         >
           SCROLL TO DISCOVER
-          <span className="inline-block animate-bounce text-accent-cyan font-black">↓</span>
+          <span className="inline-block animate-bounce text-accent-gold-dark font-black">↓</span>
         </a>
       </div>
     </section>
