@@ -21,20 +21,20 @@ const DuoGlideGallery = () => {
         trigger: container,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1.0,
+        scrub: 1.8,
         invalidateOnRefresh: true,
       }
     });
 
     scrollAnimation.fromTo(colA, 
       { y: "10%" },
-      { y: "-10%", ease: "none" },
+      { y: "-10%", ease: "none", force3D: true },
       0
     );
 
     scrollAnimation.fromTo(colB, 
       { y: "-10%" },
-      { y: "10%", ease: "none" },
+      { y: "10%", ease: "none", force3D: true },
       0
     );
 
@@ -86,7 +86,7 @@ const DuoGlideGallery = () => {
         <div className="lg:col-span-8 grid grid-cols-2 gap-4 md:gap-8 h-screen lg:h-[110vh] overflow-hidden items-center relative">
           
           {/* Column A: Moving upwards */}
-          <div ref={colARef} className="flex flex-col gap-4 md:gap-8 will-change-transform">
+          <div ref={colARef} className="flex flex-col gap-4 md:gap-8 will-change-transform" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
             
             {/* Plate A1: Architectural blueprint */}
             <div className="rounded-3xl border border-obsidian/10 bg-dark-card/30 p-4 md:p-6 backdrop-blur-md flex flex-col justify-between h-[280px] md:h-[360px]">
@@ -163,7 +163,7 @@ const DuoGlideGallery = () => {
           </div>
 
           {/* Column B: Moving downwards */}
-          <div ref={colBRef} className="flex flex-col gap-4 md:gap-8 will-change-transform mt-[-40px] lg:mt-[-80px]">
+          <div ref={colBRef} className="flex flex-col gap-4 md:gap-8 will-change-transform mt-[-40px] lg:mt-[-80px]" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
             
             {/* Plate B1: Minimalist silhouette */}
             <div className="rounded-3xl border border-obsidian/10 bg-dark-card/30 p-4 md:p-6 backdrop-blur-md flex flex-col justify-between h-[280px] md:h-[360px]">

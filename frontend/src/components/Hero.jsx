@@ -13,8 +13,7 @@ const splitLetters = (text, className = "") => {
       className={`char-span inline-block ${className}`}
       style={{ 
         display: char === " " ? "inline" : "inline-block",
-        transformOrigin: "center center 20px",
-        willChange: "transform, opacity"
+        transformOrigin: "center center 20px"
       }}
     >
       {char === " " ? "\u00A0" : char}
@@ -133,7 +132,7 @@ const Hero = ({ isLoaded }) => {
         trigger: wrapper,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: true,
+        scrub: 1.5,
         pin: pinContainer,
         pinSpacing: true,
       }
@@ -142,7 +141,7 @@ const Hero = ({ isLoaded }) => {
     // Phase 1: Slide-up the transition panel over the Hero
     scrollTl.fromTo(transitionSlide, 
       { y: '100%' },
-      { y: '0%', ease: 'none', duration: 1 }
+      { y: '0%', ease: 'none', duration: 1, force3D: true }
     );
 
     // Phase 2: Zoom in the clip-card (inset card to full-screen)
@@ -159,14 +158,14 @@ const Hero = ({ isLoaded }) => {
     // Counter-scale the image simultaneously with card zoom (parallax)
     scrollTl.fromTo(transitionImg, 
       { scale: 1.25 },
-      { scale: 1.0, ease: 'none', duration: 1 },
+      { scale: 1.0, ease: 'none', duration: 1, force3D: true },
       '<'
     ); 
 
     // Stagger fade-in the text overlays near the end of zoom
     scrollTl.fromTo(fadeItems,
       { opacity: 0, y: 35 },
-      { opacity: 1, y: 0, stagger: 0.1, ease: 'power2.out', duration: 0.6 },
+      { opacity: 1, y: 0, stagger: 0.1, ease: 'power2.out', duration: 0.6, force3D: true },
       '-=0.45' 
     );
 

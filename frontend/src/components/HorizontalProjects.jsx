@@ -242,12 +242,11 @@ const HorizontalProjects = () => {
     // Smooth horizontal scroll with refined easing for a buttery experience
     const scrollTween = gsap.to(scrollContainer, {
       x: () => -getScrollLimit(),
-      // Using a subtle ease for smoother motion instead of a harsh linear feel
-      ease: "power2.out",
+      ease: "none",
+      force3D: true,
       scrollTrigger: {
         trigger: container,
         pin: true,
-        // Increased scrub duration for more fluid scrolling
         scrub: 2.5,
         start: "top top",
         end: () => `+=${getScrollLimit()}`,
@@ -267,29 +266,21 @@ const HorizontalProjects = () => {
     // Subtle card velocity skew
     const cards = scrollContainer.querySelectorAll('.project-card');
     cards.forEach((card) => {
-      gsap.to(card, {
-        skewX: -1.0,
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: card,
-          containerAnimation: scrollTween,
-          start: "left right",
-          end: "right left",
-          scrub: 1.2
+      gsap.fromTo(card, 
+        { skewX: 0 },
+        {
+          skewX: -1.0,
+          ease: "none",
+          force3D: true,
+          scrollTrigger: {
+            trigger: card,
+            containerAnimation: scrollTween,
+            start: "left right",
+            end: "left center",
+            scrub: 1.5
+          }
         }
-      });
-      
-      gsap.to(card, {
-        skewX: 0,
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: card,
-          containerAnimation: scrollTween,
-          start: "right left",
-          end: "right left",
-          scrub: 1.2
-        }
-      });
+      );
     });
 
     return () => {
@@ -313,6 +304,7 @@ const HorizontalProjects = () => {
       <div 
         ref={scrollRef}
         className="absolute top-0 left-0 flex h-full items-center pl-6 md:pl-24 pr-[15vw] gap-10 md:gap-16 whitespace-nowrap"
+        style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
       >
         {/* Introduction Slide */}
         <div className="shrink-0 flex h-[50vh] w-[300px] md:w-[420px] flex-col justify-between whitespace-normal select-none pr-8">

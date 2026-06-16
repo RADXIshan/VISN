@@ -26,11 +26,12 @@ const TextReveal = () => {
         y: 0,
         stagger: 0.08,
         ease: "none",
+        force3D: true,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
           end: "bottom 55%",
-          scrub: true
+          scrub: 1.2
         }
       }
     );
@@ -70,7 +71,7 @@ const TextReveal = () => {
               <span 
                 key={index} 
                 className="reveal-word inline-block"
-                style={{ willChange: "transform, opacity" }}
+                style={{ backfaceVisibility: 'hidden' }}
               >
                 {word}
               </span>
