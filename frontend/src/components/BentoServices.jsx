@@ -149,6 +149,45 @@ const BentoServices = () => {
     };
   }, []);
 
+  // Bento Grid entrance reveal animation
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const titleEl = container.querySelector('.bento-title-section');
+    const cards = [card1Ref.current, card2Ref.current, card3Ref.current, card4Ref.current].filter(Boolean);
+
+    // Initial hidden state
+    gsap.set(titleEl, { opacity: 0, y: 40 });
+    gsap.set(cards, { opacity: 0, y: 50 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 78%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    tl.to(titleEl, {
+      opacity: 1,
+      y: 0,
+      duration: 1.0,
+      ease: "power3.out"
+    })
+    .to(cards, {
+      opacity: 1,
+      y: 0,
+      duration: 1.1,
+      stagger: 0.15,
+      ease: "power3.out"
+    }, "-=0.6");
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   // 3D Card Hover Tilts and Offset handlers using optimized gsap.quickTo
   const card1Ref = useRef(null);
   const card2Ref = useRef(null);
@@ -240,7 +279,7 @@ const BentoServices = () => {
     >
       <div className="mx-auto max-w-6xl">
         {/* Title and description */}
-        <div className="flex flex-col md:flex-row items-start justify-between gap-6 mb-16 select-none">
+        <div className="bento-title-section flex flex-col md:flex-row items-start justify-between gap-6 mb-16 select-none">
           <div>
             <div className="flex items-center gap-3 mb-3">
               <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />

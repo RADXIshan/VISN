@@ -51,27 +51,42 @@ const projects = [
 const HorizontalProjects = () => {
   const scrollRef = useRef(null);
   const containerRef = useRef(null);
+  const progressFillRef = useRef(null);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     const container = containerRef.current;
-    if (!scrollContainer || !container) return;
+    const progressFill = progressFillRef.current;
+    if (!scrollContainer || !container || !progressFill) return;
 
     // Shift width is: element total width minus browser viewport width
     const getScrollWidth = () => scrollContainer.scrollWidth - window.innerWidth;
+    const getScrollLimit = () => Math.max(0, getScrollWidth() - window.innerWidth * 0.08);
 
-    const scrollTween = gsap.to(scrollContainer, {
-      x: () => -getScrollWidth(),
-      ease: "power2.inOut",
+    const scrollTween = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         pin: true,
         scrub: 1.2,
         start: "top top",
-        end: () => `+=${getScrollWidth()}`,
+        end: () => `+=${getScrollLimit()}`,
         invalidateOnRefresh: true
       }
     });
+
+    scrollTween.to(scrollContainer, {
+      x: () => -getScrollLimit(),
+      ease: "power2.inOut",
+    }, 0);
+
+    scrollTween.fromTo(progressFill,
+      { scaleX: 0 },
+      {
+        scaleX: 1,
+        ease: "power2.inOut",
+      },
+      0
+    );
 
     // Parallax on images inside horizontal sliding cards
     const images = scrollContainer.querySelectorAll('.project-image');
@@ -143,7 +158,7 @@ const HorizontalProjects = () => {
         className="absolute top-0 left-0 flex h-full items-center pl-6 md:pl-24 pr-[15vw] gap-10 md:gap-16 whitespace-nowrap"
       >
         {/* Introduction Slide */}
-        <div className="shrink-0 flex h-[55vh] w-[300px] md:w-[420px] flex-col justify-between whitespace-normal select-none pr-8">
+        <div className="shrink-0 flex h-[50vh] w-[300px] md:w-[420px] flex-col justify-between whitespace-normal select-none pr-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
@@ -167,7 +182,7 @@ const HorizontalProjects = () => {
           <div 
             key={project.id}
             onClick={handleLinkClick}
-            className="project-card relative shrink-0 flex h-[75vh] w-[80vw] sm:w-[55vw] md:w-[38vw] flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/50 p-6 md:p-8 backdrop-blur-md overflow-hidden group select-none cursor-none transition-[background-color,border-color,box-shadow,color] duration-300"
+            className="project-card relative shrink-0 flex h-[68vh] w-[75vw] sm:w-[50vw] md:w-[34vw] flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/50 p-6 md:p-8 backdrop-blur-md overflow-hidden group select-none cursor-none transition-[background-color,border-color,box-shadow,color] duration-300"
             data-cursor="view"
             style={{ 
               boxShadow: `inset 0 0 30px rgba(0,0,0,0.01), 0 15px 35px rgba(0,0,0,0.03)`,
@@ -188,7 +203,7 @@ const HorizontalProjects = () => {
             </div>
 
             {/* Parallax Image Frame */}
-            <div className="w-full h-[32vh] overflow-hidden rounded-2xl relative border border-obsidian/10 bg-stone-100 my-4">
+            <div className="w-full h-[28vh] overflow-hidden rounded-2xl relative border border-obsidian/10 bg-stone-100 my-4">
               <img 
                 src={project.image} 
                 alt={project.title}
@@ -221,6 +236,18 @@ const HorizontalProjects = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Symmetrical Luxury Bottom Progress Bar */}
+      <div className="absolute bottom-10 left-6 md:left-24 right-6 md:right-24 z-20 flex items-center gap-4 select-none">
+        <span className="font-mono text-[9px] text-obsidian/45">[ 01 ]</span>
+        <div className="flex-1 h-[2px] bg-obsidian/10 relative overflow-hidden rounded-full">
+          <div 
+            ref={progressFillRef}
+            className="absolute top-0 left-0 h-full w-full bg-accent-gold origin-left scale-x-0"
+          />
+        </div>
+        <span className="font-mono text-[9px] text-obsidian/45">[ {projects.length.toString().padStart(2, '0')} ]</span>
       </div>
     </div>
   );
