@@ -57,7 +57,8 @@ const Navbar = () => {
     { name: 'Manifesto', href: '#manifesto', num: '01', tag: 'Ideology' },
     { name: 'Services', href: '#services', num: '02', tag: 'Expertise' },
     { name: 'Projects', href: '#projects', num: '03', tag: 'Case Studies' },
-    { name: 'Contact', href: '#contact', num: '04', tag: 'Inquiries' },
+    { name: 'Testimonials', href: '#testimonials', num: '04', tag: 'Reviews' },
+    { name: 'Contact', href: '#contact', num: '05', tag: 'Inquiries' },
   ];
 
   const handleNavClick = (e, href) => {

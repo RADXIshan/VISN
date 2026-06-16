@@ -27,14 +27,7 @@ const ContactFooter = () => {
     >
       <div className="absolute top-[80%] left-[10%] -z-10 h-[300px] w-[300px] rounded-full bg-accent-gold/5 blur-[100px] pointer-events-none" />
       
-      {/* Dynamic scrolling contact header */}
-      <div className="w-full overflow-hidden border-y border-obsidian/10 py-6 mb-24 pointer-events-none select-none">
-        <div className="flex whitespace-nowrap gap-8 text-[4vw] md:text-[3vw] font-serif font-light uppercase tracking-widest text-obsidian/15">
-          <span className="animate-[marquee_25s_linear_infinite]">
-            LET'S WORK TOGETHER • SHAPE A DIGITAL FUTURE • ENGAGE CREATIVE CODE • LET'S WORK TOGETHER • SHAPE A DIGITAL FUTURE • ENGAGE CREATIVE CODE •
-          </span>
-        </div>
-      </div>
+
 
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">

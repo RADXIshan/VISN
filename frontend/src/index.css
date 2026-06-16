@@ -112,6 +112,39 @@
   }
 }
 
+@keyframes testimonial-scroll-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-25%, 0, 0);
+  }
+}
+
+@keyframes testimonial-scroll-right {
+  0% {
+    transform: translate3d(-25%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.testimonial-row-left {
+  animation: testimonial-scroll-left 40s linear infinite;
+  will-change: transform;
+}
+
+.testimonial-row-right {
+  animation: testimonial-scroll-right 45s linear infinite;
+  will-change: transform;
+}
+
+.testimonial-row-left:hover,
+.testimonial-row-right:hover {
+  animation-play-state: paused;
+}
+
 @utility will-change-transform {
   will-change: transform;
   backface-visibility: hidden;
