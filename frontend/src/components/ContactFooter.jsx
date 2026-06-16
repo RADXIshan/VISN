@@ -29,7 +29,7 @@ const ContactFooter = () => {
       
       {/* Dynamic scrolling contact header */}
       <div className="w-full overflow-hidden border-y border-obsidian/10 py-6 mb-24 pointer-events-none select-none">
-        <div className="flex whitespace-nowrap gap-8 text-[4vw] md:text-[3vw] font-serif font-light uppercase tracking-widest text-stroke text-obsidian/10">
+        <div className="flex whitespace-nowrap gap-8 text-[4vw] md:text-[3vw] font-serif font-light uppercase tracking-widest text-obsidian/15">
           <span className="animate-[marquee_25s_linear_infinite]">
             LET'S WORK TOGETHER • SHAPE A DIGITAL FUTURE • ENGAGE CREATIVE CODE • LET'S WORK TOGETHER • SHAPE A DIGITAL FUTURE • ENGAGE CREATIVE CODE •
           </span>
@@ -50,7 +50,7 @@ const ContactFooter = () => {
               </div>
               <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold uppercase leading-[1.05] tracking-tight text-obsidian mb-8">
                 START A <br />
-                <span className="text-stroke-glow text-glow-gold italic font-normal">PROJECT</span>
+                <span className="text-accent-gold italic font-normal">PROJECT</span>
               </h3>
               <p className="max-w-md text-base text-obsidian/75 font-serif italic font-light leading-relaxed mb-12">
                 Have an ambitious concept? Need a developer-artist team to build your next monument? Share your coordinates below, and let's craft digital art.
@@ -170,8 +170,8 @@ const ContactFooter = () => {
 
         {/* Giant footer wordmark (Editorial Serif) */}
         <div className="w-full flex items-center justify-center mt-20 select-none pointer-events-none">
-          <h2 className="text-[18vw] font-serif font-bold leading-none uppercase tracking-tighter text-stroke text-obsidian/5 text-center">
-            VISN<span className="text-accent-gold text-stroke-glow text-glow-gold">.</span>
+          <h2 className="text-[18vw] font-serif font-bold leading-none uppercase tracking-tighter text-obsidian/[0.03] text-center">
+            VISN<span className="text-accent-gold">.</span>
           </h2>
         </div>
 

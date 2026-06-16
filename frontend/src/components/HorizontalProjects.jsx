@@ -153,7 +153,7 @@ const HorizontalProjects = () => {
             </div>
             <h3 className="text-4xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
               CRAFTING <br />
-              <span className="text-stroke text-obsidian/10 text-stroke-glow text-glow-gold">DIGITAL</span> <br />
+              <span className="text-accent-gold italic font-normal">DIGITAL</span> <br />
               INSTALLATIONS
             </h3>
           </div>

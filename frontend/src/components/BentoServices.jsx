@@ -248,7 +248,7 @@ const BentoServices = () => {
             </div>
             <h3 className="text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
               WHAT WE DO <br />
-              <span className="text-stroke-glow text-glow-gold">BEST</span>
+              <span className="text-accent-gold">BEST</span>
             </h3>
           </div>
           <p className="max-w-xs text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">
@@ -394,7 +394,7 @@ const BentoServices = () => {
               <div className="marquee-wrapper flex whitespace-nowrap gap-4 text-[10px] font-bold uppercase tracking-widest text-obsidian/70">
                 <span className="animate-[marquee_20s_linear_infinite]">Art Direction • UI Design • Copywriting • motion concepts • concept board • Art Direction • UI Design • Copywriting • motion concepts • concept board •</span>
               </div>
-              <div className="marquee-wrapper flex whitespace-nowrap gap-4 text-[10px] font-bold uppercase tracking-widest text-stroke text-obsidian/20">
+              <div className="marquee-wrapper flex whitespace-nowrap gap-4 text-[10px] font-bold uppercase tracking-widest text-obsidian/25">
                 <span className="animate-[marquee_15s_linear_infinite_reverse]">Photoreal renders • audio soundscapes • VFX styling • video reels • Photoreal renders • audio soundscapes • VFX styling • video reels •</span>
               </div>
             </div>

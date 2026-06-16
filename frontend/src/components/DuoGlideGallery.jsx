@@ -67,7 +67,7 @@ const DuoGlideGallery = () => {
           
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold uppercase text-obsidian leading-tight">
             THE ART OF <br />
-            <span className="italic font-light text-stroke text-obsidian/15 text-stroke-glow text-glow-gold">CONTRAST</span>
+            <span className="italic font-light text-accent-gold">CONTRAST</span>
           </h3>
           
           <p className="text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">

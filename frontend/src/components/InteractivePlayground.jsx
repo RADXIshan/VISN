@@ -279,7 +279,7 @@ const InteractivePlayground = () => {
             </div>
             <h3 className="text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
               EXPERIMENT <br />
-              <span className="text-stroke-glow text-glow-gold">WITH CODE</span>
+              <span className="text-accent-gold">WITH CODE</span>
             </h3>
           </div>
           <p className="max-w-xs text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">
