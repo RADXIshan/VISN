@@ -214,7 +214,7 @@ const Navbar = () => {
               >
                 {/* Radial golden background fill on hover (only when closed) */}
                 {!menuOpen && (
-                  <span className="absolute top-1/2 left-1/2 w-[150%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-gold scale-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100 -z-0" />
+                  <span className="absolute top-1/2 left-1/2 w-[150%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-gold scale-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100 z-0" />
                 )}
 
                 {/* Relative container holding both layered contents */}
