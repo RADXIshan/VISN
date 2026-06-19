@@ -121,7 +121,7 @@ const ContactFooter = () => {
                 </h2>
               </div>
               <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold uppercase leading-[1.05] tracking-tight text-obsidian mb-8">
-                START A <br />
+                START<br />
                 <span className="text-accent-gold italic font-normal">PROJECT</span>
               </h3>
               <p className="max-w-md text-base text-obsidian/75 font-serif italic font-light leading-relaxed mb-12">

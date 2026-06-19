@@ -171,7 +171,7 @@ const Pricing = () => {
             </div>
             <h3 className="text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
               TRANSPARENT <br />
-              <span className="text-accent-gold">PRICING</span>
+              <span className="text-accent-gold italic font-normal">PRICING</span>
             </h3>
           </div>
           <p className="max-w-xs text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">
@@ -188,7 +188,7 @@ const Pricing = () => {
             <h4 className="text-xl md:text-2xl font-serif font-semibold text-obsidian mb-1">
               Choose Your Foundation
             </h4>
-            <p className="text-xs text-obsidian/60 font-sans font-light">
+            <p className="text-xs text-obsidian/70 font-serif italic font-light">
               Pick the perfect starting point for your website.
             </p>
           </div>
@@ -204,7 +204,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[280px] w-full md:w-auto">
+              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
                 {/* Custom radio indicator */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   foundation === '02 – 05 Pages' ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -213,14 +213,14 @@ const Pricing = () => {
                     foundation === '02 – 05 Pages' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
-                <span className="text-xl md:text-2xl font-sans font-medium text-obsidian tracking-tight">
+                <span className="text-xl md:text-2xl font-serif font-bold text-obsidian tracking-tight">
                   02 – 05 Pages
                 </span>
               </div>
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full">
-                <p className="text-sm font-semibold text-obsidian mb-1">Ideal for portfolio sites.</p>
-                <p className="text-xs text-obsidian/60 leading-relaxed font-light font-sans max-w-lg">
+                <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Ideal for portfolio sites.</p>
+                <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                   A simple, elegant website to showcase your work and make a strong first impression.
                 </p>
               </div>
@@ -244,7 +244,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[280px] w-full md:w-auto">
+              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
                 {/* Custom radio indicator */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   foundation === '05+ Pages' ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -253,14 +253,14 @@ const Pricing = () => {
                     foundation === '05+ Pages' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
-                <span className="text-xl md:text-2xl font-sans font-medium text-obsidian tracking-tight">
+                <span className="text-xl md:text-2xl font-serif font-bold text-obsidian tracking-tight">
                   05+ Pages
                 </span>
               </div>
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full">
-                <p className="text-sm font-semibold text-obsidian mb-1">Ideal for e-commerce and business websites.</p>
-                <p className="text-xs text-obsidian/60 leading-relaxed font-light font-sans max-w-lg">
+                <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Ideal for e-commerce and business websites.</p>
+                <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                   More space, more flexibility. Perfect for growing businesses and online stores.
                 </p>
               </div>
@@ -287,7 +287,7 @@ const Pricing = () => {
             <h4 className="text-xl md:text-2xl font-serif font-semibold text-obsidian mb-1">
               Enhance The System
             </h4>
-            <p className="text-xs text-obsidian/60 font-sans font-light">
+            <p className="text-xs text-obsidian/70 font-serif italic font-light">
               Add optional modules to extend functionality.
             </p>
           </div>
@@ -303,7 +303,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[280px] w-full md:w-auto">
+              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   addons.backend ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -312,15 +312,15 @@ const Pricing = () => {
                     addons.backend ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
-                <span className="text-xl md:text-2xl font-sans font-medium text-obsidian tracking-tight">
+                <span className="text-xl md:text-2xl font-serif font-bold text-obsidian tracking-tight">
                   Backend + Dynamic Site
                 </span>
               </div>
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-obsidian mb-1">Add a powerful backend to manage your content, products, and data easily.</p>
-                  <p className="text-xs text-obsidian/60 leading-relaxed font-light font-sans max-w-lg">
+                  <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Add a powerful backend to manage your content, products, and data easily.</p>
+                  <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                     Perfect if you need forms, user logins, bookings or any dynamic features.
                   </p>
                 </div>
@@ -341,7 +341,7 @@ const Pricing = () => {
                   
                   {activeTooltip === 'backend' && (
                     <div className="absolute right-0 md:left-1/2 md:-translate-x-1/2 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl shadow-xl border border-accent-gold/20 text-xs z-30 transition-all duration-300 pointer-events-none">
-                      <p className="font-light leading-relaxed">{tooltips.backend}</p>
+                      <p className="font-serif italic font-light leading-relaxed">{tooltips.backend}</p>
                       <div className="absolute top-full left-[85%] md:left-1/2 md:-translate-x-1/2 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/20 rotate-45 -mt-1.5" />
                     </div>
                   )}
@@ -364,7 +364,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[280px] w-full md:w-auto">
+              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   addons.branding ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -373,15 +373,15 @@ const Pricing = () => {
                     addons.branding ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
-                <span className="text-xl md:text-2xl font-sans font-medium text-obsidian tracking-tight">
+                <span className="text-xl md:text-2xl font-serif font-bold text-obsidian tracking-tight">
                   Branding + Marketing
                 </span>
               </div>
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-obsidian mb-1">Build a strong brand presence and reach the right audience.</p>
-                  <p className="text-xs text-obsidian/60 leading-relaxed font-light font-sans max-w-lg">
+                  <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Build a strong brand presence and reach the right audience.</p>
+                  <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                     Includes brand identity, SEO setup, and marketing strategy to grow your business.
                   </p>
                 </div>
@@ -402,7 +402,7 @@ const Pricing = () => {
                   
                   {activeTooltip === 'branding' && (
                     <div className="absolute right-0 md:left-1/2 md:-translate-x-1/2 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl shadow-xl border border-accent-gold/20 text-xs z-30 transition-all duration-300 pointer-events-none">
-                      <p className="font-light leading-relaxed">{tooltips.branding}</p>
+                      <p className="font-serif italic font-light leading-relaxed">{tooltips.branding}</p>
                       <div className="absolute top-full left-[85%] md:left-1/2 md:-translate-x-1/2 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/20 rotate-45 -mt-1.5" />
                     </div>
                   )}
@@ -428,7 +428,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[280px] w-full md:w-auto">
+              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   addons.animation ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -437,15 +437,15 @@ const Pricing = () => {
                     addons.animation ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
-                <span className="text-xl md:text-2xl font-sans font-medium text-obsidian tracking-tight">
+                <span className="text-xl md:text-2xl font-serif font-bold text-obsidian tracking-tight">
                   Web Animation
                 </span>
               </div>
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-sm font-semibold text-obsidian mb-1">Bring your website to life with smooth, engaging animations.</p>
-                  <p className="text-xs text-obsidian/60 leading-relaxed font-light font-sans max-w-lg">
+                  <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Bring your website to life with smooth, engaging animations.</p>
+                  <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                     Enhances user experience and leaves a lasting impression.
                   </p>
                 </div>
@@ -466,7 +466,7 @@ const Pricing = () => {
                   
                   {activeTooltip === 'animation' && (
                     <div className="absolute right-0 md:left-1/2 md:-translate-x-1/2 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl shadow-xl border border-accent-gold/20 text-xs z-30 transition-all duration-300 pointer-events-none">
-                      <p className="font-light leading-relaxed">{tooltips.animation}</p>
+                      <p className="font-serif italic font-light leading-relaxed">{tooltips.animation}</p>
                       <div className="absolute top-full left-[85%] md:left-1/2 md:-translate-x-1/2 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/20 rotate-45 -mt-1.5" />
                     </div>
                   )}
@@ -494,7 +494,7 @@ const Pricing = () => {
             <h4 className="text-xl md:text-2xl font-serif font-semibold text-obsidian mb-2">
               Everything You Need. Built In.
             </h4>
-            <p className="text-xs text-obsidian/60 font-sans font-light leading-relaxed mb-8 max-w-xl">
+            <p className="text-xs text-obsidian/70 font-serif italic font-light leading-relaxed mb-8 max-w-xl">
               Every project includes the essentials to ensure your website runs smoothly and your experience is effortless.
             </p>
 
