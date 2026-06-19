@@ -35,7 +35,6 @@ const Hero = ({ isLoaded }) => {
   const tagLineRef = useRef(null);
   const subtitleRef = useRef(null);
   const ctaRef = useRef(null);
-  const badgeRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
 
   // 1. Entrance animation (runs once on load)
@@ -60,25 +59,18 @@ const Hero = ({ isLoaded }) => {
     });
     gsap.set(subtitleRef.current, { opacity: 0, y: 20 });
     gsap.set(ctaRef.current, { scale: 0.8, opacity: 0 });
-    gsap.set(badgeRef.current, { opacity: 0, y: -20 });
     gsap.set(scrollIndicatorRef.current, { opacity: 0, y: 20 });
 
-    tl.to(badgeRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      delay: 0.15
-    })
-    .to(brandChars, {
+    tl.to(brandChars, {
       y: "0%",
       rotateX: 0,
       scale: 1,
       opacity: 1,
       duration: 1.45,
       stagger: 0.08,
-      ease: "power4.out"
-    }, "-=0.6")
+      ease: "power4.out",
+      delay: 0.15
+    })
     .to(tagLineRef.current, {
       opacity: 1,
       duration: 0.5
@@ -198,27 +190,17 @@ const Hero = ({ isLoaded }) => {
         {/* Layer 1: The Centered Hero Slide (z-10) */}
         <div 
           ref={heroSlideRef}
-          className="absolute inset-0 flex flex-col justify-between px-6 pt-36 pb-12 md:px-12 bg-transparent z-10"
+          className="absolute inset-0 flex flex-col justify-between px-6 pt-20 md:pt-24 pb-12 md:px-12 bg-transparent z-10"
         >
           {/* Champagne Glow */}
           <div className="absolute top-1/2 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-gold/5 blur-[130px] pointer-events-none" />
           {/* Grid background */}
           <div className="absolute inset-0 -z-20 bg-grid-pattern opacity-45 pointer-events-none" />
 
-          {/* Top Row */}
-          <div ref={badgeRef} className="w-full flex justify-center items-center">
-            <div className="flex items-center gap-3 px-4 py-1.5 rounded-full border border-obsidian/5 bg-obsidian/1">
-              <span className="flex h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75] animate-pulse" />
-              <span className="text-[9px] font-bold tracking-[0.32em] text-obsidian/60 uppercase select-none">
-                VISN STUDIO // EDITION 2026
-              </span>
-            </div>
-          </div>
-
           {/* Symmetrical Typography */}
           <div className="my-auto max-w-4xl mx-auto flex flex-col items-center text-center select-none">
             <div ref={tagLineRef} className="overflow-hidden mb-4 opacity-0">
-              <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] uppercase text-accent-gold">
+              <span className="text-xs md:text-sm font-sans font-bold tracking-[0.4em] uppercase text-accent-gold">
                 {splitLetters("CREATIVE DIRECTION & HIGH-END ENGINEERING")}
               </span>
             </div>
@@ -226,7 +208,7 @@ const Hero = ({ isLoaded }) => {
             <div className="overflow-hidden mb-6" style={{ perspective: "1200px" }}>
               <h1 
                 ref={brandTitleRef}
-                className="text-[18vw] sm:text-[15vw] md:text-[12vw] font-serif font-black leading-[0.8] tracking-wider uppercase text-obsidian select-none"
+                className="text-[20vw] sm:text-[17vw] md:text-[14vw] font-serif font-black leading-[0.8] tracking-wider uppercase text-obsidian select-none"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {splitLetters("VISN")}
@@ -235,9 +217,9 @@ const Hero = ({ isLoaded }) => {
 
             <p 
               ref={subtitleRef}
-              className="max-w-2xl text-lg md:text-xl lg:text-2xl leading-relaxed text-obsidian/75 font-serif italic font-light tracking-wide px-4"
+              className="max-w-2xl text-xl md:text-2xl lg:text-3xl leading-relaxed text-obsidian/75 font-serif italic font-light tracking-widest px-4"
             >
-              We translate complex logic into graceful digital experiences, custom high-performance interfaces, and branding systems that elevate products into pieces of luxury.
+              Design. Engineering. Growth.
             </p>
 
             <div ref={ctaRef} className="mt-10 flex flex-col items-center gap-3">
@@ -251,7 +233,7 @@ const Hero = ({ isLoaded }) => {
                   <ArrowDownRight className="h-6 w-6 group-hover:rotate-45 transition-transform duration-300" />
                 </a>
               </Magnetic>
-              <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-obsidian/50">
+              <span className="text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase text-obsidian/50">
                 Start a Project
               </span>
             </div>
@@ -260,23 +242,12 @@ const Hero = ({ isLoaded }) => {
           {/* Bottom Row */}
           <div 
             ref={scrollIndicatorRef}
-            className="flex w-full flex-col md:flex-row items-center justify-between gap-6 border-t border-obsidian/10 pt-8 max-w-6xl mx-auto"
+            className="flex w-full justify-center max-w-6xl mx-auto"
           >
-            <div className="flex justify-center gap-16 text-obsidian/50 select-none text-center md:text-left">
-              <div>
-                <p className="text-[9px] font-bold tracking-widest text-obsidian/40 uppercase">Focus Area</p>
-                <p className="text-xs font-semibold text-obsidian mt-1 font-serif italic">Digital Engineering & Art</p>
-              </div>
-              <div>
-                <p className="text-[9px] font-bold tracking-widest text-obsidian/40 uppercase">Awards</p>
-                <p className="text-xs font-semibold text-obsidian mt-1 font-serif italic">CSS Design nominee '26</p>
-              </div>
-            </div>
-
             <a 
               href="#manifesto"
               onClick={handleScrollClick}
-              className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase text-obsidian/50 hover:text-accent-gold-dark transition-colors cursor-none"
+              className="group flex items-center gap-3 text-xs font-bold tracking-[0.3em] uppercase text-obsidian/50 hover:text-accent-gold-dark transition-colors cursor-none"
             >
               SCROLL TO DISCOVER
               <span className="inline-block animate-bounce text-accent-gold-dark font-black">↓</span>

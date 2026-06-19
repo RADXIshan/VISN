@@ -55,7 +55,7 @@ const ScrollProgress = () => {
   }, []);
 
   return (
-    <div className="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-4 select-none pointer-events-none">
+    <div className="fixed left-8 top-[44%] -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-4 select-none pointer-events-none">
       {/* Editorial active section number */}
       <span className="text-[11px] font-serif italic text-accent-gold-dark font-medium leading-none transition-all duration-300">
         {activeSection.num}
