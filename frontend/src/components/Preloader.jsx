@@ -131,12 +131,115 @@ const Preloader = ({ onComplete }) => {
             {/* Fine framing lines */}
             <div className="absolute inset-2 border border-dark-bg/5 rounded-xl pointer-events-none" />
             
-            {/* Generated Luxury Art Asset */}
-            <img 
-              src="/preloader-artwork.png" 
-              alt="VISN Loading Artwork" 
-              className="h-full w-full object-cover rounded-lg scale-105 animate-[pulse_6s_infinite_ease-in-out]"
-            />
+            {/* Premium Brand SVG Logo with dynamic assembly & glow */}
+            <svg 
+              className="h-4/5 w-4/5 text-dark-bg transition-all duration-300 ease-out"
+              viewBox="0 0 100 100" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ 
+                filter: "drop-shadow(0 0 15px rgba(181, 155, 117, 0.45))",
+                transform: `scale(${0.9 + (count * 0.1) / 100})`,
+                opacity: count >= 5 ? 1 : 0
+              }}
+            >
+              {/* Outer Golden Orbit (draws itself as count increments) */}
+              <circle 
+                cx="50" 
+                cy="50" 
+                r="44" 
+                stroke="#B59B75" 
+                strokeWidth="1.5" 
+                strokeDasharray="276.46"
+                strokeDashoffset={276.46 - (276.46 * count) / 100}
+                strokeLinecap="round"
+                style={{ 
+                  transform: 'rotate(-90deg)', 
+                  transformOrigin: 'center',
+                  transition: 'stroke-dashoffset 150ms ease-out'
+                }}
+              />
+              
+              {/* Inner Dotted Orbit (fades in) */}
+              <circle 
+                cx="50" 
+                cy="50" 
+                r="40" 
+                stroke="#B59B75" 
+                strokeWidth="0.5" 
+                strokeDasharray="2 2" 
+                style={{
+                  opacity: Math.max(0, (count - 20) / 80 * 0.6),
+                  transition: 'opacity 300ms ease-out'
+                }}
+              />
+              
+              {/* Precision Axis Lines (fade in) */}
+              <line 
+                x1="50" y1="6" x2="50" y2="94" 
+                stroke="#B59B75" 
+                strokeWidth="0.25" 
+                strokeDasharray="1 2" 
+                style={{
+                  opacity: Math.max(0, (count - 30) / 70 * 0.4),
+                  transition: 'opacity 300ms ease-out'
+                }}
+              />
+              <line 
+                x1="6" y1="50" x2="94" y2="50" 
+                stroke="#B59B75" 
+                strokeWidth="0.25" 
+                strokeDasharray="1 2" 
+                style={{
+                  opacity: Math.max(0, (count - 30) / 70 * 0.4),
+                  transition: 'opacity 300ms ease-out'
+                }}
+              />
+              
+              {/* Symmetrical Outer Lens (The Eye) (assembles and fades in) */}
+              <path 
+                d="M 22 50 C 37 25, 63 25, 78 50 C 63 75, 37 75, 22 50 Z" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinejoin="round"
+                style={{
+                  opacity: Math.max(0, (count - 40) / 60),
+                  transition: 'opacity 300ms ease-out'
+                }}
+              />
+              
+              {/* Secondary Inner Lens Path (Gold Accent) */}
+              <path 
+                d="M 28 50 C 40 32, 60 32, 72 50 C 60 68, 40 68, 28 50 Z" 
+                stroke="#B59B75" 
+                strokeWidth="0.75" 
+                style={{
+                  opacity: Math.max(0, (count - 50) / 50 * 0.8),
+                  transition: 'opacity 300ms ease-out'
+                }}
+              />
+
+              {/* Iris Gold Circle (grows in center) */}
+              <circle 
+                cx="50" 
+                cy="50" 
+                r={Math.max(0, Math.min(11, ((count - 60) / 40) * 11))} 
+                fill="#B59B75" 
+                style={{
+                  transition: 'r 300ms ease-out'
+                }}
+              />
+
+              {/* Pupil (4-pointed star in Obsidian dark/background) */}
+              <path 
+                d="M 50 43 L 52 48.5 L 57.5 50 L 52 51.5 L 50 57 L 48 51.5 L 42.5 50 L 48 48.5 Z" 
+                fill="#151515" 
+                style={{
+                  opacity: Math.max(0, (count - 80) / 20),
+                  transition: 'opacity 300ms ease-out'
+                }}
+              />
+            </svg>
           </div>
 
           {/* Loader values */}

@@ -191,7 +191,29 @@ const Navbar = () => {
               }`}
               data-cursor="magnetic"
             >
-              VISN
+              <svg 
+                className="h-7 w-7 mr-2.5 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-360" 
+                viewBox="0 0 100 100" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Outer Golden Orbit */}
+                <circle cx="50" cy="50" r="44" stroke="#B59B75" strokeWidth="1.5" />
+                <circle cx="50" cy="50" r="40" stroke="#B59B75" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.6" />
+                
+                {/* Symmetrical Outer Lens (The Eye) */}
+                <path d="M 22 50 C 37 25, 63 25, 78 50 C 63 75, 37 75, 22 50 Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                
+                {/* Secondary Inner Lens Path (Gold Accent) */}
+                <path d="M 28 50 C 40 32, 60 32, 72 50 C 60 68, 40 68, 28 50 Z" stroke="#B59B75" strokeWidth="0.75" opacity="0.8" />
+
+                {/* Iris Gold Circle */}
+                <circle cx="50" cy="50" r="11" fill="#B59B75" />
+
+                {/* Pupil (4-pointed star in current color) */}
+                <path d="M 50 43 L 52 48.5 L 57.5 50 L 52 51.5 L 50 57 L 48 51.5 L 42.5 50 L 48 48.5 Z" fill="currentColor" />
+              </svg>
+              <span>VISN</span>
               <span className="text-accent-gold group-hover:animate-pulse inline-block ml-0.5 select-none font-bold">.</span>
               <span className={`absolute left-1/2 bottom-0 w-0 h-[1.5px] -translate-x-1/2 transition-all duration-300 ease-out group-hover:w-full ${
                 menuOpen ? 'bg-dark-bg' : 'bg-accent-gold'

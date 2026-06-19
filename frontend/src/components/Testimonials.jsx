@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Star, Quote } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -87,12 +91,96 @@ const TestimonialCard = ({ testimonial }) => (
 );
 
 const Testimonials = () => {
+  const containerRef = useRef(null);
+  const headerRef = useRef(null);
+  const rowLeftRef = useRef(null);
+  const rowRightRef = useRef(null);
+
   // Duplicate testimonials for seamless looping
   const row1 = testimonials.slice(0, 4);
   const row2 = testimonials.slice(4, 8);
 
+  useEffect(() => {
+    const container = containerRef.current;
+    const header = headerRef.current;
+    const rowLeft = rowLeftRef.current;
+    const rowRight = rowRightRef.current;
+
+    if (!container) return;
+
+    // 1. Header fade-in and slide-up
+    const headerTween = gsap.fromTo(header,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: container,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      }
+    );
+
+    // 2. Row wrappers fade-in and slide-up
+    const rowsTween = gsap.fromTo([rowLeft, rowRight],
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.0,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: container,
+          start: "top 75%",
+          toggleActions: "play none none none"
+        }
+      }
+    );
+
+    // 3. Horizontal parallax shift driven by scroll position
+    const leftParallax = gsap.fromTo(rowLeft,
+      { x: 80 },
+      {
+        x: -80,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2
+        }
+      }
+    );
+
+    const rightParallax = gsap.fromTo(rowRight,
+      { x: -80 },
+      {
+        x: 80,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2
+        }
+      }
+    );
+
+    return () => {
+      headerTween.kill();
+      rowsTween.kill();
+      leftParallax.kill();
+      rightParallax.kill();
+    };
+  }, []);
+
   return (
     <section
+      ref={containerRef}
       id="testimonials"
       className="relative w-full py-24 md:py-32 bg-transparent overflow-hidden z-10"
     >
@@ -100,7 +188,7 @@ const Testimonials = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[400px] w-[400px] rounded-full bg-accent-gold/4 blur-[120px] pointer-events-none" />
 
       {/* Section header */}
-      <div className="mx-auto max-w-6xl px-6 md:px-12 mb-16 select-none">
+      <div ref={headerRef} className="mx-auto max-w-6xl px-6 md:px-12 mb-16 select-none">
         <div className="flex items-center gap-3 mb-3">
           <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
           <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
@@ -115,19 +203,23 @@ const Testimonials = () => {
 
       {/* Row 1 — moves left */}
       <div className="mb-6 overflow-hidden">
-        <div className="testimonial-row-left flex gap-6 w-max">
-          {[...row1, ...row1, ...row1, ...row1].map((t, i) => (
-            <TestimonialCard key={`r1-${i}`} testimonial={t} />
-          ))}
+        <div ref={rowLeftRef} style={{ willChange: 'transform' }}>
+          <div className="testimonial-row-left flex gap-6 w-max">
+            {[...row1, ...row1, ...row1, ...row1].map((t, i) => (
+              <TestimonialCard key={`r1-${i}`} testimonial={t} />
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Row 2 — moves right */}
       <div className="overflow-hidden">
-        <div className="testimonial-row-right flex gap-6 w-max">
-          {[...row2, ...row2, ...row2, ...row2].map((t, i) => (
-            <TestimonialCard key={`r2-${i}`} testimonial={t} />
-          ))}
+        <div ref={rowRightRef} style={{ willChange: 'transform' }}>
+          <div className="testimonial-row-right flex gap-6 w-max">
+            {[...row2, ...row2, ...row2, ...row2].map((t, i) => (
+              <TestimonialCard key={`r2-${i}`} testimonial={t} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

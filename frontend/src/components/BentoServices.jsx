@@ -157,9 +157,15 @@ const BentoServices = () => {
     const titleEl = container.querySelector('.bento-title-section');
     const cards = [card1Ref.current, card2Ref.current, card3Ref.current, card4Ref.current].filter(Boolean);
 
-    // Initial hidden state
-    gsap.set(titleEl, { opacity: 0, y: 40 });
-    gsap.set(cards, { opacity: 0, y: 50 });
+    // Initial hidden state with premium 3D rotate/skew
+    gsap.set(titleEl, { opacity: 0, y: 50 });
+    gsap.set(cards, { 
+      opacity: 0, 
+      y: 80, 
+      rotateX: 8, 
+      skewY: 2, 
+      transformOrigin: "center top" 
+    });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -172,16 +178,18 @@ const BentoServices = () => {
     tl.to(titleEl, {
       opacity: 1,
       y: 0,
-      duration: 1.0,
-      ease: "power3.out"
+      duration: 1.2,
+      ease: "power4.out"
     })
     .to(cards, {
       opacity: 1,
       y: 0,
-      duration: 1.1,
-      stagger: 0.15,
-      ease: "power3.out"
-    }, "-=0.6");
+      rotateX: 0,
+      skewY: 0,
+      duration: 1.3,
+      stagger: 0.18,
+      ease: "power4.out"
+    }, "-=0.8");
 
     return () => {
       tl.kill();

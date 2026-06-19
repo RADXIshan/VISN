@@ -1,0 +1,21 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Golden Orbit -->
+  <circle cx="256" cy="256" r="220" stroke="#B59B75" stroke-width="6" stroke-linecap="round" />
+  <circle cx="256" cy="256" r="200" stroke="#B59B75" stroke-width="2" stroke-dasharray="8 8" opacity="0.6" />
+  
+  <!-- Precision Axis Lines -->
+  <line x1="256" y1="36" x2="256" y2="476" stroke="#B59B75" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.4" />
+  <line x1="36" y1="256" x2="476" y2="256" stroke="#B59B75" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.4" />
+  
+  <!-- Symmetrical Outer Lens (The Eye) -->
+  <path d="M 110 256 C 190 130, 322 130, 402 256 C 322 382, 190 382, 110 256 Z" stroke="#151515" stroke-width="8" stroke-linejoin="round" />
+  
+  <!-- Secondary Inner Lens Path (Gold Accent) -->
+  <path d="M 140 256 C 200 160, 312 160, 372 256 C 312 352, 200 352, 140 256 Z" stroke="#B59B75" stroke-width="3" opacity="0.8" />
+
+  <!-- Iris Gold Circle -->
+  <circle cx="256" cy="256" r="60" fill="#B59B75" />
+
+  <!-- Pupil (4-pointed star in Obsidian dark) -->
+  <path d="M 256 220 L 265 247 L 292 256 L 265 265 L 256 292 L 247 265 L 220 256 L 247 247 Z" fill="#151515" />
+</svg>
