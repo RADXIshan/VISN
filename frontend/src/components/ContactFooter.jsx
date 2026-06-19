@@ -116,7 +116,7 @@ const ContactFooter = () => {
             <div>
               <div className="contact-title flex items-center gap-3 mb-5">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
-                <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
+                <h2 className="text-[10px] font-serif font-bold uppercase tracking-[0.3em] text-obsidian/50">
                   CONNECT WITH US
                 </h2>
               </div>
@@ -132,15 +132,15 @@ const ContactFooter = () => {
             {/* Direct details formatted cleanly using typography */}
             <div className="flex flex-col gap-8 text-obsidian/80">
               <div className="contact-block flex flex-col gap-1.5">
-                <span className="text-[8px] font-bold tracking-[0.25em] text-accent-gold uppercase">[ INQUIRIES ]</span>
+                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-gold uppercase">[ INQUIRIES ]</span>
                 <a href="mailto:hello@visn.agency" className="text-lg font-serif font-light text-obsidian hover:text-accent-gold transition-colors cursor-none inline-block">ishanroy3118107@gmail.com</a>
               </div>
               <div className="contact-block flex flex-col gap-1.5">
-                <span className="text-[8px] font-bold tracking-[0.25em] text-accent-gold uppercase">[ HOTLINE ]</span>
+                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-gold uppercase">[ HOTLINE ]</span>
                 <a href="tel:+15559092026" className="text-lg font-serif font-light text-obsidian hover:text-accent-gold transition-colors cursor-none inline-block">+91 84201 39900</a>
               </div>
               <div className="contact-block flex flex-col gap-1.5">
-                <span className="text-[8px] font-bold tracking-[0.25em] text-accent-gold uppercase">[ CODES & ORIGIN ]</span>
+                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-gold uppercase">[ CODES & ORIGIN ]</span>
                 <span className="text-lg font-serif font-light italic text-obsidian/75">Kolkata, West Bengal</span>
               </div>
             </div>
@@ -152,7 +152,7 @@ const ContactFooter = () => {
               
               {/* Form Input 1 */}
               <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-gold transition-colors duration-500 pb-2">
-                <label className="text-[9px] font-bold tracking-[0.3em] text-accent-gold uppercase">Your Name</label>
+                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-gold uppercase">Your Name</label>
                 <input 
                   type="text" 
                   required
@@ -164,7 +164,7 @@ const ContactFooter = () => {
 
               {/* Form Input 2 */}
               <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-gold transition-colors duration-500 pb-2">
-                <label className="text-[9px] font-bold tracking-[0.3em] text-accent-gold uppercase">Email Address</label>
+                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-gold uppercase">Email Address</label>
                 <input 
                   type="email" 
                   required
@@ -176,7 +176,7 @@ const ContactFooter = () => {
 
               {/* Form Input 3 */}
               <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-gold transition-colors duration-500 pb-2">
-                <label className="text-[9px] font-bold tracking-[0.3em] text-accent-gold uppercase">Brief Description</label>
+                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-gold uppercase">Brief Description</label>
                 <textarea 
                   id="contact-message"
                   rows="4"
@@ -202,7 +202,7 @@ const ContactFooter = () => {
 
         {/* Bottom Socials & Back to top */}
         <div ref={bottomBarRef} className="border-t border-obsidian/10 pt-12 flex flex-col md:flex-row items-center justify-between gap-8 select-none">
-          <p className="text-[10px] font-mono text-obsidian/45 tracking-wider text-center md:text-left">
+          <p className="text-[10px] font-serif font-bold text-obsidian/45 tracking-wider text-center md:text-left">
             © {new Date().getFullYear()} VISN AGENCY INC. ALL RIGHTS RESERVED // CODED WITH ART
           </p>
 
@@ -213,7 +213,7 @@ const ContactFooter = () => {
                 <a 
                   href="#"
                   onClick={(e) => e.preventDefault()}
-                  className="text-[10px] font-bold tracking-widest text-obsidian/50 hover:text-accent-gold-dark transition-colors cursor-none"
+                  className="text-[10px] font-serif font-bold tracking-widest text-obsidian/50 hover:text-accent-gold-dark transition-colors cursor-none"
                 >
                   {social}
                 </a>
@@ -234,7 +234,7 @@ const ContactFooter = () => {
             </Magnetic>
             <button 
               onClick={handleScrollTop}
-              className="text-[8px] font-bold tracking-[0.3em] text-obsidian/45 hover:text-accent-gold transition-colors duration-300 uppercase cursor-none"
+              className="text-[8px] font-serif font-bold tracking-[0.3em] text-obsidian/45 hover:text-accent-gold transition-colors duration-300 uppercase cursor-none"
             >
               BACK TO TOP
             </button>

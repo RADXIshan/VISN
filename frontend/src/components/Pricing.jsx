@@ -204,7 +204,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
+              <div className="flex items-center gap-6 md:w-[380px] md:shrink-0 pr-4 md:pr-8 w-full">
                 {/* Custom radio indicator */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   foundation === '02 – 05 Pages' ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -219,7 +219,7 @@ const Pricing = () => {
               </div>
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full">
-                <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Ideal for portfolio sites.</p>
+                <p className="text-sm font-serif font-medium text-obsidian mb-1">Ideal for portfolio sites.</p>
                 <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                   A simple, elegant website to showcase your work and make a strong first impression.
                 </p>
@@ -229,7 +229,7 @@ const Pricing = () => {
                 <span className="text-[9px] font-bold tracking-widest text-obsidian/40 uppercase mb-0.5 font-sans">
                   STARTING AT
                 </span>
-                <span className="text-2xl font-bold text-obsidian font-sans">
+                <span className="text-2xl font-serif font-bold text-obsidian tracking-tight">
                   {formatPrice(prices.foundation['02 – 05 Pages'])}
                 </span>
               </div>
@@ -244,7 +244,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
+              <div className="flex items-center gap-6 md:w-[380px] md:shrink-0 pr-4 md:pr-8 w-full">
                 {/* Custom radio indicator */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   foundation === '05+ Pages' ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -259,7 +259,7 @@ const Pricing = () => {
               </div>
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full">
-                <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Ideal for e-commerce and business websites.</p>
+                <p className="text-sm font-serif font-medium text-obsidian mb-1">Ideal for e-commerce and business websites.</p>
                 <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                   More space, more flexibility. Perfect for growing businesses and online stores.
                 </p>
@@ -269,7 +269,7 @@ const Pricing = () => {
                 <span className="text-[9px] font-bold tracking-widest text-obsidian/40 uppercase mb-0.5 font-sans">
                   STARTING AT
                 </span>
-                <span className="text-2xl font-bold text-obsidian font-sans">
+                <span className="text-2xl font-serif font-bold text-obsidian tracking-tight">
                   {formatPrice(prices.foundation['05+ Pages'])}
                 </span>
               </div>
@@ -303,7 +303,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
+              <div className="flex items-center gap-6 md:w-[380px] md:shrink-0 pr-4 md:pr-8 w-full">
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   addons.backend ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -319,7 +319,7 @@ const Pricing = () => {
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Add a powerful backend to manage your content, products, and data easily.</p>
+                  <p className="text-sm font-serif font-medium text-obsidian mb-1">Add a powerful backend to manage your content, products, and data easily.</p>
                   <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                     Perfect if you need forms, user logins, bookings or any dynamic features.
                   </p>
@@ -349,7 +349,7 @@ const Pricing = () => {
               </div>
 
               <div className="md:min-w-[180px] md:pl-8 border-t md:border-t-0 md:border-l border-obsidian/10 pt-4 md:pt-0 flex flex-col justify-center w-full md:w-auto">
-                <span className="text-2xl font-bold text-obsidian font-sans">
+                <span className="text-2xl font-serif font-bold text-obsidian tracking-tight">
                   + {formatPrice(prices.addons.backend)}
                 </span>
               </div>
@@ -364,7 +364,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
+              <div className="flex items-center gap-6 md:w-[380px] md:shrink-0 pr-4 md:pr-8 w-full">
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   addons.branding ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -380,7 +380,7 @@ const Pricing = () => {
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Build a strong brand presence and reach the right audience.</p>
+                  <p className="text-sm font-serif font-medium text-obsidian mb-1">Build a strong brand presence and reach the right audience.</p>
                   <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                     Includes brand identity, SEO setup, and marketing strategy to grow your business.
                   </p>
@@ -413,7 +413,7 @@ const Pricing = () => {
                 <span className="text-[9px] font-bold tracking-widest text-obsidian/40 uppercase mb-0.5 font-sans">
                   STARTING AT
                 </span>
-                <span className="text-2xl font-bold text-obsidian font-sans">
+                <span className="text-2xl font-serif font-bold text-obsidian tracking-tight">
                   {formatPrice(prices.addons.branding)} <span className="text-sm font-normal text-obsidian/50">/ month</span>
                 </span>
               </div>
@@ -428,7 +428,7 @@ const Pricing = () => {
                   : 'bg-white/80 border-obsidian/5 hover:border-obsidian/15'
               }`}
             >
-              <div className="flex items-center gap-6 md:min-w-[340px] pr-4 md:pr-8 w-full md:w-auto">
+              <div className="flex items-center gap-6 md:w-[380px] md:shrink-0 pr-4 md:pr-8 w-full">
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center transition-all duration-300 ${
                   addons.animation ? 'border-obsidian bg-transparent' : 'border-obsidian/20'
@@ -444,7 +444,7 @@ const Pricing = () => {
               
               <div className="flex-1 py-4 md:py-0 md:px-8 border-t md:border-t-0 md:border-l border-obsidian/10 mt-4 md:mt-0 w-full flex items-center justify-between gap-4">
                 <div className="flex-1">
-                  <p className="text-sm font-serif italic font-medium text-obsidian mb-1">Bring your website to life with smooth, engaging animations.</p>
+                  <p className="text-sm font-serif font-medium text-obsidian mb-1">Bring your website to life with smooth, engaging animations.</p>
                   <p className="text-xs text-obsidian/75 leading-relaxed font-light font-serif italic max-w-lg">
                     Enhances user experience and leaves a lasting impression.
                   </p>
@@ -474,7 +474,7 @@ const Pricing = () => {
               </div>
 
               <div className="md:min-w-[180px] md:pl-8 border-t md:border-t-0 md:border-l border-obsidian/10 pt-4 md:pt-0 flex flex-col justify-center w-full md:w-auto">
-                <span className="text-2xl font-bold text-obsidian font-sans">
+                <span className="text-2xl font-serif font-bold text-obsidian tracking-tight">
                   + {formatPrice(prices.addons.animation)}
                 </span>
               </div>
@@ -551,15 +551,15 @@ const Pricing = () => {
           {/* Right Panel: Estimated Cost Card */}
           <div className="lg:col-span-5 bg-dark-card/40 border border-obsidian/10 rounded-3xl p-8 flex flex-col justify-between min-h-[280px]">
             <div>
-              <span className="text-[10px] font-bold tracking-widest text-obsidian/40 uppercase block mb-1">
+              <span className="text-[10px] font-serif font-bold tracking-widest text-obsidian/40 uppercase block mb-1">
                 ESTIMATED COST
               </span>
               <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                <h4 className="text-4xl md:text-5xl font-sans font-bold text-obsidian tracking-tight">
+                <h4 className="text-4xl md:text-5xl font-serif font-bold text-obsidian tracking-tight">
                   {formatPrice(totalOneTime)}
                 </h4>
                 {addons.branding && (
-                  <span className="text-sm font-medium text-obsidian/60 bg-accent-gold/10 px-2 py-0.5 rounded-md font-sans">
+                  <span className="text-sm font-medium text-obsidian/60 bg-accent-gold/10 px-2 py-0.5 rounded-md font-serif">
                     + {formatPrice(recurringCost)} / mo
                   </span>
                 )}

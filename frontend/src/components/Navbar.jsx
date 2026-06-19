@@ -302,7 +302,7 @@ const Navbar = () => {
           
           {/* Left Panel: Luxury serif Navigation Links */}
           <div className="col-span-1 lg:col-span-7 flex flex-col justify-center">
-            <span className="menu-meta-item text-[8px] font-bold tracking-[0.35em] uppercase text-accent-gold mb-6 block">
+            <span className="menu-meta-item text-[8px] font-serif font-bold tracking-[0.35em] uppercase text-accent-gold mb-6 block">
               [ INDEX DIRECTORY ]
             </span>
             <div className="flex flex-col w-full">
@@ -342,7 +342,7 @@ const Navbar = () => {
           <div className="col-span-1 lg:col-span-4 lg:col-start-9 flex flex-col justify-center gap-14 lg:pl-12 border-t lg:border-t-0 lg:border-l border-dark-bg/10 pt-10 lg:pt-0">
             {/* Contact Details */}
             <div className="menu-meta-item">
-              <span className="text-[9px] font-bold tracking-[0.3em] text-dark-bg/40 uppercase mb-3 block">
+              <span className="text-[9px] font-serif font-bold tracking-[0.3em] text-dark-bg/40 uppercase mb-3 block">
                 INQUIRIES
               </span>
               <a 
@@ -359,7 +359,7 @@ const Navbar = () => {
 
             {/* Social Links */}
             <div className="menu-meta-item">
-              <span className="text-[9px] font-bold tracking-[0.3em] text-dark-bg/40 uppercase mb-4 block">
+              <span className="text-[9px] font-serif font-bold tracking-[0.3em] text-dark-bg/40 uppercase mb-4 block">
                 CONNECTIVITY
               </span>
               <div className="flex flex-col gap-3 items-start">
