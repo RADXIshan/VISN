@@ -192,7 +192,7 @@ const Navbar = () => {
               data-cursor="magnetic"
             >
               <svg 
-                className="h-7 w-7 mr-2.5 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-360" 
+                className="h-10 w-10 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-360" 
                 viewBox="0 0 100 100" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
@@ -213,8 +213,6 @@ const Navbar = () => {
                 {/* Pupil (4-pointed star in current color) */}
                 <path d="M 50 43 L 52 48.5 L 57.5 50 L 52 51.5 L 50 57 L 48 51.5 L 42.5 50 L 48 48.5 Z" fill="currentColor" />
               </svg>
-              <span>VISN</span>
-              <span className="text-accent-gold group-hover:animate-pulse inline-block ml-0.5 select-none font-bold">.</span>
               <span className={`absolute left-1/2 bottom-0 w-0 h-[1.5px] -translate-x-1/2 transition-all duration-300 ease-out group-hover:w-full ${
                 menuOpen ? 'bg-dark-bg' : 'bg-accent-gold'
               }`} />
