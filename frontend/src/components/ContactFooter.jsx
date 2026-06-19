@@ -99,6 +99,7 @@ const ContactFooter = () => {
               <div className="group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-gold transition-colors duration-500 pb-2">
                 <label className="text-[9px] font-bold tracking-[0.3em] text-accent-gold uppercase">Brief Description</label>
                 <textarea 
+                  id="contact-message"
                   rows="4"
                   required
                   placeholder="Tell us about your digital vision..."

@@ -291,10 +291,6 @@ const HorizontalProjects = () => {
     };
   }, []);
 
-  const handleLinkClick = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div 
       ref={containerRef}

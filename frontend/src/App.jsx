@@ -13,6 +13,7 @@ import DuoGlideGallery from './components/DuoGlideGallery';
 import HorizontalProjects from './components/HorizontalProjects';
 import BentoServices from './components/BentoServices';
 import Testimonials from './components/Testimonials';
+import Pricing from './components/Pricing';
 import ContactFooter from './components/ContactFooter';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -84,6 +85,7 @@ const App = () => {
         <HorizontalProjects />
         <BentoServices />
         <Testimonials />
+        <Pricing />
         <ContactFooter />
       </div>
     </>
