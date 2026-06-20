@@ -66,7 +66,7 @@ const BentoServices = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(181, 155, 117, ${this.alpha * 0.4})`; // Champagne gold
+        ctx.fillStyle = `rgba(245, 242, 235, ${this.alpha * 0.4})`; // Neutral obsidian particles
         ctx.fill();
       }
     }
@@ -96,7 +96,7 @@ const BentoServices = () => {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(181, 155, 117, ${(1 - dist / 55) * 0.14})`; // Champagne gold lines
+            ctx.strokeStyle = `rgba(245, 242, 235, ${(1 - dist / 55) * 0.14})`; // Neutral lines
             ctx.stroke();
           }
         }
@@ -321,10 +321,10 @@ const BentoServices = () => {
     <section 
       ref={containerRef}
       id="services"
-      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] z-10 overflow-hidden"
+      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#12100d] via-[#14120f] to-[#100f0d] z-10 overflow-hidden"
     >
-      {/* Subtle warm golden background glow */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2 blur-[150px] pointer-events-none" />
+      {/* Subtle neutral background glow */}
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/1 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl">
         {/* Title and description */}
@@ -359,7 +359,7 @@ const BentoServices = () => {
             ref={card1Ref}
             onMouseMove={(e) => handleCardMouseMove(e, card1Ref, 1)}
             onMouseLeave={() => handleCardMouseLeave(card1Ref, 1)}
-            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-[#1a1815]/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
               transformStyle: "preserve-3d"
@@ -383,7 +383,7 @@ const BentoServices = () => {
                 INTERACTIVE DEVELOPMENT
               </h4>
               <p className="max-w-md text-xs text-obsidian/75 font-serif italic font-light leading-relaxed">
-                We craft fluid React websites, interactive Canvas apps, and high-performance layouts that load instantly. Hover and move your mouse above this panel to test gold particle physics.
+                We craft fluid React websites, interactive Canvas apps, and high-performance layouts that load instantly. Hover and move your mouse above this panel to test interactive particle physics.
               </p>
             </div>
           </div>
@@ -393,7 +393,7 @@ const BentoServices = () => {
             ref={card2Ref}
             onMouseMove={(e) => handleCardMouseMove(e, card2Ref, 2)}
             onMouseLeave={() => handleCardMouseLeave(card2Ref, 2)}
-            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-[#1a1815]/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
               transformStyle: "preserve-3d"
@@ -430,7 +430,7 @@ const BentoServices = () => {
             ref={card3Ref}
             onMouseMove={(e) => handleCardMouseMove(e, card3Ref, 3)}
             onMouseLeave={() => handleCardMouseLeave(card3Ref, 3)}
-            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-[#1a1815]/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
               transformStyle: "preserve-3d"
@@ -471,7 +471,7 @@ const BentoServices = () => {
             ref={card4Ref}
             onMouseMove={(e) => handleCardMouseMove(e, card4Ref, 4)}
             onMouseLeave={() => handleCardMouseLeave(card4Ref, 4)}
-            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/40 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-[#1a1815]/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
               transformStyle: "preserve-3d"

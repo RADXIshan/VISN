@@ -57,7 +57,7 @@ const testimonials = [
 ];
 
 const TestimonialCard = ({ testimonial }) => (
-  <div className="testimonial-card shrink-0 w-[340px] md:w-[400px] p-6 md:p-8 rounded-2xl border border-obsidian/8 bg-dark-card/50 backdrop-blur-sm select-none">
+  <div className="testimonial-card shrink-0 w-[340px] md:w-[400px] p-6 md:p-8 rounded-2xl border border-obsidian/8 bg-[#1a1815]/50 backdrop-blur-sm select-none">
     {/* Quote icon */}
     <div className="flex items-center justify-between mb-4">
       <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-gold/10 border border-accent-gold/15">
@@ -215,10 +215,10 @@ const Testimonials = () => {
     <section
       ref={containerRef}
       id="testimonials"
-      className="relative w-full py-24 md:py-32 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] overflow-hidden z-10"
+      className="relative w-full py-24 md:py-32 bg-linear-to-b from-[#100f0d] via-[#12100d] to-[#100f0d] overflow-hidden z-10"
     >
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2 blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/1 blur-[150px] pointer-events-none" />
 
       {/* Section header */}
       <div ref={headerRef} className="mx-auto max-w-6xl px-6 md:px-12 mb-16 select-none">

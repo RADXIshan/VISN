@@ -191,10 +191,10 @@ const Pricing = () => {
     <section 
       ref={containerRef}
       id="pricing"
-      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] z-10 overflow-hidden border-t border-obsidian/5"
+      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#100f0d] via-[#14120f] to-[#12100d] z-10 overflow-hidden border-t border-obsidian/5"
     >
-      {/* Subtle warm golden background glow */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2 blur-[150px] pointer-events-none" />
+      {/* Subtle neutral background glow */}
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/1 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl">
         
@@ -242,15 +242,15 @@ const Pricing = () => {
               onClick={() => setFoundation('02 – 05 Pages')}
               className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none relative overflow-hidden w-full gap-6 ${
                 foundation === '02 – 05 Pages'
-                  ? 'bg-linear-to-b from-[#1c1814] to-[#12100d] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161411]/50 to-[#12100d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-dark-card/70 hover:to-[#14120f]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
               }`}
             >
-              {/* Ambient radial gold glow */}
+              {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 foundation === '02 – 05 Pages' ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.08), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
               }} />
 
               {/* Glowing top gold edge line */}
@@ -308,15 +308,15 @@ const Pricing = () => {
               onClick={() => setFoundation('05+ Pages')}
               className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none relative overflow-hidden w-full gap-6 ${
                 foundation === '05+ Pages'
-                  ? 'bg-linear-to-b from-[#1c1814] to-[#12100d] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161411]/50 to-[#12100d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-dark-card/70 hover:to-[#14120f]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
               }`}
             >
-              {/* Ambient radial gold glow */}
+              {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 foundation === '05+ Pages' ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.08), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
               }} />
 
               {/* Glowing top gold edge line */}
@@ -393,15 +393,15 @@ const Pricing = () => {
               onClick={() => toggleAddon('backend')}
               className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative overflow-hidden w-full gap-6 ${
                 addons.backend
-                  ? 'bg-linear-to-b from-[#1c1814] to-[#12100d] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161411]/50 to-[#12100d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-dark-card/70 hover:to-[#14120f]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
               }`}
             >
-              {/* Ambient radial gold glow */}
+              {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 addons.backend ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.08), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
               }} />
 
               {/* Glowing top gold edge line */}
@@ -457,7 +457,7 @@ const Pricing = () => {
                   {activeTooltip === 'backend' && (
                     <div 
                       className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
-                      style={{ boxShadow: '0 10px 30px rgba(181, 155, 117, 0.15)' }}
+                      style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
                     >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.backend}</p>
                       <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
@@ -484,15 +484,15 @@ const Pricing = () => {
               onClick={() => toggleAddon('branding')}
               className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative overflow-hidden w-full gap-6 ${
                 addons.branding
-                  ? 'bg-linear-to-b from-[#1c1814] to-[#12100d] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161411]/50 to-[#12100d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-dark-card/70 hover:to-[#14120f]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
               }`}
             >
-              {/* Ambient radial gold glow */}
+              {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 addons.branding ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.08), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
               }} />
 
               {/* Glowing top gold edge line */}
@@ -548,7 +548,7 @@ const Pricing = () => {
                   {activeTooltip === 'branding' && (
                     <div 
                       className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
-                      style={{ boxShadow: '0 10px 30px rgba(181, 155, 117, 0.15)' }}
+                      style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
                     >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.branding}</p>
                       <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
@@ -578,15 +578,15 @@ const Pricing = () => {
               onClick={() => toggleAddon('animation')}
               className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative overflow-hidden w-full gap-6 ${
                 addons.animation
-                  ? 'bg-linear-to-b from-[#1c1814] to-[#12100d] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161411]/50 to-[#12100d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-dark-card/70 hover:to-[#14120f]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
               }`}
             >
-              {/* Ambient radial gold glow */}
+              {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 addons.animation ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.08), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
               }} />
 
               {/* Glowing top gold edge line */}
@@ -642,7 +642,7 @@ const Pricing = () => {
                   {activeTooltip === 'animation' && (
                     <div 
                       className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
-                      style={{ boxShadow: '0 10px 30px rgba(181, 155, 117, 0.15)' }}
+                      style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
                     >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.animation}</p>
                       <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
@@ -671,10 +671,10 @@ const Pricing = () => {
         <div ref={step3Ref} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Panel: Everything You Need Built In */}
-          <div className="lg:col-span-7 bg-linear-to-b from-dark-card/30 to-[#12100d]/30 border border-accent-gold/10 rounded-3xl p-8 backdrop-blur-sm select-none relative overflow-hidden">
+          <div className="lg:col-span-7 bg-linear-to-b from-[#181613]/30 to-[#100f0d]/30 border border-obsidian/10 rounded-3xl p-8 backdrop-blur-sm select-none relative overflow-hidden">
             {/* Ambient subtle glow */}
             <div className="absolute inset-0 rounded-3xl opacity-20 pointer-events-none" style={{
-              background: 'radial-gradient(circle at 0% 100%, rgba(181, 155, 117, 0.05), transparent 50%)'
+              background: 'radial-gradient(circle at 0% 100%, rgba(181, 155, 117, 0.02), transparent 50%)'
             }} />
             
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold font-sans block mb-1">
@@ -738,10 +738,10 @@ const Pricing = () => {
           </div>
 
           {/* Right Panel: Estimated Cost Card */}
-          <div className="lg:col-span-5 bg-linear-to-b from-[#1c1814] to-[#12100d] border border-accent-gold/25 rounded-3xl p-8 flex flex-col justify-between min-h-[280px] shadow-[0_0_35px_rgba(181,155,117,0.06)] relative overflow-hidden group">
-            {/* Ambient radial gold glow */}
+          <div className="lg:col-span-5 bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border border-[#2e2e2e]/30 rounded-3xl p-8 flex flex-col justify-between min-h-[280px] shadow-[0_0_35px_rgba(181,155,117,0.06)] relative overflow-hidden group">
+            {/* Ambient radial glow */}
             <div className="absolute inset-0 rounded-3xl opacity-60 pointer-events-none" style={{
-              background: 'radial-gradient(circle at 100% 0%, rgba(181, 155, 117, 0.06), transparent 60%)'
+              background: 'radial-gradient(circle at 100% 0%, rgba(181, 155, 117, 0.02), transparent 60%)'
             }} />
             
             <div className="z-10">
