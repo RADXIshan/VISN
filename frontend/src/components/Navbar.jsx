@@ -21,6 +21,8 @@ const Navbar = () => {
 
   // Scroll visibility handler for the header bar
   useEffect(() => {
+    const heroEl = document.getElementById('hero');
+
     const handleScroll = () => {
       // If menu is open, keep navbar visible
       if (menuOpen) {
@@ -29,6 +31,14 @@ const Navbar = () => {
       }
       
       const currentScrollY = window.scrollY;
+      
+      // Hide the navbar during the parallax zoom effect inside Hero (range: scrollY > 10 to scrollY < heroHeight - 100)
+      const heroHeight = heroEl ? heroEl.offsetHeight : window.innerHeight * 2.8;
+      if (currentScrollY > 10 && currentScrollY < heroHeight - 100) {
+        setVisible(false);
+        setLastScrollY(currentScrollY);
+        return;
+      }
       
       if (currentScrollY < 80) {
         setVisible(true);
@@ -54,7 +64,7 @@ const Navbar = () => {
 
 
   const navItems = [
-    { name: 'Manifesto', href: '#manifesto', num: '01', tag: 'Ideology' },
+    { name: 'Why VISN', href: '#why-visn', num: '01', tag: 'Why Us' },
     { name: 'Services', href: '#services', num: '02', tag: 'Expertise' },
     { name: 'Projects', href: '#projects', num: '03', tag: 'Case Studies' },
     { name: 'Pricing', href: '#pricing', num: '04', tag: 'Investment' },
@@ -174,11 +184,7 @@ const Navbar = () => {
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           visible ? 'translate-y-0' : '-translate-y-full'
-        } ${
-          scrolled && !menuOpen 
-            ? 'bg-dark-bg/75 backdrop-blur-md border-b border-obsidian/3 shadow-[0_4px_30px_rgba(0,0,0,0.01)]' 
-            : 'bg-transparent'
-        }`}
+        } bg-transparent`}
       >
         <div className="w-full flex items-center justify-between">
           {/* Creative Serif Logo */}

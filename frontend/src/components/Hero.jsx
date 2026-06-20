@@ -27,7 +27,7 @@ const Hero = ({ isLoaded }) => {
   const heroSlideRef = useRef(null);          // Hero section z-10
   const transitionSlideRef = useRef(null);    // Transition section z-20 y-full
   const clipCardRef = useRef(null);           // Card container inside transition section
-  const transitionImgRef = useRef(null);      // Image inside card
+  const transitionLogoRef = useRef(null);     // Logo container inside card
   const transitionTextRef = useRef(null);     // Text overlay inside card
 
   // Hero refs for entrance animation
@@ -111,10 +111,10 @@ const Hero = ({ isLoaded }) => {
     const pinContainer = pinContainerRef.current;
     const transitionSlide = transitionSlideRef.current;
     const clipCard = clipCardRef.current;
-    const transitionImg = transitionImgRef.current;
+    const transitionLogo = transitionLogoRef.current;
     const textEl = transitionTextRef.current;
 
-    if (!wrapper || !pinContainer || !transitionSlide || !clipCard || !transitionImg || !textEl) return;
+    if (!wrapper || !pinContainer || !transitionSlide || !clipCard || !transitionLogo || !textEl) return;
 
     const fadeItems = textEl.querySelectorAll('.fade-item');
 
@@ -147,10 +147,17 @@ const Hero = ({ isLoaded }) => {
       '+=0.05'
     );
 
-    // Counter-scale the image simultaneously with card zoom (parallax)
-    scrollTl.fromTo(transitionImg, 
-      { scale: 1.25 },
-      { scale: 1.0, ease: 'none', duration: 1, force3D: true },
+    // Zoom in and rotate the eye logo simultaneously with card zoom
+    scrollTl.fromTo(transitionLogo, 
+      { scale: 1.0, rotate: 0, opacity: 1 },
+      { 
+        scale: 45.0, 
+        rotate: 360, 
+        opacity: 0.0, 
+        ease: 'power1.in', 
+        duration: 1.0, 
+        force3D: true 
+      },
       '<'
     ); 
 
@@ -169,7 +176,8 @@ const Hero = ({ isLoaded }) => {
 
   const handleScrollClick = (e) => {
     e.preventDefault();
-    const target = document.querySelector('#contact');
+    const href = e.currentTarget.getAttribute('href');
+    const target = document.querySelector(href);
     if (target && window.lenis) {
       window.lenis.scrollTo(target, { offset: -60, duration: 1.8 });
     }
@@ -245,7 +253,7 @@ const Hero = ({ isLoaded }) => {
             className="flex w-full justify-center max-w-6xl mx-auto"
           >
             <a 
-              href="#manifesto"
+              href="#why-visn"
               onClick={handleScrollClick}
               className="group flex items-center gap-3 text-xs font-bold tracking-[0.3em] uppercase text-obsidian/50 hover:text-accent-gold-dark transition-colors cursor-none"
             >
@@ -272,27 +280,54 @@ const Hero = ({ isLoaded }) => {
             {/* Centered card that expands via clip-path */}
             <div 
               ref={clipCardRef}
-              className="absolute inset-0 w-full h-full overflow-hidden"
+              className="absolute inset-0 w-full h-full overflow-hidden bg-obsidian"
               style={{ 
                 clipPath: 'inset(18% 22% 18% 22% round 24px)',
                 willChange: 'clip-path'
               }}
             >
-              {/* Transition Image asset - fits full screen perfectly, no layout shifts */}
-              <img 
-                ref={transitionImgRef}
-                src="/hero-transition.png" 
-                alt="VISN Transition" 
-                className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-                style={{ 
-                  transform: 'scale(1.25)',
+              {/* Luxury gold radial glow ornament */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[400px] w-[400px] rounded-full bg-accent-gold/10 blur-[100px] pointer-events-none" />
+
+              {/* Symmetrical Luxury Grid Content / Logo Container */}
+              <div 
+                ref={transitionLogoRef}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-10"
+                style={{
                   transformOrigin: 'center center',
                   willChange: 'transform'
                 }}
-              />
+              >
+                <svg 
+                  className="w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] text-white" 
+                  viewBox="0 0 100 100" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{
+                    filter: "drop-shadow(0 0 35px rgba(181, 155, 117, 0.45))",
+                  }}
+                >
+                  {/* Outer Golden Orbit */}
+                  <circle cx="50" cy="50" r="44" stroke="#B59B75" strokeWidth="1.5" />
+                  <circle cx="50" cy="50" r="40" stroke="#B59B75" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.6" />
+                  
+                  {/* Precision Axis Lines */}
+                  <line x1="50" y1="6" x2="50" y2="94" stroke="#B59B75" strokeWidth="0.25" strokeDasharray="1 2" opacity="0.35" />
+                  <line x1="6" y1="50" x2="94" y2="50" stroke="#B59B75" strokeWidth="0.25" strokeDasharray="1 2" opacity="0.35" />
 
-              {/* Scrim Overlay */}
-              <div className="absolute inset-0 bg-obsidian/30 mix-blend-multiply z-10" />
+                  {/* Symmetrical Outer Lens (The Eye) */}
+                  <path d="M 22 50 C 37 25, 63 25, 78 50 C 63 75, 37 75, 22 50 Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                  
+                  {/* Secondary Inner Lens Path (Gold Accent) */}
+                  <path d="M 28 50 C 40 32, 60 32, 72 50 C 60 68, 40 68, 28 50 Z" stroke="#B59B75" strokeWidth="0.75" opacity="0.8" />
+
+                  {/* Iris Gold Circle */}
+                  <circle cx="50" cy="50" r="11" fill="#B59B75" />
+
+                  {/* Pupil (4-pointed star in current color) */}
+                  <path d="M 50 43 L 52 48.5 L 57.5 50 L 52 51.5 L 50 57 L 48 51.5 L 42.5 50 L 48 48.5 Z" fill="currentColor" />
+                </svg>
+              </div>
 
               {/* Absolutely centered text elements to prevent alignment shifts */}
               <div 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const sections = [
   { id: 'hero', num: '01', name: 'INTRO' },
-  { id: 'manifesto', num: '02', name: 'MANIFESTO' },
+  { id: 'why-visn', num: '02', name: 'WHY VISN' },
   { id: 'projects', num: '03', name: 'PORTFOLIO' },
   { id: 'services', num: '04', name: 'SERVICES' },
   { id: 'contact', num: '05', name: 'CONTACT' }

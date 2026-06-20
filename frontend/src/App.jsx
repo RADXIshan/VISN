@@ -8,7 +8,7 @@ import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
-import TextReveal from './components/TextReveal';
+import WhyChooseUs from './components/WhyChooseUs';
 import DuoGlideGallery from './components/DuoGlideGallery';
 import HorizontalProjects from './components/HorizontalProjects';
 import BentoServices from './components/BentoServices';
@@ -80,8 +80,8 @@ const App = () => {
         <ScrollProgress />
         <Navbar />
         <Hero isLoaded={isLoaded} />
-        <TextReveal />
         <DuoGlideGallery />
+        <WhyChooseUs />
         <HorizontalProjects />
         <BentoServices />
         <Testimonials />
