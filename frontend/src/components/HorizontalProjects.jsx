@@ -89,17 +89,23 @@ const projects = [
 ];
 
 const splitText = (text) => {
-  return text.split("").map((char, index) => (
-    <span 
-      key={index} 
-      className="char-span inline-block"
-      style={{ 
-        display: char === " " ? "inline" : "inline-block",
-        willChange: "transform, opacity"
-      }}
-    >
-      {char === " " ? "\u00A0" : char}
-    </span>
+  return text.split(" ").map((word, wordIndex, wordArr) => (
+    <React.Fragment key={wordIndex}>
+      <span className="inline-block whitespace-nowrap">
+        {word.split("").map((char, charIndex) => (
+          <span 
+            key={charIndex} 
+            className="char-span inline-block"
+            style={{ 
+              willChange: "transform, opacity"
+            }}
+          >
+            {char}
+          </span>
+        ))}
+      </span>
+      {wordIndex < wordArr.length - 1 && " "}
+    </React.Fragment>
   ));
 };
 
