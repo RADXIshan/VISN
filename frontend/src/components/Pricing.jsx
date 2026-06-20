@@ -455,7 +455,10 @@ const Pricing = () => {
                   </button>
                   
                   {activeTooltip === 'backend' && (
-                    <div className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none shadow-[0_10px_30px_rgba(181,155,117,0.15)]">
+                    <div 
+                      className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
+                      style={{ boxShadow: '0 10px 30px rgba(181, 155, 117, 0.15)' }}
+                    >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.backend}</p>
                       <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
                     </div>
@@ -543,7 +546,10 @@ const Pricing = () => {
                   </button>
                   
                   {activeTooltip === 'branding' && (
-                    <div className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none shadow-[0_10px_30px_rgba(181,155,117,0.15)]">
+                    <div 
+                      className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
+                      style={{ boxShadow: '0 10px 30px rgba(181, 155, 117, 0.15)' }}
+                    >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.branding}</p>
                       <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
                     </div>
@@ -634,7 +640,10 @@ const Pricing = () => {
                   </button>
                   
                   {activeTooltip === 'animation' && (
-                    <div className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none shadow-[0_10px_30px_rgba(181,155,117,0.15)]">
+                    <div 
+                      className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
+                      style={{ boxShadow: '0 10px 30px rgba(181, 155, 117, 0.15)' }}
+                    >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.animation}</p>
                       <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
                     </div>
