@@ -271,7 +271,7 @@ const HorizontalProjects = () => {
       {/* 1. Header Section - Normal document scroll flow */}
       <div className="w-full relative overflow-hidden bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#131313] pt-24 pb-8 md:pt-32 md:pb-10 flex flex-col items-center text-center px-6">
         {/* Subtle warm golden background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-3xl aspect-2/1 rounded-full bg-accent-gold/6 blur-[100px] pointer-events-none -z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-3xl aspect-2/1 rounded-full bg-accent-gold/2.5 blur-[100px] pointer-events-none -z-10" />
 
         <span className="reveal-meta text-[10px] font-sans font-bold tracking-[0.25em] text-accent-gold-dark uppercase">
           FEATURED WORK

@@ -88,7 +88,7 @@ const DuoGlideGallery = () => {
       className="relative min-h-[140vh] w-full px-6 py-32 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] overflow-hidden flex flex-col justify-center select-none z-10"
     >
       {/* Background radial highlight */}
-      <div className="absolute top-[40%] right-[20%] -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/3 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[40%] right-[20%] -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2.0 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         

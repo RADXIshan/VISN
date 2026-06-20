@@ -218,7 +218,7 @@ const Testimonials = () => {
       className="relative w-full py-24 md:py-32 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] overflow-hidden z-10"
     >
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/7 blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2 blur-[150px] pointer-events-none" />
 
       {/* Section header */}
       <div ref={headerRef} className="mx-auto max-w-6xl px-6 md:px-12 mb-16 select-none">

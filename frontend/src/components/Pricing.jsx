@@ -194,7 +194,7 @@ const Pricing = () => {
       className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] z-10 overflow-hidden border-t border-obsidian/5"
     >
       {/* Subtle warm golden background glow */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/6 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl">
         

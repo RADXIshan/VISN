@@ -133,7 +133,7 @@ const ContactFooter = () => {
       id="contact"
       className="relative w-full bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] pt-24 pb-12 px-6 md:px-12 overflow-hidden z-10"
     >
-      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/6 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">

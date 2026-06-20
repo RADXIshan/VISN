@@ -297,7 +297,7 @@ const Navbar = () => {
         style={{ clipPath: 'circle(0% at 100% 0%)' }}
       >
         {/* Dynamic decorative luxury glow orb in background */}
-        <div className="absolute top-[25%] left-[25%] -z-10 h-[500px] w-[500px] rounded-full bg-accent-gold/5 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[25%] left-[25%] -z-10 h-[500px] w-[500px] rounded-full bg-accent-gold/2.0 blur-[120px] pointer-events-none" />
 
         {/* Content Grid */}
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative z-10 py-16 md:py-24">
