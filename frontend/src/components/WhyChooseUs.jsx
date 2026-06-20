@@ -186,6 +186,7 @@ const WhyChooseUs = () => {
     }
 
     return () => {
+      tl.kill();
       ScrollTrigger.getAll().forEach(t => {
         if (t.trigger === container) t.kill();
       });
@@ -251,7 +252,7 @@ const WhyChooseUs = () => {
         <div className="desktop-table hidden lg:block relative mt-12 bg-[#14120f] rounded-3xl border border-obsidian/10 shadow-xs overflow-hidden">
           
           {/* 3 Column Grid Header */}
-          <div className="grid grid-cols-12 border-b border-obsidian/10 py-7 items-center bg-[#1c1814]">
+          <div className="grid grid-cols-12 border-b border-obsidian/10 py-7 items-center bg-[#14120f]">
             {/* Category Header (FEATURES) */}
             <div className="col-span-4 pl-10 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-obsidian/40">
               FEATURES

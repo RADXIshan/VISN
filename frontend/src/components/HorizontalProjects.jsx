@@ -148,19 +148,9 @@ const HorizontalProjects = () => {
           const nav = document.querySelector('nav');
           if (nav) {
             if (self.isActive) {
-              gsap.to(nav, {
-                y: "-100%",
-                opacity: 0,
-                duration: 0.5,
-                ease: "power2.out"
-              });
+              nav.setAttribute('data-hidden-by-project', 'true');
             } else {
-              gsap.to(nav, {
-                y: "0%",
-                opacity: 1,
-                duration: 0.5,
-                ease: "power2.out"
-              });
+              nav.removeAttribute('data-hidden-by-project');
             }
           }
         }
@@ -230,7 +220,7 @@ const HorizontalProjects = () => {
       // Restore navbar state on unmount
       const nav = document.querySelector('nav');
       if (nav) {
-        gsap.set(nav, { y: "0%", opacity: 1 });
+        nav.removeAttribute('data-hidden-by-project');
       }
     };
   }, []);

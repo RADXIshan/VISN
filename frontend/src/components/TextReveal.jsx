@@ -19,7 +19,7 @@ const TextReveal = () => {
 
     const wordSpans = textEl.querySelectorAll('.reveal-word');
     
-    gsap.fromTo(wordSpans, 
+    const tween = gsap.fromTo(wordSpans, 
       { opacity: 0.12, y: 3 },
       {
         opacity: 1,
@@ -35,6 +35,10 @@ const TextReveal = () => {
         }
       }
     );
+
+    return () => {
+      tween.kill();
+    };
   }, []);
 
   return (

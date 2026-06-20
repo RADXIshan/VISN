@@ -158,7 +158,7 @@ const CustomCursor = () => {
       {/* Outer Ring */}
       <div 
         ref={ringRef}
-        className="fixed top-0 left-0 flex h-7 w-7 items-center justify-center rounded-full border border-obsidian/30 bg-transparent transition-[opacity,transform] duration-75 pointer-events-none"
+        className="fixed top-0 left-0 flex h-7 w-7 items-center justify-center rounded-full border border-obsidian/30 bg-transparent pointer-events-none"
         style={{ transform: 'translate3d(-50%, -50%, 0)' }}
       >
         <span 
@@ -172,7 +172,7 @@ const CustomCursor = () => {
       {/* Inner Dot */}
       <div 
         ref={dotRef}
-        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-accent-gold transition-transform duration-75 pointer-events-none"
+        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-accent-gold pointer-events-none"
         style={{ transform: 'translate3d(-50%, -50%, 0)' }}
       />
     </div>

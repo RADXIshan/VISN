@@ -117,6 +117,9 @@ const Hero = ({ isLoaded }) => {
       ease: "power3.out"
     }, "-=0.4");
 
+    return () => {
+      tl.kill();
+    };
   }, [isLoaded]);
 
   // 2. Scroll-triggered timeline (scrubbed coordinated page-up and clip-zoom)
@@ -246,7 +249,6 @@ const Hero = ({ isLoaded }) => {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {splitLetters("VISN")}
-                <span className="char-span inline-block text-accent-gold font-sans font-bold select-none">.</span>
               </h1>
             </div>
 
@@ -262,7 +264,7 @@ const Hero = ({ isLoaded }) => {
                 <a 
                   href="#contact"
                   onClick={handleScrollClick}
-                  className="group flex h-16 w-16 items-center justify-center rounded-full bg-dark-bg text-obsidian hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_25px_rgba(181,155,117,0.35)] transition-all duration-300 cursor-none"
+                  className="group flex h-16 w-16 items-center justify-center rounded-full bg-dark-bg text-obsidian hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_25px_rgba(181,155,117,0.35)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
                   data-cursor="magnetic"
                 >
                   <ArrowDownRight className="h-6 w-6 group-hover:rotate-45 transition-transform duration-300" />

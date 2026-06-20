@@ -222,7 +222,7 @@ const ContactFooter = () => {
               <Magnetic strength={0.12} range={30}>
                 <button
                   type="submit"
-                  className="mt-4 flex w-full items-center justify-center gap-3 py-4 rounded-full bg-obsidian text-dark-bg font-bold text-[10px] uppercase tracking-[0.25em] hover:bg-accent-gold hover:text-white hover:shadow-[0_12px_30px_rgba(181,155,117,0.3)] transition-all duration-300 cursor-none"
+                  className="mt-4 flex w-full items-center justify-center gap-3 py-4 rounded-full bg-obsidian text-dark-bg font-bold text-[10px] uppercase tracking-[0.25em] hover:bg-accent-gold hover:text-white hover:shadow-[0_12px_30px_rgba(181,155,117,0.3)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
                 >
                   SEND MISSION DECK
                   <Send className="h-3.5 w-3.5" />
@@ -258,7 +258,7 @@ const ContactFooter = () => {
             <Magnetic strength={0.25} range={35}>
               <button
                 onClick={handleScrollTop}
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-obsidian text-dark-bg hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_20px_rgba(181,155,117,0.25)] transition-all duration-300 cursor-none"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-obsidian text-dark-bg hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_20px_rgba(181,155,117,0.25)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
                 title="Scroll to Top"
               >
                 <ArrowUp className="h-4 w-4" />

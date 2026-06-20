@@ -70,7 +70,7 @@ const ScrollProgress = () => {
       {/* Thin baseline line with sliding progress marker */}
       <div className="h-28 w-px bg-obsidian/15 relative overflow-hidden">
         <div 
-          className="absolute top-0 left-0 w-full bg-accent-gold transition-transform duration-75"
+          className="absolute top-0 left-0 w-full bg-accent-gold"
           style={{ 
             height: '32px',
             transform: `translateY(${progress * (112 - 32)}px)` // scale bounds (112px height minus 32px bar height)

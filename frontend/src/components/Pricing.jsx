@@ -767,7 +767,7 @@ const Pricing = () => {
               <Magnetic strength={0.15} range={30}>
                 <button
                   onClick={handleBookMeeting}
-                  className="w-full flex items-center justify-center gap-4 py-4 rounded-full bg-obsidian text-dark-bg font-sans font-bold text-xs uppercase tracking-[0.25em] hover:bg-accent-gold hover:text-dark-bg transition-all duration-300 cursor-pointer shadow-sm hover:shadow-[0_12px_30px_rgba(181,155,117,0.25)]"
+                  className="w-full flex items-center justify-center gap-4 py-4 rounded-full bg-obsidian text-dark-bg font-sans font-bold text-xs uppercase tracking-[0.25em] hover:bg-accent-gold hover:text-dark-bg transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-pointer shadow-sm hover:shadow-[0_12px_30px_rgba(181,155,117,0.25)]"
                 >
                   BOOK A MEETING
                   <ArrowRight className="h-4 w-4" />

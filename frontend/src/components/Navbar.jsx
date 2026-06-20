@@ -182,7 +182,7 @@ const Navbar = () => {
     <>
       {/* Borderless navbar row containing ONLY logo & menu toggle */}
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           visible ? 'translate-y-0' : '-translate-y-full'
         } bg-transparent`}
       >
@@ -230,7 +230,7 @@ const Navbar = () => {
               <button
                 ref={buttonRef}
                 onClick={() => setMenuOpen(!menuOpen)}
-                className={`w-28 h-10 rounded-full border flex items-center justify-center text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] relative group overflow-hidden ${
+                className={`w-28 h-10 rounded-full border flex items-center justify-center text-[10px] font-bold tracking-[0.2em] uppercase transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] relative group overflow-hidden ${
                   menuOpen 
                     ? 'bg-dark-bg text-obsidian border-dark-bg shadow-inner' 
                     : 'border-obsidian/10 text-obsidian hover:text-dark-bg hover:border-accent-gold'
