@@ -96,7 +96,7 @@ const Preloader = ({ onComplete }) => {
     >
       {/* SVG Liquid morph wipe (Colored in Obsidian dark mode curtain) */}
       <svg 
-        className="absolute inset-0 h-full w-full fill-obsidian pointer-events-none"
+        className="absolute inset-0 h-full w-full fill-[#12100d] pointer-events-none"
         viewBox="0 0 100 100" 
         preserveAspectRatio="none"
       >
@@ -109,10 +109,13 @@ const Preloader = ({ onComplete }) => {
       {/* Symmetrical Luxury Grid Content */}
       <div 
         ref={textContainerRef}
-        className="relative z-10 w-full h-full max-w-6xl mx-auto flex flex-col justify-between p-8 md:p-12 text-dark-bg select-none"
+        className="relative z-10 w-full h-full max-w-6xl mx-auto flex flex-col justify-between p-8 md:p-12 text-obsidian select-none"
       >
+        {/* Subtle warm golden background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[500px] rounded-full bg-accent-gold/7 blur-[120px] pointer-events-none" />
+
         {/* Top Metadata row */}
-        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-bold tracking-[0.35em] text-dark-bg/40 uppercase">
+        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-bold tracking-[0.35em] text-obsidian/40 uppercase">
           <span>VISN STUDIO // EST. 2026</span>
           <span className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75] animate-pulse" />
@@ -126,14 +129,14 @@ const Preloader = ({ onComplete }) => {
           {/* Framed Artwork Display */}
           <div 
             ref={artworkFrameRef}
-            className="relative h-60 w-60 md:h-72 md:w-72 rounded-2xl border border-accent-gold/20 bg-obsidian/30 overflow-hidden flex items-center justify-center shadow-2xl p-4"
+            className="relative h-60 w-60 md:h-72 md:w-72 rounded-2xl border border-accent-gold/20 bg-[#181512]/40 overflow-hidden flex items-center justify-center shadow-2xl p-4"
           >
             {/* Fine framing lines */}
-            <div className="absolute inset-2 border border-dark-bg/5 rounded-xl pointer-events-none" />
+            <div className="absolute inset-2 border border-obsidian/5 rounded-xl pointer-events-none" />
             
             {/* Premium Brand SVG Logo with dynamic assembly & glow */}
             <svg 
-              className="h-4/5 w-4/5 text-dark-bg transition-all duration-300 ease-out"
+              className="h-4/5 w-4/5 text-obsidian transition-all duration-300 ease-out"
               viewBox="0 0 100 100" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
@@ -251,14 +254,14 @@ const Preloader = ({ onComplete }) => {
 
             {/* Serif counter */}
             <div className="flex items-baseline gap-1 mt-1">
-              <span className="text-4xl md:text-5xl font-serif font-light tracking-tight text-dark-bg">
+              <span className="text-4xl md:text-5xl font-serif font-light tracking-tight text-obsidian">
                 {count.toString().padStart(3, '0')}
               </span>
               <span className="text-xs font-sans font-bold text-accent-gold % ml-1">%</span>
             </div>
 
             {/* Fine loading bar indicator */}
-            <div className="w-32 h-px bg-dark-bg/10 mt-3 relative overflow-hidden rounded-full">
+            <div className="w-32 h-px bg-obsidian/10 mt-3 relative overflow-hidden rounded-full">
               <div 
                 className="absolute top-0 left-0 h-full bg-accent-gold transition-all duration-150 ease-out"
                 style={{ width: `${count}%` }}
@@ -268,7 +271,7 @@ const Preloader = ({ onComplete }) => {
         </div>
 
         {/* Bottom Coordinates & Time */}
-        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-mono text-dark-bg/30 tracking-widest uppercase">
+        <div className="flex items-center justify-between text-[8px] md:text-[9px] font-mono text-obsidian/30 tracking-widest uppercase">
           <span>LAT: 37.7749° N // LON: 122.4194° W</span>
           <span>© 2026 // ALL RIGHTS RESERVED</span>
         </div>

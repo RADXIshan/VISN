@@ -135,7 +135,7 @@ const Testimonials = () => {
       scrollTrigger: {
         trigger: container,
         start: "top 80%",
-        toggleActions: "play none none none"
+        toggleActions: "play reverse play reverse"
       }
     });
 
@@ -143,8 +143,8 @@ const Testimonials = () => {
       headerTween.to(chars, {
         y: "0%",
         opacity: 1,
-        duration: 0.95,
-        stagger: 0.02,
+        duration: 0.6,
+        stagger: 0.01,
         ease: "power3.out"
       });
     }
@@ -152,10 +152,10 @@ const Testimonials = () => {
     headerTween.to(headerMeta, {
       opacity: 1,
       y: 0,
-      duration: 0.75,
-      stagger: 0.1,
+      duration: 0.5,
+      stagger: 0.05,
       ease: "power2.out"
-    }, "-=0.6");
+    }, "-=0.45");
 
     // 2. Row wrappers fade-in and slide-up
     const rowsTween = gsap.fromTo([rowLeft, rowRight],
@@ -163,13 +163,13 @@ const Testimonials = () => {
       {
         opacity: 1,
         y: 0,
-        duration: 1.0,
-        stagger: 0.15,
+        duration: 0.65,
+        stagger: 0.08,
         ease: "power3.out",
         scrollTrigger: {
           trigger: container,
           start: "top 75%",
-          toggleActions: "play none none none"
+          toggleActions: "play reverse play reverse"
         }
       }
     );
@@ -215,10 +215,10 @@ const Testimonials = () => {
     <section
       ref={containerRef}
       id="testimonials"
-      className="relative w-full py-24 md:py-32 bg-transparent overflow-hidden z-10"
+      className="relative w-full py-24 md:py-32 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] overflow-hidden z-10"
     >
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[400px] w-[400px] rounded-full bg-accent-gold/4 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/7 blur-[150px] pointer-events-none" />
 
       {/* Section header */}
       <div ref={headerRef} className="mx-auto max-w-6xl px-6 md:px-12 mb-16 select-none">
@@ -233,7 +233,7 @@ const Testimonials = () => {
             {splitText("WHAT CLIENTS")}
           </span>
           <br />
-          <span className="inline-block overflow-hidden pb-1 text-accent-gold italic font-normal">
+          <span className="inline-block overflow-hidden pb-1 pr-3 text-accent-gold italic font-normal">
             {splitText("SAY")}
           </span>
         </h3>

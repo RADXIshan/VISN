@@ -103,7 +103,7 @@ const WhyChooseUs = () => {
       scrollTrigger: {
         trigger: container,
         start: "top 75%",
-        toggleActions: "play none none none"
+        toggleActions: "play reverse play reverse"
       }
     });
 
@@ -112,8 +112,8 @@ const WhyChooseUs = () => {
       tl.to(chars, {
         y: "0%",
         opacity: 1,
-        duration: 0.95,
-        stagger: 0.015,
+        duration: 0.6,
+        stagger: 0.01,
         ease: "power3.out"
       });
     }
@@ -122,19 +122,19 @@ const WhyChooseUs = () => {
     tl.to(headerItems, {
       opacity: 1,
       y: 0,
-      duration: 0.85,
-      stagger: 0.1,
+      duration: 0.5,
+      stagger: 0.06,
       ease: "power2.out"
-    }, "-=0.65");
+    }, "-=0.45");
 
     // Animate Doodles
     tl.to(doodles, {
       opacity: 1,
       scale: 1,
-      duration: 1.0,
-      stagger: 0.1,
+      duration: 0.7,
+      stagger: 0.06,
       ease: "back.out(1.5)"
-    }, "-=0.6");
+    }, "-=0.4");
 
     // Animate Table on Desktop or cards on Mobile
     if (window.innerWidth >= 1024) {
@@ -146,19 +146,19 @@ const WhyChooseUs = () => {
         tl.to(tableEl, {
           opacity: 1,
           y: 0,
-          duration: 1.0,
+          duration: 0.7,
           ease: "power3.out"
-        }, "-=0.8");
+        }, "-=0.55");
         
         if (rows.length) {
           gsap.set(rows, { opacity: 0, y: 20 });
           tl.to(rows, {
             opacity: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.08,
+            duration: 0.45,
+            stagger: 0.05,
             ease: "power2.out"
-          }, "-=0.5");
+          }, "-=0.35");
         }
         
         if (highlightCol) {
@@ -166,9 +166,9 @@ const WhyChooseUs = () => {
           tl.to(highlightCol, {
             scaleY: 1,
             opacity: 1,
-            duration: 1.0,
+            duration: 0.7,
             ease: "power4.out"
-          }, "-=0.6");
+          }, "-=0.45");
         }
       }
     } else {
@@ -178,10 +178,10 @@ const WhyChooseUs = () => {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.8,
-          stagger: 0.1,
+          duration: 0.55,
+          stagger: 0.06,
           ease: "power3.out"
-        }, "-=0.8");
+        }, "-=0.55");
       }
     }
 
@@ -196,10 +196,10 @@ const WhyChooseUs = () => {
     <section
       ref={containerRef}
       id="why-visn"
-      className="relative min-h-screen w-full px-6 py-32 md:px-12 bg-transparent z-10 overflow-hidden"
+      className="relative min-h-screen w-full px-6 py-32 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] z-10 overflow-hidden"
     >
       {/* Background radial highlight */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/5 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/7 blur-[150px] pointer-events-none" />
 
       {/* Hairline top border in light mode */}
       <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-obsidian/10 to-transparent" />
@@ -248,12 +248,14 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Table container for Desktop */}
-        <div className="desktop-table hidden lg:block relative mt-12 bg-white/20 backdrop-blur-sm rounded-3xl border border-obsidian/10 shadow-xs overflow-hidden">
+        <div className="desktop-table hidden lg:block relative mt-12 bg-[#14120f] rounded-3xl border border-obsidian/10 shadow-xs overflow-hidden">
           
           {/* 3 Column Grid Header */}
-          <div className="grid grid-cols-12 border-b border-obsidian/10 py-7 items-center bg-dark-card/10">
-            {/* Category Header (Empty) */}
-            <div className="col-span-4" />
+          <div className="grid grid-cols-12 border-b border-obsidian/10 py-7 items-center bg-[#1c1814]">
+            {/* Category Header (FEATURES) */}
+            <div className="col-span-4 pl-10 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-obsidian/40">
+              FEATURES
+            </div>
             
             {/* VISN Header */}
             <div className="col-span-4 text-center px-4 flex flex-col items-center">
@@ -262,17 +264,17 @@ const WhyChooseUs = () => {
               </div>
             </div>
             
-            {/* Other Agencies Header */}
+            {/* Other Companies Header */}
             <div className="col-span-4 text-center px-4 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-obsidian/40">
-              OTHER WEB AGENCIES
+              OTHER COMPANIES
             </div>
           </div>
 
           {/* Grid rows */}
           <div className="relative">
             
-            {/* Vertical HIGHLIGHT visual overlay for VISN column */}
-            <div className="visn-column-highlight absolute top-0 bottom-0 left-[33.33%] w-[33.33%] border-l border-r border-accent-gold/25 bg-accent-gold/1.5 -z-10 shadow-[inset_0_0_40px_rgba(181,155,117,0.01)] transition-all duration-700" />
+            {/* Vertical HIGHLIGHT visual overlay for VISN column (kept black/dark) */}
+            <div className="visn-column-highlight absolute top-0 bottom-0 left-[33.33%] w-[33.33%] border-l border-r border-white/5 bg-[#0a0807]/40 -z-10 transition-all duration-700" />
 
             {categories.map((cat) => {
               const Icon = cat.icon;
@@ -308,7 +310,7 @@ const WhyChooseUs = () => {
                     </div>
                   </div>
 
-                  {/* Other Web Agencies cell */}
+                  {/* Other Companies cell */}
                   <div className="col-span-4 px-10 flex items-start gap-4 opacity-50">
                     <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-obsidian/30 text-obsidian/60 bg-transparent mt-0.5">
                       <svg className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -338,7 +340,7 @@ const WhyChooseUs = () => {
             return (
               <div 
                 key={cat.id} 
-                className="rounded-3xl border border-obsidian/10 bg-white/20 backdrop-blur-sm p-7 flex flex-col gap-5 shadow-xs"
+                className="rounded-3xl border border-obsidian/10 bg-[#14120f] p-7 flex flex-col gap-5 shadow-xs"
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-4 border-b border-obsidian/5 pb-4">
@@ -351,7 +353,7 @@ const WhyChooseUs = () => {
                 </div>
 
                 {/* VISN Block (Highlighted) */}
-                <div className="rounded-2xl border border-accent-gold/30 bg-accent-gold/2 p-5 flex items-start gap-3 shadow-[0_4px_15px_rgba(181,155,117,0.02)]">
+                <div className="rounded-2xl border border-white/5 bg-[#1c1814]/70 p-5 flex items-start gap-3 shadow-xs">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-gold text-white mt-0.5 shadow-[0_2px_8px_rgba(181,155,117,0.25)]">
                     <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -370,7 +372,7 @@ const WhyChooseUs = () => {
                   </div>
                 </div>
 
-                {/* Other Agencies Block */}
+                {/* Other Companies Block */}
                 <div className="rounded-2xl border border-obsidian/10 bg-transparent p-5 flex items-start gap-3 opacity-60">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-obsidian/25 text-obsidian/60 bg-transparent mt-0.5">
                     <svg className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -379,7 +381,7 @@ const WhyChooseUs = () => {
                   </span>
                   <div>
                     <span className="text-[9px] font-sans font-bold tracking-[0.15em] text-obsidian/40 uppercase block mb-1">
-                      OTHER WEB AGENCIES
+                      OTHER COMPANIES
                     </span>
                     <span className="font-sans font-semibold text-obsidian text-[13px] leading-tight block">
                       {cat.otherBold}

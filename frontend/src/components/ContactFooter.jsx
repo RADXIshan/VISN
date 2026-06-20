@@ -83,28 +83,28 @@ const ContactFooter = () => {
       scrollTrigger: {
         trigger: container,
         start: "top 75%",
-        toggleActions: "play none none none"
+        toggleActions: "play reverse play reverse"
       }
     });
 
-    tl.to(leftTitle, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" });
+    tl.to(leftTitle, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" });
 
     if (chars.length) {
       tl.to(chars, {
         y: "0%",
         opacity: 1,
-        duration: 0.95,
-        stagger: 0.02,
+        duration: 0.55,
+        stagger: 0.01,
         ease: "power3.out"
-      }, "-=0.55");
+      }, "-=0.4");
     }
 
-    tl.to(leftParagraph, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
-      .to(leftLinks, { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power2.out" }, "-=0.5")
-      .to(rightCol, { opacity: 1, y: 0, duration: 1.0, ease: "power4.out" }, "-=0.8")
-      .to(formFields, { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: "power2.out" }, "-=0.6")
-      .to(submitBtn, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, "-=0.3")
-      .to(bottomItems, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }, "-=0.4");
+    tl.to(leftParagraph, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, "-=0.45")
+      .to(leftLinks, { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: "power2.out" }, "-=0.4")
+      .to(rightCol, { opacity: 1, y: 0, duration: 0.65, ease: "power4.out" }, "-=0.55")
+      .to(formFields, { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: "power2.out" }, "-=0.45")
+      .to(submitBtn, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.5)" }, "-=0.25")
+      .to(bottomItems, { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: "power2.out" }, "-=0.35");
 
     // 2. Parallax effect for the giant wordmark (slides horizontally as we scroll)
     const wordmarkTween = gsap.fromTo(wordmark,
@@ -131,9 +131,9 @@ const ContactFooter = () => {
     <section 
       ref={containerRef}
       id="contact"
-      className="relative w-full bg-transparent pt-24 pb-12 px-6 md:px-12 overflow-hidden z-10"
+      className="relative w-full bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] pt-24 pb-12 px-6 md:px-12 overflow-hidden z-10"
     >
-      <div className="absolute top-[80%] left-[10%] -z-10 h-[300px] w-[300px] rounded-full bg-accent-gold/5 blur-[100px] pointer-events-none" />
+      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/6 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">
@@ -152,7 +152,7 @@ const ContactFooter = () => {
                   {splitText("START")}
                 </span>
                 <br />
-                <span className="inline-block overflow-hidden pb-1 text-accent-gold italic font-normal">
+                <span className="inline-block overflow-hidden pb-1 pr-4 text-accent-gold italic font-normal">
                   {splitText("PROJECT")}
                 </span>
               </h3>

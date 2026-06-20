@@ -62,13 +62,13 @@ const DuoGlideGallery = () => {
         {
           y: "0%",
           opacity: 1,
-          duration: 0.95,
-          stagger: 0.02,
+          duration: 0.6,
+          stagger: 0.01,
           ease: "power3.out",
           scrollTrigger: {
             trigger: headerTitle,
             start: "top 82%",
-            toggleActions: "play none none none"
+            toggleActions: "play reverse play reverse"
           }
         }
       );
@@ -85,10 +85,10 @@ const DuoGlideGallery = () => {
     <section 
       ref={containerRef}
       id="manifesto-gallery"
-      className="relative min-h-[140vh] w-full px-6 py-32 md:px-12 bg-transparent overflow-hidden flex flex-col justify-center select-none"
+      className="relative min-h-[140vh] w-full px-6 py-32 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] overflow-hidden flex flex-col justify-center select-none z-10"
     >
       {/* Background radial highlight */}
-      <div className="absolute top-[40%] right-[20%] -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/5 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[40%] right-[20%] -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/3 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
@@ -106,7 +106,7 @@ const DuoGlideGallery = () => {
               {splitText("THE ART OF")}
             </span>
             <br />
-            <span className="inline-block overflow-hidden pb-1 italic font-light text-accent-gold">
+            <span className="inline-block overflow-hidden pb-1 pr-4 italic font-light text-accent-gold">
               {splitText("CONTRAST")}
             </span>
           </h3>

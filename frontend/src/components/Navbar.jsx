@@ -192,9 +192,7 @@ const Navbar = () => {
             <a 
               href="#hero" 
               onClick={(e) => handleNavClick(e, '#hero')}
-              className={`flex items-center text-2xl font-serif font-bold tracking-wider group select-none relative z-50 transition-colors duration-500 pb-1 ${
-                menuOpen ? 'text-dark-bg' : 'text-obsidian'
-              }`}
+              className={`flex items-center text-2xl font-serif font-bold tracking-wider group select-none relative z-50 transition-colors duration-500 pb-1 text-obsidian`}
               data-cursor="magnetic"
             >
               <svg 
@@ -212,19 +210,19 @@ const Navbar = () => {
                 
                 {/* Secondary Inner Lens Path (Gold Accent) */}
                 <path d="M 28 50 C 40 32, 60 32, 72 50 C 60 68, 40 68, 28 50 Z" stroke="#B59B75" strokeWidth="0.75" opacity="0.8" />
-
+ 
                 {/* Iris Gold Circle */}
                 <circle cx="50" cy="50" r="11" fill="#B59B75" />
-
+ 
                 {/* Pupil (4-pointed star in current color) */}
                 <path d="M 50 43 L 52 48.5 L 57.5 50 L 52 51.5 L 50 57 L 48 51.5 L 42.5 50 L 48 48.5 Z" fill="currentColor" />
               </svg>
               <span className={`absolute left-1/2 bottom-0 w-0 h-[1.5px] -translate-x-1/2 transition-all duration-300 ease-out group-hover:w-full ${
-                menuOpen ? 'bg-dark-bg' : 'bg-accent-gold'
+                menuOpen ? 'bg-obsidian' : 'bg-accent-gold'
               }`} />
             </a>
           </Magnetic>
-
+ 
           {/* Action pill triggers */}
           <div className="flex items-center gap-4 relative z-50">
             {/* Magnetic Menu Toggle */}
@@ -243,7 +241,7 @@ const Navbar = () => {
                 {!menuOpen && (
                   <span className="absolute top-1/2 left-1/2 w-[150%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-gold scale-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100 z-0" />
                 )}
-
+ 
                 {/* Relative container holding both layered contents */}
                 <div className="relative w-full h-full flex items-center justify-center z-10">
                   {/* MENU Group (Hamburger Icon + MENU Text beside it) */}
@@ -264,7 +262,7 @@ const Navbar = () => {
                       MENU
                     </span>
                   </div>
-
+ 
                   {/* CLOSE Group (X Icon + CLOSE Text beside it) */}
                   <div 
                     className={`absolute flex items-center gap-2.5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -293,7 +291,7 @@ const Navbar = () => {
       {/* Redesigned Luxury Dark Menu Overlay */}
       <div 
         id="menu-overlay"
-        className={`fixed inset-0 z-40 bg-obsidian flex items-center justify-center px-6 md:px-16 overflow-y-auto ${
+        className={`fixed inset-0 z-40 bg-dark-bg flex items-center justify-center px-6 md:px-16 overflow-y-auto ${
           menuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
         style={{ clipPath: 'circle(0% at 100% 0%)' }}
@@ -313,7 +311,7 @@ const Navbar = () => {
               {navItems.map((item) => (
                 <div key={item.name} className="overflow-hidden w-full relative">
                   {/* Underline line animation */}
-                  <div className="menu-border-line absolute bottom-0 left-0 w-full h-px bg-dark-bg/10 origin-left" />
+                  <div className="menu-border-line absolute bottom-0 left-0 w-full h-px bg-obsidian/10 origin-left" />
                   
                   <a 
                     href={item.href}
@@ -323,12 +321,12 @@ const Navbar = () => {
                     style={{ perspective: "1000px" }}
                   >
                     {/* Double-digit indicator */}
-                    <span className="text-[10px] font-mono tracking-widest text-dark-bg/35 mr-4 md:mr-6 group-hover:text-accent-gold transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                    <span className="text-[10px] font-mono tracking-widest text-obsidian/35 mr-4 md:mr-6 group-hover:text-accent-gold transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                       {item.num}
                     </span>
                     
                     {/* Big luxury serif text (Italicized spacing expansion) */}
-                    <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light tracking-tight text-dark-bg/90 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-accent-gold group-hover:tracking-wider transform group-hover:translate-x-3 inline-block">
+                    <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light tracking-tight text-obsidian/90 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-accent-gold group-hover:tracking-wider transform group-hover:translate-x-3 inline-block">
                       {item.name}
                     </span>
                     
@@ -343,27 +341,27 @@ const Navbar = () => {
           </div>
 
           {/* Right Panel: Clean Contacts & Links with lots of whitespace */}
-          <div className="col-span-1 lg:col-span-4 lg:col-start-9 flex flex-col justify-center gap-14 lg:pl-12 border-t lg:border-t-0 lg:border-l border-dark-bg/10 pt-10 lg:pt-0">
+          <div className="col-span-1 lg:col-span-4 lg:col-start-9 flex flex-col justify-center gap-14 lg:pl-12 border-t lg:border-t-0 lg:border-l border-obsidian/10 pt-10 lg:pt-0">
             {/* Contact Details */}
             <div className="menu-meta-item">
-              <span className="text-[9px] font-serif font-bold tracking-[0.3em] text-dark-bg/40 uppercase mb-3 block">
+              <span className="text-[9px] font-serif font-bold tracking-[0.3em] text-obsidian/40 uppercase mb-3 block">
                 INQUIRIES
               </span>
               <a 
                 href="mailto:hello@visn.studio"
-                className="relative text-2xl font-serif font-light text-dark-bg hover:text-accent-gold transition-colors duration-300 pb-1 group/mail inline-block"
+                className="relative text-2xl font-serif font-light text-obsidian hover:text-accent-gold transition-colors duration-300 pb-1 group/mail inline-block"
               >
                 hello@visn.studio
                 <span className="absolute left-0 bottom-0 w-full h-px bg-accent-gold scale-x-0 origin-left transition-transform duration-300 ease-out group-hover/mail:scale-x-100" />
               </a>
-              <p className="text-[11px] text-dark-bg/40 mt-2 font-light">
+              <p className="text-[11px] text-obsidian/40 mt-2 font-light">
                 San Francisco, California.
               </p>
             </div>
 
             {/* Social Links */}
             <div className="menu-meta-item">
-              <span className="text-[9px] font-serif font-bold tracking-[0.3em] text-dark-bg/40 uppercase mb-4 block">
+              <span className="text-[9px] font-serif font-bold tracking-[0.3em] text-obsidian/40 uppercase mb-4 block">
                 CONNECTIVITY
               </span>
               <div className="flex flex-col gap-3 items-start">
@@ -376,7 +374,7 @@ const Navbar = () => {
                   <Magnetic key={social.name} strength={0.15} range={20}>
                     <a 
                       href={social.href}
-                      className="relative text-xs font-serif font-light tracking-wide text-dark-bg/75 hover:text-accent-gold transition-colors duration-300 pb-0.5 group/social"
+                      className="relative text-xs font-serif font-light tracking-wide text-obsidian/75 hover:text-accent-gold transition-colors duration-300 pb-0.5 group/social"
                     >
                       {social.name}
                       <span className="absolute left-0 bottom-0 w-full h-px bg-accent-gold scale-x-0 origin-left transition-transform duration-300 ease-out group-hover/social:scale-x-100" />

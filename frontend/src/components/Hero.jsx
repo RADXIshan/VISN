@@ -36,6 +36,7 @@ const Hero = ({ isLoaded }) => {
   const subtitleRef = useRef(null);
   const ctaRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
+  const bottomAuraRef = useRef(null);
 
   // 1. Entrance animation (runs once on load)
   useEffect(() => {
@@ -60,6 +61,13 @@ const Hero = ({ isLoaded }) => {
     gsap.set(subtitleRef.current, { opacity: 0, y: 20 });
     gsap.set(ctaRef.current, { scale: 0.8, opacity: 0 });
     gsap.set(scrollIndicatorRef.current, { opacity: 0, y: 20 });
+    gsap.set(bottomAuraRef.current, {
+      y: "120%",
+      scaleY: 0.3,
+      scaleX: 0.6,
+      opacity: 0,
+      transformOrigin: "bottom center"
+    });
 
     tl.to(brandChars, {
       y: "0%",
@@ -82,18 +90,26 @@ const Hero = ({ isLoaded }) => {
       stagger: 0.02,
       ease: "power3.out"
     }, "-=0.85")
+    .to(bottomAuraRef.current, {
+      y: "0%",
+      scaleY: 1,
+      scaleX: 1,
+      opacity: 1,
+      duration: 2.2,
+      ease: "power3.out"
+    }, "-=1.3")
     .to(subtitleRef.current, {
       opacity: 1,
       y: 0,
       duration: 0.9,
       ease: "power3.out"
-    }, "-=0.65")
+    }, "-=1.4")
     .to(ctaRef.current, {
       scale: 1,
       opacity: 1,
       duration: 0.65,
       ease: "back.out(1.5)"
-    }, "-=0.5")
+    }, "-=0.75")
     .to(scrollIndicatorRef.current, {
       opacity: 1,
       y: 0,
@@ -192,7 +208,7 @@ const Hero = ({ isLoaded }) => {
       {/* Viewport Pinned Box */}
       <div 
         ref={pinContainerRef}
-        className="w-full h-screen overflow-hidden relative"
+        className="w-full h-screen overflow-hidden relative bg-dark-bg"
       >
         
         {/* Layer 1: The Centered Hero Slide (z-10) */}
@@ -200,10 +216,20 @@ const Hero = ({ isLoaded }) => {
           ref={heroSlideRef}
           className="absolute inset-0 flex flex-col justify-between px-6 pt-20 md:pt-24 pb-12 md:px-12 bg-transparent z-10"
         >
-          {/* Champagne Glow */}
-          <div className="absolute top-1/2 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-gold/5 blur-[130px] pointer-events-none" />
-          {/* Grid background */}
-          <div className="absolute inset-0 -z-20 bg-grid-pattern opacity-45 pointer-events-none" />
+          {/* Glowing bottom aura (inspired by green image but in gold/champagne color scheme) */}
+          <div 
+            ref={bottomAuraRef}
+            className="absolute bottom-0 left-0 right-0 h-[50vh] -z-10 pointer-events-none select-none"
+          >
+            {/* Main wide glow band */}
+            <div className="absolute bottom-[-15vh] left-1/2 -translate-x-1/2 w-[140vw] sm:w-[120vw] h-[45vh] rounded-[100%] bg-linear-to-t from-dark-bg via-accent-gold/45 to-accent-gold/0 blur-[130px] opacity-95" />
+            {/* Left corner accent glow */}
+            <div className="absolute bottom-[-10vh] left-[5%] w-[60vw] h-[35vh] rounded-full bg-accent-gold/25 blur-[130px] opacity-85" />
+            {/* Right corner accent glow */}
+            <div className="absolute bottom-[-10vh] right-[5%] w-[60vw] h-[35vh] rounded-full bg-accent-gold/25 blur-[130px] opacity-85" />
+          </div>
+          {/* Grid background in light mode */}
+          <div className="absolute inset-0 -z-20 bg-grid-pattern-light opacity-25 pointer-events-none" />
 
           {/* Symmetrical Typography */}
           <div className="my-auto max-w-4xl mx-auto flex flex-col items-center text-center select-none">
@@ -220,12 +246,13 @@ const Hero = ({ isLoaded }) => {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {splitLetters("VISN")}
+                <span className="char-span inline-block text-accent-gold font-sans font-bold select-none">.</span>
               </h1>
             </div>
 
             <p 
               ref={subtitleRef}
-              className="max-w-2xl text-xl md:text-2xl lg:text-3xl leading-relaxed text-obsidian/75 font-serif italic font-light tracking-widest px-4"
+              className="max-w-2xl text-xl md:text-2xl lg:text-3xl leading-relaxed text-obsidian/85 font-serif italic font-light tracking-widest px-4"
             >
               Design. Engineering. Growth.
             </p>
@@ -235,13 +262,13 @@ const Hero = ({ isLoaded }) => {
                 <a 
                   href="#contact"
                   onClick={handleScrollClick}
-                  className="group flex h-16 w-16 items-center justify-center rounded-full bg-obsidian text-dark-bg hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_25px_rgba(181,155,117,0.35)] transition-all duration-300 cursor-none"
+                  className="group flex h-16 w-16 items-center justify-center rounded-full bg-dark-bg text-obsidian hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_25px_rgba(181,155,117,0.35)] transition-all duration-300 cursor-none"
                   data-cursor="magnetic"
                 >
                   <ArrowDownRight className="h-6 w-6 group-hover:rotate-45 transition-transform duration-300" />
                 </a>
               </Magnetic>
-              <span className="text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase text-obsidian/50">
+              <span className="text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase text-obsidian/60">
                 Start a Project
               </span>
             </div>
@@ -255,10 +282,10 @@ const Hero = ({ isLoaded }) => {
             <a 
               href="#why-visn"
               onClick={handleScrollClick}
-              className="group flex items-center gap-3 text-xs font-bold tracking-[0.3em] uppercase text-obsidian/50 hover:text-accent-gold-dark transition-colors cursor-none"
+              className="group flex items-center gap-3 text-xs font-bold tracking-[0.3em] uppercase text-obsidian/50 hover:text-accent-gold transition-colors cursor-none"
             >
               SCROLL TO DISCOVER
-              <span className="inline-block animate-bounce text-accent-gold-dark font-black">↓</span>
+              <span className="inline-block animate-bounce text-accent-gold font-black">↓</span>
             </a>
           </div>
         </div>
@@ -266,7 +293,7 @@ const Hero = ({ isLoaded }) => {
         {/* Layer 2: The Transition Zoom Slide (z-20) */}
         <div 
           ref={transitionSlideRef}
-          className="absolute inset-0 z-20 bg-dark-bg overflow-hidden"
+          className="absolute inset-0 z-20 bg-[#13110e] overflow-hidden"
           style={{ 
             transform: 'translateY(100%)',
             willChange: 'transform' 
@@ -280,14 +307,14 @@ const Hero = ({ isLoaded }) => {
             {/* Centered card that expands via clip-path */}
             <div 
               ref={clipCardRef}
-              className="absolute inset-0 w-full h-full overflow-hidden bg-obsidian"
+              className="absolute inset-0 w-full h-full overflow-hidden bg-linear-to-tr from-[#161310] via-dark-card to-[#13110e]"
               style={{ 
                 clipPath: 'inset(18% 22% 18% 22% round 24px)',
                 willChange: 'clip-path'
               }}
             >
               {/* Luxury gold radial glow ornament */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[400px] w-[400px] rounded-full bg-accent-gold/10 blur-[100px] pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[500px] rounded-full bg-accent-gold/18 blur-[120px] pointer-events-none" />
 
               {/* Symmetrical Luxury Grid Content / Logo Container */}
               <div 

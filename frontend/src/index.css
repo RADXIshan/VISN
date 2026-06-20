@@ -5,15 +5,15 @@
   --font-sans: 'Outfit', sans-serif;
   --color-accent-gold: #B59B75;
   --color-accent-gold-dark: #9E825A;
-  --color-dark-bg: #FAF8F5;
-  --color-dark-card: #F3F1ED;
-  --color-obsidian: #151515;
+  --color-dark-bg: #0a0a0a;
+  --color-dark-card: #1b1814;
+  --color-obsidian: #f5f2eb;
 }
 
 @layer base {
   html, body {
-    background-color: #FAF8F5;
-    color: #151515;
+    background-color: #12100d;
+    color: #f5f2eb;
     font-family: var(--font-sans);
     margin: 0;
     padding: 0;
@@ -65,15 +65,15 @@
     }
   }
 
-  /* Custom Scrollbar for Light theme */
+  /* Custom Scrollbar for Dark theme */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #FAF8F5;
+    background: #12100d;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(21, 21, 21, 0.15);
+    background: rgba(245, 242, 235, 0.15);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -83,7 +83,7 @@
 
 /* Custom Utilities and Animations */
 @utility text-stroke {
-  -webkit-text-stroke: 1px rgba(21, 21, 21, 0.18);
+  -webkit-text-stroke: 1px rgba(245, 242, 235, 0.18);
   color: transparent;
 }
 
@@ -99,8 +99,15 @@
 @utility bg-grid-pattern {
   background-size: 50px 50px;
   background-image: 
-    linear-gradient(to right, rgba(21, 21, 21, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(21, 21, 21, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(245, 242, 235, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 242, 235, 0.015) 1px, transparent 1px);
+}
+
+@utility bg-grid-pattern-light {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(13, 13, 13, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 13, 13, 0.03) 1px, transparent 1px);
 }
 
 @keyframes marquee {

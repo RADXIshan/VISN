@@ -20,7 +20,7 @@ const projects = [
     service: "AI Platform Development",
     outcome: "+43% Cloud Efficiency",
     mobileTheme: {
-      bg: "bg-gradient-to-b from-stone-900 to-black",
+      bg: "bg-linear-to-b from-stone-900 to-black",
       logo: "NN",
       tagline: "Neural intelligence tools for cloud systems.",
       cta: "EXPLORE PLATFORM"
@@ -40,7 +40,7 @@ const projects = [
     service: "WebSocket & 3D Interactive Design",
     outcome: "Real-time 3D Syncing",
     mobileTheme: {
-      bg: "bg-gradient-to-b from-amber-955 via-stone-900 to-stone-950",
+      bg: "bg-linear-to-b from-amber-955 via-stone-900 to-stone-950",
       logo: "KL",
       tagline: "Sculpting immersive physical-digital experiences.",
       cta: "ENTER EXHIBIT"
@@ -60,7 +60,7 @@ const projects = [
     service: "Viral Funnels & Content Strategy",
     outcome: "+260% Viral Reach",
     mobileTheme: {
-      bg: "bg-gradient-to-b from-[#2c1a04] to-[#0a0500]",
+      bg: "bg-linear-to-b from-[#2c1a04] to-[#0a0500]",
       logo: "EC",
       tagline: "Generating explosive viral campaigns across feeds.",
       cta: "VIEW FUNNELS"
@@ -80,7 +80,7 @@ const projects = [
     service: "Web3 Contract Explorer UI",
     outcome: "Topographic Node Topology",
     mobileTheme: {
-      bg: "bg-gradient-to-b from-slate-900 to-zinc-950",
+      bg: "bg-linear-to-b from-slate-900 to-zinc-950",
       logo: "CD",
       tagline: "Next-gen smart contract visual explorers.",
       cta: "LAUNCH APP"
@@ -107,6 +107,7 @@ const HorizontalProjects = () => {
   const scrollRef = useRef(null);
   const containerRef = useRef(null);
   const progressFillRef = useRef(null);
+  const headingRef = useRef(null);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   useEffect(() => {
@@ -187,30 +188,44 @@ const HorizontalProjects = () => {
     });
 
     // Split text animation for the section header
-    const headerTitle = document.querySelector('.split-header');
+    const headerTitle = headingRef.current;
+    const headerSection = headerTitle ? headerTitle.parentElement : null;
+    const headerMeta = headerSection ? headerSection.querySelectorAll('.reveal-meta') : [];
+    
     if (headerTitle) {
       const chars = headerTitle.querySelectorAll('.char-span');
-      gsap.fromTo(chars,
-        { y: "115%", opacity: 0 },
-        {
-          y: "0%",
-          opacity: 1,
-          duration: 0.95,
-          stagger: 0.015,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerTitle,
-            start: "top 82%",
-            toggleActions: "play none none none"
-          }
+      gsap.set(chars, { y: "115%", opacity: 0 });
+      gsap.set(headerMeta, { opacity: 0, y: 15 });
+
+      const headerTween = gsap.timeline({
+        scrollTrigger: {
+          trigger: headerTitle,
+          start: "top 95%",
+          toggleActions: "play reverse play reverse"
         }
-      );
+      });
+
+      headerTween.to(chars, {
+        y: "0%",
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.01,
+        ease: "power3.out"
+      });
+
+      headerTween.to(headerMeta, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "power2.out"
+      }, "-=0.45");
     }
 
     return () => {
       scrollTween.kill();
       ScrollTrigger.getAll().forEach(t => {
-        if (t.vars.id === "projects-pin" || t.trigger === container || t.trigger === headerTitle) t.kill();
+        if (t.vars.id === "projects-pin" || t.trigger === container || t.trigger === headingRef.current) t.kill();
       });
       // Restore navbar state on unmount
       const nav = document.querySelector('nav');
@@ -254,11 +269,17 @@ const HorizontalProjects = () => {
   return (
     <div className="w-full">
       {/* 1. Header Section - Normal document scroll flow */}
-      <div className="w-full bg-dark-bg pt-24 pb-8 md:pt-32 md:pb-10 flex flex-col items-center text-center px-6">
-        <span className="text-[10px] font-sans font-bold tracking-[0.25em] text-accent-gold-dark uppercase">
+      <div className="w-full relative overflow-hidden bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#131313] pt-24 pb-8 md:pt-32 md:pb-10 flex flex-col items-center text-center px-6">
+        {/* Subtle warm golden background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-3xl aspect-2/1 rounded-full bg-accent-gold/6 blur-[100px] pointer-events-none -z-10" />
+
+        <span className="reveal-meta text-[10px] font-sans font-bold tracking-[0.25em] text-accent-gold-dark uppercase">
           FEATURED WORK
         </span>
-        <h2 className="split-header text-4xl md:text-5xl lg:text-6xl font-serif font-black text-obsidian mt-2 select-none">
+        <h2 
+          ref={headingRef}
+          className="split-header text-4xl md:text-5xl lg:text-6xl font-serif font-black text-obsidian mt-2 select-none"
+        >
           <span className="inline-block overflow-hidden pb-1">
             {splitText("Work That Speaks For Itself")}
           </span>
@@ -266,12 +287,12 @@ const HorizontalProjects = () => {
             {splitText(".")}
           </span>
         </h2>
-        <p className="text-xs md:text-sm text-stone-500 font-sans mt-3">
+        <p className="reveal-meta text-xs md:text-sm text-stone-500 font-sans mt-3">
           A selection of recent projects we’re proud of.
         </p>
         <button 
           onClick={handleViewAllClick}
-          className="mt-6 flex items-center gap-2 px-6 py-2.5 rounded-full border border-obsidian/15 hover:border-accent-gold text-[10px] font-sans font-bold tracking-wider text-obsidian hover:text-accent-gold-dark uppercase transition-all duration-300 hover:bg-accent-gold/5 cursor-pointer"
+          className="reveal-meta mt-6 flex items-center gap-2 px-6 py-2.5 rounded-full border border-obsidian/15 hover:border-accent-gold text-[10px] font-sans font-bold tracking-wider text-obsidian hover:text-accent-gold-dark uppercase transition-all duration-300 hover:bg-accent-gold/5 cursor-pointer"
         >
           View All Works <ArrowRight className="h-3 w-3 text-accent-gold-dark" />
         </button>
@@ -427,18 +448,18 @@ const HorizontalProjects = () => {
         {currentCardIndex > 0 && (
           <button 
             onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-            className="absolute left-6 md:left-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white border border-stone-200/50 text-obsidian shadow-lg hover:bg-stone-50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
+            className="absolute left-6 md:left-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-dark-card/90 border border-obsidian/10 text-obsidian shadow-lg hover:bg-accent-gold/10 hover:border-accent-gold hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
           >
-            <ChevronLeft className="h-6 w-6 text-stone-700" />
+            <ChevronLeft className="h-6 w-6 text-current" />
           </button>
         )}
 
         {currentCardIndex < projects.length - 1 && (
           <button 
             onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            className="absolute right-6 md:left-auto md:right-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white border border-stone-200/50 text-obsidian shadow-lg hover:bg-stone-50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
+            className="absolute right-6 md:left-auto md:right-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-dark-card/90 border border-obsidian/10 text-obsidian shadow-lg hover:bg-accent-gold/10 hover:border-accent-gold hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
           >
-            <ChevronRight className="h-6 w-6 text-stone-700" />
+            <ChevronRight className="h-6 w-6 text-current" />
           </button>
         )}
 

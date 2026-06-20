@@ -142,22 +142,26 @@ const BentoServices = () => {
   // Stats counting ScrollTrigger
   useEffect(() => {
     const statsObj = { speed: 0, conversion: 0 };
-    const tween = gsap.to(statsObj, {
-      speed: 99,
-      conversion: 260,
-      duration: 2.5,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 65%"
-      },
-      onUpdate: () => {
-        setStats({
-          speed: Math.floor(statsObj.speed),
-          conversion: Math.floor(statsObj.conversion)
-        });
+    const tween = gsap.fromTo(statsObj, 
+      { speed: 0, conversion: 0 },
+      {
+        speed: 99,
+        conversion: 260,
+        duration: 1.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 65%",
+          toggleActions: "restart none play none"
+        },
+        onUpdate: () => {
+          setStats({
+            speed: Math.floor(statsObj.speed),
+            conversion: Math.floor(statsObj.conversion)
+          });
+        }
       }
-    });
+    );
 
     return () => {
       tween.kill();
@@ -190,7 +194,7 @@ const BentoServices = () => {
       scrollTrigger: {
         trigger: container,
         start: "top 78%",
-        toggleActions: "play none none none"
+        toggleActions: "play reverse play reverse"
       }
     });
 
@@ -199,8 +203,8 @@ const BentoServices = () => {
       tl.to(chars, {
         y: "0%",
         opacity: 1,
-        duration: 0.95,
-        stagger: 0.015,
+        duration: 0.6,
+        stagger: 0.01,
         ease: "power3.out"
       });
     }
@@ -209,10 +213,10 @@ const BentoServices = () => {
     tl.to(titleMeta, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
-      stagger: 0.1,
+      duration: 0.5,
+      stagger: 0.05,
       ease: "power2.out"
-    }, "-=0.6");
+    }, "-=0.45");
 
     // Animate cards
     tl.to(cards, {
@@ -220,10 +224,10 @@ const BentoServices = () => {
       y: 0,
       rotateX: 0,
       skewY: 0,
-      duration: 1.3,
-      stagger: 0.18,
+      duration: 0.8,
+      stagger: 0.08,
       ease: "power4.out"
-    }, "-=0.7");
+    }, "-=0.5");
 
     return () => {
       tl.kill();
@@ -317,8 +321,11 @@ const BentoServices = () => {
     <section 
       ref={containerRef}
       id="services"
-      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-transparent z-10"
+      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] z-10 overflow-hidden"
     >
+      {/* Subtle warm golden background glow */}
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2.5 blur-[150px] pointer-events-none" />
+
       <div className="mx-auto max-w-6xl">
         {/* Title and description */}
         <div className="bento-title-section flex flex-col md:flex-row items-start justify-between gap-6 mb-16 select-none">
