@@ -57,12 +57,16 @@ const ScrollProgress = () => {
   return (
     <div className="fixed left-8 top-[44%] -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-4 select-none pointer-events-none">
       {/* Editorial active section number */}
-      <span className="text-[11px] font-serif italic text-accent-gold-dark font-medium leading-none transition-all duration-300">
+      <span className={`text-[11px] font-serif italic font-medium leading-none transition-all duration-300 ${
+        activeSection.id === 'projects' ? 'text-accent-gold' : 'text-accent-gold-dark'
+      }`}>
         {activeSection.num}
       </span>
       
       {/* Thin baseline line with sliding progress marker */}
-      <div className="h-28 w-px bg-obsidian/10 relative overflow-hidden">
+      <div className={`h-28 w-px transition-colors duration-300 ${
+        activeSection.id === 'projects' ? 'bg-white/10' : 'bg-obsidian/10'
+      } relative overflow-hidden`}>
         <div 
           className="absolute top-0 left-0 w-full bg-accent-gold transition-transform duration-75"
           style={{ 
@@ -71,10 +75,12 @@ const ScrollProgress = () => {
           }}
         />
       </div>
-
+      
       {/* Rotating vertical text tracker */}
       <span 
-        className="text-[7.5px] font-bold tracking-[0.3em] text-obsidian/35 uppercase mt-2 font-sans transition-all duration-300"
+        className={`text-[7.5px] font-bold tracking-[0.3em] uppercase mt-2 font-sans transition-all duration-300 ${
+          activeSection.id === 'projects' ? 'text-white' : 'text-obsidian'
+        }`}
         style={{ writingMode: 'vertical-lr', transform: 'rotate(180deg)' }}
       >
         {activeSection.name}

@@ -1,233 +1,98 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, Cpu, Layers, Radio, Orbit } from 'lucide-react';
+import { ArrowRight, Cpu, Layers, Radio, Orbit, Briefcase, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
     id: "01",
-    title: "NEURAL NET",
+    number: "01 / 04",
+    title: "Neural Net",
     category: "AI Platform / Strategy",
     year: "2026",
+    cardTagline: "CLOUD AUTOMATION",
     tagline: "Building neural intelligence tools for enterprise cloud systems.",
     icon: <Cpu className="h-5 w-5 text-accent-gold-dark" />,
-    color: "from-accent-gold/15 to-accent-gold-dark/5",
+    color: "from-accent-gold/20 to-accent-gold-dark/5",
     image: "/images/neural-net.png",
-    description: "Neural Net is a cutting-edge artificial intelligence platform designed to automate enterprise cloud scaling and optimization. By leveraging advanced deep learning models, it predicts infrastructure bottlenecks before they occur, reducing server overhead by up to 43% and ensuring 99.999% uptime for global systems.",
-    specs: [
-      { label: "Client", value: "Neural Technologies Inc." },
-      { label: "Role", value: "Creative Direction & Frontend" },
-      { label: "Stack", value: "React, GSAP, Tailwind, Node.js" },
-      { label: "Deliverable", value: "Cloud Dashboard & Design System" }
-    ]
+    service: "AI Platform Development",
+    outcome: "+43% Cloud Efficiency",
+    mobileTheme: {
+      bg: "bg-gradient-to-b from-stone-900 to-black",
+      logo: "NN",
+      tagline: "Neural intelligence tools for cloud systems.",
+      cta: "EXPLORE PLATFORM"
+    }
   },
   {
     id: "02",
-    title: "KINETIC LABS",
+    number: "02 / 04",
+    title: "Kinetic Labs",
     category: "Interactive Brand",
     year: "2025",
+    cardTagline: "PHYSICAL-DIGITAL DUALITY",
     tagline: "Sculpting immersive physical-digital brand experiences.",
     icon: <Orbit className="h-5 w-5 text-accent-gold-dark" />,
-    color: "from-accent-gold-dark/15 to-stone-400/5",
+    color: "from-accent-gold-dark/20 to-stone-400/5",
     image: "/images/kinetic-labs.png",
-    description: "Kinetic Labs is a physical-digital experimental installation showcasing interactive kinetic sculptures. Our frontend engineering integrates live WebSockets and physical sensors to mirror mechanical motions in high-fidelity 3D browser canvases in real-time, creating a fully synchronized dual-sensory experience.",
-    specs: [
-      { label: "Client", value: "Kinetic Art Gallery" },
-      { label: "Role", value: "Creative Direction" },
-      { label: "Stack", value: "React, Three.js, WebSockets, GSAP" },
-      { label: "Deliverable", value: "Immersive Exhibit & Frontend" }
-    ]
+    service: "WebSocket & 3D Interactive Design",
+    outcome: "Real-time 3D Syncing",
+    mobileTheme: {
+      bg: "bg-gradient-to-b from-amber-955 via-stone-900 to-stone-950",
+      logo: "KL",
+      tagline: "Sculpting immersive physical-digital experiences.",
+      cta: "ENTER EXHIBIT"
+    }
   },
   {
     id: "03",
-    title: "ECLIPSE CORP",
+    number: "03 / 04",
+    title: "Eclipse Corp",
     category: "Creative Campaign",
     year: "2026",
+    cardTagline: "NEURAL FEED MARKETING",
     tagline: "Generating explosive viral campaigns across neural feeds.",
     icon: <Radio className="h-5 w-5 text-accent-gold-dark" />,
-    color: "from-amber-600/10 to-accent-gold/5",
+    color: "from-amber-600/15 to-accent-gold/5",
     image: "/images/eclipse-corp.png",
-    description: "Eclipse Corp is a digital marketing ecosystem automating high-density search index scaling and content distribution. Our implementation features self-optimizing semantic funnels and interactive data boards, increasing viral reach by 260% across decentralized networks.",
-    specs: [
-      { label: "Client", value: "Eclipse Holdings" },
-      { label: "Role", value: "UX Strategy & Development" },
-      { label: "Stack", value: "Astro, GSAP, Serverless Functions" },
-      { label: "Deliverable", value: "Marketing Funnels & Analytics" }
-    ]
+    service: "Viral Funnels & Content Strategy",
+    outcome: "+260% Viral Reach",
+    mobileTheme: {
+      bg: "bg-gradient-to-b from-[#2c1a04] to-[#0a0500]",
+      logo: "EC",
+      tagline: "Generating explosive viral campaigns across feeds.",
+      cta: "VIEW FUNNELS"
+    }
   },
   {
     id: "04",
-    title: "CYBER DOCK",
+    number: "04 / 04",
+    title: "Cyber Dock",
     category: "Web3 Platform",
     year: "2026",
+    cardTagline: "SMART CONTRACT EXPLORATION",
     tagline: "Forging next-generation smart contract visual explorers.",
     icon: <Layers className="h-5 w-5 text-accent-gold-dark" />,
-    color: "from-stone-500/10 to-accent-gold-dark/5",
+    color: "from-stone-500/15 to-accent-gold-dark/5",
     image: "/images/cyber-dock.png",
-    description: "Cyber Dock is a Web3 visual explorer and analytics dashboard for smart contracts. By transforming raw cryptographic transactions into flowing node topologies, users can inspect transaction histories, state mutations, and contract dependencies with unprecedented visual clarity.",
-    specs: [
-      { label: "Client", value: "CyberDock Protocol" },
-      { label: "Role", value: "UI/UX Engineering" },
-      { label: "Stack", value: "Next.js, Three.js, Solidity, Tailwind" },
-      { label: "Deliverable", value: "Visual Block Explorer" }
-    ]
+    service: "Web3 Contract Explorer UI",
+    outcome: "Topographic Node Topology",
+    mobileTheme: {
+      bg: "bg-gradient-to-b from-slate-900 to-zinc-950",
+      logo: "CD",
+      tagline: "Next-gen smart contract visual explorers.",
+      cta: "LAUNCH APP"
+    }
   }
 ];
-
-const ProjectModal = ({ project, onClose }) => {
-  const modalRef = useRef(null);
-  const backdropRef = useRef(null);
-  const boxRef = useRef(null);
-
-  useEffect(() => {
-    if (!project) return;
-
-    const tl = gsap.timeline();
-    
-    gsap.set(backdropRef.current, { opacity: 0 });
-    gsap.set(boxRef.current, { opacity: 0, y: 50, scale: 0.95 });
-
-    tl.to(backdropRef.current, {
-      opacity: 1,
-      duration: 0.45,
-      ease: "power2.out"
-    })
-    .to(boxRef.current, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.55,
-      ease: "back.out(1.2)"
-    }, "-=0.25");
-
-    return () => {
-      tl.kill();
-    };
-  }, [project]);
-
-  const handleClose = () => {
-    const tl = gsap.timeline({
-      onComplete: onClose
-    });
-
-    tl.to(boxRef.current, {
-      opacity: 0,
-      y: 30,
-      scale: 0.96,
-      duration: 0.35,
-      ease: "power2.in"
-    })
-    .to(backdropRef.current, {
-      opacity: 0,
-      duration: 0.3,
-      ease: "power2.in"
-    }, "-=0.2");
-  };
-
-  return (
-    <div 
-      ref={modalRef} 
-      className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-10 select-none"
-    >
-      <div 
-        ref={backdropRef}
-        className="absolute inset-0 bg-dark-bg/60 backdrop-blur-2xl" 
-        onClick={handleClose}
-      />
-      
-      <div 
-        ref={boxRef}
-        className="relative w-full max-w-5xl h-[85vh] md:h-[75vh] bg-dark-card border border-obsidian/10 rounded-[32px] overflow-hidden flex flex-col md:flex-row z-10 shadow-2xl"
-      >
-        <div className="w-full md:w-1/2 h-[30vh] md:h-full overflow-hidden relative border-b md:border-b-0 md:border-r border-obsidian/10">
-          <img 
-            src={project.image} 
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-obsidian/20 via-transparent to-transparent" />
-        </div>
-
-        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-between overflow-y-auto bg-dark-card">
-          <div>
-            <div className="flex items-center justify-between mb-4 md:mb-6 pr-12">
-              <span className="text-[10px] font-bold tracking-[0.25em] text-accent-gold-dark uppercase">
-                {project.category}
-              </span>
-              <span className="font-mono text-[10px] text-obsidian/45 tracking-wider">
-                [ {project.year} ]
-              </span>
-            </div>
-
-            <h2 className="text-2xl md:text-4xl font-serif font-black uppercase text-obsidian tracking-wide mb-3 md:mb-4">
-              {project.title}
-            </h2>
-
-            <p className="text-xs md:text-sm font-serif italic text-accent-gold-dark mb-4 md:mb-6 leading-relaxed">
-              {project.tagline}
-            </p>
-
-            <p className="text-xs md:text-sm text-obsidian/75 font-serif italic font-light leading-relaxed mb-6 md:mb-8">
-              {project.description}
-            </p>
-
-            <div className="grid grid-cols-2 gap-x-4 md:gap-x-6 gap-y-3 md:gap-y-4 pt-4 md:pt-6 border-t border-obsidian/10">
-              {project.specs.map((spec, index) => (
-                <div key={index}>
-                  <span className="block text-[8px] font-bold tracking-widest text-obsidian/40 uppercase mb-1">
-                    {spec.label}
-                  </span>
-                  <span className="text-xs font-serif italic text-obsidian font-medium">
-                    {spec.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-obsidian/10 flex items-center justify-between">
-            <span className="font-mono text-[9px] text-obsidian/45 uppercase">[ CASE STUDY // DEPT ]</span>
-            <button 
-              onClick={handleClose}
-              className="flex h-10 px-6 items-center justify-center rounded-full bg-obsidian text-dark-bg hover:bg-accent-gold hover:text-white transition-all duration-300 font-sans text-[10px] font-bold uppercase tracking-wider cursor-pointer"
-            >
-              Close Project
-            </button>
-          </div>
-        </div>
-
-          <button 
-          onClick={handleClose}
-          className="absolute top-4 right-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-obsidian/5 border border-obsidian/10 hover:bg-obsidian hover:text-dark-bg transition-all duration-300 text-obsidian cursor-pointer font-bold text-lg"
-        >
-          &times;
-        </button>
-      </div>
-    </div>
-  );
-};
 
 const HorizontalProjects = () => {
   const scrollRef = useRef(null);
   const containerRef = useRef(null);
   const progressFillRef = useRef(null);
-  const [selectedProject, setSelectedProject] = useState(null);
-
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.classList.add('modal-open');
-      if (window.lenis) window.lenis.stop();
-    } else {
-      document.body.classList.remove('modal-open');
-      if (window.lenis) window.lenis.start();
-    }
-    return () => {
-      document.body.classList.remove('modal-open');
-    };
-  }, [selectedProject]);
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -237,7 +102,7 @@ const HorizontalProjects = () => {
 
     // Shift width is: element total width minus browser viewport width
     const getScrollWidth = () => scrollContainer.scrollWidth - window.innerWidth;
-    const getScrollLimit = () => Math.max(0, getScrollWidth() - window.innerWidth * 0.08);
+    const getScrollLimit = () => Math.max(0, getScrollWidth());
 
     // Smooth horizontal scroll with refined easing for a buttery experience
     const scrollTween = gsap.to(scrollContainer, {
@@ -245,9 +110,11 @@ const HorizontalProjects = () => {
       ease: "none",
       force3D: true,
       scrollTrigger: {
+        id: "projects-pin",
         trigger: container,
         pin: true,
-        scrub: 2.5,
+        scrub: 3,
+        anticipatePin: 1,
         start: "top top",
         end: () => `+=${getScrollLimit()}`,
         invalidateOnRefresh: true,
@@ -258,10 +125,31 @@ const HorizontalProjects = () => {
             ease: "none",
             overwrite: "auto"
           });
+          const idx = Math.round(self.progress * (projects.length - 1));
+          setCurrentCardIndex(idx);
+        },
+        onToggle: (self) => {
+          const nav = document.querySelector('nav');
+          if (nav) {
+            if (self.isActive) {
+              gsap.to(nav, {
+                y: "-100%",
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.out"
+              });
+            } else {
+              gsap.to(nav, {
+                y: "0%",
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.out"
+              });
+            }
+          }
         }
       }
     });
-
 
     // Subtle card velocity skew
     const cards = scrollContainer.querySelectorAll('.project-card');
@@ -269,7 +157,7 @@ const HorizontalProjects = () => {
       gsap.fromTo(card, 
         { skewX: 0 },
         {
-          skewX: -1.0,
+          skewX: -0.2,
           ease: "none",
           force3D: true,
           scrollTrigger: {
@@ -286,121 +174,245 @@ const HorizontalProjects = () => {
     return () => {
       scrollTween.kill();
       ScrollTrigger.getAll().forEach(t => {
-        if (t.trigger === container) t.kill();
+        if (t.vars.id === "projects-pin" || t.trigger === container) t.kill();
       });
+      // Restore navbar state on unmount
+      const nav = document.querySelector('nav');
+      if (nav) {
+        gsap.set(nav, { y: "0%", opacity: 1 });
+      }
     };
   }, []);
 
+  const scrollToCard = (index) => {
+    if (!window.lenis) return;
+    const trigger = ScrollTrigger.getById("projects-pin");
+    if (!trigger) return;
+    const start = trigger.start;
+    const end = trigger.end;
+    const step = (end - start) / (projects.length - 1);
+    const targetScroll = start + step * index;
+    window.lenis.scrollTo(targetScroll, { duration: 1.2 });
+  };
+
+  const handlePrev = () => {
+    if (currentCardIndex > 0) {
+      scrollToCard(currentCardIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentCardIndex < projects.length - 1) {
+      scrollToCard(currentCardIndex + 1);
+    }
+  };
+
+  const handleViewAllClick = (e) => {
+    e.preventDefault();
+    const target = document.querySelector('#contact');
+    if (target && window.lenis) {
+      window.lenis.scrollTo(target, { offset: -60, duration: 1.8 });
+    }
+  };
+
   return (
-    <div 
-      ref={containerRef}
-      id="projects"
-      className="relative h-screen w-full overflow-hidden bg-transparent"
-    >
+    <div className="w-full">
+      {/* 1. Header Section - Normal document scroll flow */}
+      <div className="w-full bg-dark-bg pt-24 pb-8 md:pt-32 md:pb-10 flex flex-col items-center text-center px-6">
+        <span className="text-[10px] font-sans font-bold tracking-[0.25em] text-accent-gold-dark uppercase">
+          FEATURED WORK
+        </span>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-obsidian mt-2 select-none">
+          Work That Speaks For Itself<span className="text-accent-gold-dark">.</span>
+        </h2>
+        <p className="text-xs md:text-sm text-stone-500 font-sans mt-3">
+          A selection of recent projects we’re proud of.
+        </p>
+        <button 
+          onClick={handleViewAllClick}
+          className="mt-6 flex items-center gap-2 px-6 py-2.5 rounded-full border border-obsidian/15 hover:border-accent-gold text-[10px] font-sans font-bold tracking-wider text-obsidian hover:text-accent-gold-dark uppercase transition-all duration-300 hover:bg-accent-gold/5 cursor-pointer"
+        >
+          View All Works <ArrowRight className="h-3 w-3 text-accent-gold-dark" />
+        </button>
+      </div>
+
+      {/* 2. Pinned Horizontal Track - Full-screen layout */}
       <div 
-        ref={scrollRef}
-        className="absolute top-0 left-0 flex h-full items-center pl-6 md:pl-24 pr-[15vw] gap-10 md:gap-16 whitespace-nowrap"
-        style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
+        ref={containerRef}
+        id="projects"
+        className="relative h-screen w-full overflow-hidden bg-[#131313]"
       >
-        {/* Introduction Slide */}
-        <div className="shrink-0 flex h-[50vh] w-[300px] md:w-[420px] flex-col justify-between whitespace-normal select-none pr-8">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
-              <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
-                SELECTED WORKS
-              </h2>
+        {/* Horizontal Scroll Track Wrapper */}
+        <div 
+          ref={scrollRef}
+          className="absolute top-0 left-0 flex h-full items-center"
+          style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}
+        >
+          {/* Full Screen Project Cards */}
+          {projects.map((project, idx) => (
+            <div 
+              key={project.id}
+              className="project-card relative shrink-0 w-screen h-screen flex flex-col md:flex-row justify-between bg-[#131313] pt-24 pb-24 md:pt-32 md:pb-28 px-8 md:px-24 overflow-hidden group select-none cursor-default border-r border-white/5"
+              style={{ 
+                opacity: idx === currentCardIndex ? 1 : 0.4,
+                scale: idx === currentCardIndex ? 1 : 0.98,
+                transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), scale 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+                willChange: "transform, opacity"
+              }}
+            >
+              {/* Elegant champagne background shadows */}
+              <div className={`absolute -right-32 -bottom-32 -z-10 h-96 w-96 rounded-full bg-linear-to-tr ${project.color} blur-[100px] group-hover:scale-110 transition-transform duration-1000`} />
+              
+              {/* Left Column: Information */}
+              <div className="w-full md:w-[45%] flex flex-col justify-start h-full whitespace-normal mt-4 md:mt-10">
+                <div className="text-[12px] font-sans font-bold tracking-wider text-accent-gold-dark mb-4">
+                  {project.number}
+                </div>
+                
+                {/* One-Line Classy Serif Title */}
+                <h4 className="text-3xl md:text-4xl lg:text-5xl font-serif font-black leading-tight text-white uppercase tracking-wide group-hover:text-accent-gold transition-colors duration-350 whitespace-nowrap overflow-hidden text-ellipsis">
+                  {project.title}
+                </h4>
+
+                <div className="text-[10px] font-sans font-bold tracking-[0.25em] uppercase text-accent-gold mt-2 block">
+                  {project.cardTagline}
+                </div>
+
+                {/* Thin gold divider */}
+                <div className="w-14 h-[1.5px] bg-accent-gold/30 my-6" />
+
+                <p className="max-w-md text-xs md:text-sm text-stone-400 font-sans leading-relaxed font-light">
+                  {project.tagline}
+                </p>
+
+                {/* Specs block inside card */}
+                <div className="my-6 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-accent-gold">
+                      <Briefcase className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <span className="block text-[8px] font-sans font-bold tracking-widest text-stone-500 uppercase">
+                        SERVICE
+                      </span>
+                      <span className="text-xs md:text-sm font-serif italic text-white/90 font-light">
+                        {project.service}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-accent-gold">
+                      <TrendingUp className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <span className="block text-[8px] font-sans font-bold tracking-widest text-stone-500 uppercase">
+                        OUTCOME
+                      </span>
+                      <span className="text-xs md:text-sm font-serif italic text-accent-gold font-normal">
+                        {project.outcome}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* VIEW PROJECT Outline Pill Button with Direct Hover Actions */}
+                <div className="mt-5 flex">
+                  <button className="group/btn flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 group-hover:border-accent-gold group-hover:bg-accent-gold/10 text-[9px] md:text-[10px] font-sans font-bold tracking-widest text-white group-hover:text-accent-gold uppercase transition-all duration-300 hover:bg-accent-gold! hover:text-black! hover:border-accent-gold! hover:scale-105 hover:shadow-[0_0_15px_rgba(212,175,55,0.45)] active:scale-95 cursor-pointer">
+                    View Project <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1 group-hover/btn:translate-x-2" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Column: Immersive Large CSS Mockups */}
+              <div className="w-full md:w-[55%] h-full relative flex items-start justify-center p-6 select-none mt-6 md:mt-0 pt-8 md:pt-16">
+                <div className="relative w-full max-w-[420px] md:max-w-[560px] aspect-16/10 bg-zinc-900 rounded-2xl border border-zinc-800 shadow-2xl flex flex-col overflow-hidden group-hover:scale-[1.01] transition-transform duration-700">
+                  {/* Screen Bezel */}
+                  <div className="relative flex-1 bg-black p-1.5 pb-2.5 flex flex-col overflow-hidden">
+                    <div className="w-full h-full relative rounded-md overflow-hidden bg-zinc-950">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover object-center"
+                      />
+                      {/* Subtle glare reflection */}
+                      <div className="absolute inset-0 bg-linear-to-tr from-white/0 via-white/5 to-white/10 pointer-events-none" />
+                    </div>
+                  </div>
+                  {/* Laptop Lip / Base */}
+                  <div className="h-[7px] bg-zinc-800 border-t border-zinc-700 rounded-b-xl w-full flex items-center justify-center relative">
+                    <div className="w-16 h-[3px] bg-zinc-900 rounded-full" />
+                  </div>
+                </div>
+
+                {/* Overlapping mobile phone mockup */}
+                <div className="absolute left-[5%] md:left-[10%] bottom-[12%] md:bottom-[10%] w-[110px] sm:w-[130px] md:w-[150px] aspect-9/19.5 bg-zinc-950 rounded-[20px] md:rounded-[26px] border-[2.5px] md:border-[3.5px] border-zinc-800 shadow-2xl overflow-hidden z-20 flex flex-col group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500">
+                  {/* Dynamic island notches */}
+                  <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-[35%] h-2.5 bg-black rounded-full z-30" />
+                  
+                  {/* Custom rendered app style view */}
+                  <div className={`relative flex-1 flex flex-col justify-between p-3 select-none text-white ${project.mobileTheme.bg}`}>
+                    {/* Mini-app Header */}
+                    <div className="flex items-center justify-between text-[6px] font-sans font-bold tracking-widest opacity-80 pt-0.5">
+                      <span className="font-serif italic font-black text-[8.5px] text-accent-gold">{project.mobileTheme.logo}</span>
+                      <div className="flex flex-col gap-0.5 w-3.5 items-end">
+                        <div className="h-[1.5px] w-full bg-white rounded-full" />
+                        <div className="h-[1.5px] w-2/3 bg-white rounded-full" />
+                      </div>
+                    </div>
+
+                    {/* Mini-app content */}
+                    <div className="my-auto flex flex-col items-center text-center">
+                      <div className="text-[5.5px] font-sans tracking-[0.2em] uppercase text-accent-gold mb-0.5">{project.cardTagline}</div>
+                      <h5 className="font-serif text-[10px] font-bold leading-tight tracking-wide mb-0.5 uppercase">{project.title}</h5>
+                      <div className="w-3 h-[0.5px] bg-accent-gold/40 my-0.5" />
+                      <p className="text-[5px] font-sans text-stone-300 max-w-[95%] leading-relaxed">{project.mobileTheme.tagline}</p>
+                    </div>
+
+                    {/* Mini-app action */}
+                    <div className="mt-auto pt-1 flex justify-center">
+                      <div className="w-full py-0.5 text-center bg-white text-black font-sans font-bold text-[4.5px] tracking-widest uppercase rounded-full shadow-md">
+                        {project.mobileTheme.cta}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3 className="text-4xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
-              CRAFTING <br />
-              <span className="text-accent-gold italic font-normal">DIGITAL</span> <br />
-              INSTALLATIONS
-            </h3>
-          </div>
-          <p className="text-xs md:text-sm text-obsidian/70 font-serif italic font-light max-w-xs leading-relaxed">
-            Scroll down or swipe to traverse our physical-digital installations. Hovering exposes detail coordinates.
-          </p>
+          ))}
         </div>
 
-        {/* Dynamic Project Cards */}
-        {projects.map((project) => (
-          <div 
-            key={project.id}
-            onClick={() => setSelectedProject(project)}
-            className="project-card relative shrink-0 flex h-[68vh] w-[75vw] sm:w-[50vw] md:w-[34vw] flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/50 p-6 md:p-8 backdrop-blur-md overflow-hidden group select-none cursor-none transition-[background-color,border-color,box-shadow,color] duration-300"
-            data-cursor="view"
-            style={{ 
-              boxShadow: `inset 0 0 30px rgba(0,0,0,0.01), 0 15px 35px rgba(0,0,0,0.03)`,
-              willChange: "transform"
-            }}
+        {/* Symmetrical Left/Right Floating Navigation Arrows */}
+        {currentCardIndex > 0 && (
+          <button 
+            onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+            className="absolute left-6 md:left-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white border border-stone-200/50 text-obsidian shadow-lg hover:bg-stone-50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
           >
-            {/* Elegant champagne background shadows */}
-            <div className={`absolute -right-24 -bottom-24 -z-10 h-64 w-64 rounded-full bg-linear-to-tr ${project.color} blur-[60px] group-hover:scale-125 transition-transform duration-750`} />
-            
-            {/* Top row */}
-            <div className="flex items-center justify-between">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-obsidian">
-                {project.icon}
-              </div>
-              <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">
-                [ {project.year} ]
-              </span>
-            </div>
+            <ChevronLeft className="h-6 w-6 text-stone-700" />
+          </button>
+        )}
 
-            {/* Parallax Image Frame */}
-            <div className="w-full h-[28vh] overflow-hidden rounded-2xl relative border border-obsidian/10 bg-stone-100 my-4">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-full object-cover object-center"
-              />
-            </div>
+        {currentCardIndex < projects.length - 1 && (
+          <button 
+            onClick={(e) => { e.stopPropagation(); handleNext(); }}
+            className="absolute right-6 md:left-auto md:right-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white border border-stone-200/50 text-obsidian shadow-lg hover:bg-stone-50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
+          >
+            <ChevronRight className="h-6 w-6 text-stone-700" />
+          </button>
+        )}
 
-            {/* Core titles */}
-            <div className="my-2 whitespace-normal">
-              <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-accent-gold-dark mb-1 block">
-                {project.category}
-              </span>
-              <h4 className="text-xl md:text-2xl font-serif font-bold leading-none uppercase tracking-wide text-obsidian mb-2 group-hover:text-accent-gold-dark transition-all duration-300">
-                {project.title}
-              </h4>
-              <p className="max-w-xs text-xs text-obsidian/75 font-serif italic font-light leading-relaxed">
-                {project.tagline}
-              </p>
-            </div>
-
-            {/* Bottom links */}
-            <div className="flex items-center justify-between border-t border-obsidian/10 pt-4">
-              <span className="font-serif italic font-medium text-[11px] tracking-wide text-obsidian">
-                CASE STUDY
-              </span>
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-obsidian/5 border border-obsidian/10 group-hover:bg-obsidian group-hover:text-dark-bg transition-all duration-300">
-                <ArrowRight className="h-4 w-4" />
-              </div>
-            </div>
+        {/* Symmetrical Luxury Bottom Progress Bar */}
+        <div className="absolute bottom-10 left-6 md:left-24 right-6 md:right-24 z-20 flex items-center gap-4 select-none">
+          <span className="font-mono text-[9px] text-white/50">[ 01 ]</span>
+          <div className="flex-1 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
+            <div 
+              ref={progressFillRef}
+              className="absolute top-0 left-0 h-full w-full bg-accent-gold origin-left scale-x-0"
+            />
           </div>
-        ))}
-      </div>
-
-      {/* Symmetrical Luxury Bottom Progress Bar */}
-      <div className="absolute bottom-10 left-6 md:left-24 right-6 md:right-24 z-20 flex items-center gap-4 select-none">
-        <span className="font-mono text-[9px] text-obsidian/45">[ 01 ]</span>
-        <div className="flex-1 h-[2px] bg-obsidian/10 relative overflow-hidden rounded-full">
-          <div 
-            ref={progressFillRef}
-            className="absolute top-0 left-0 h-full w-full bg-accent-gold origin-left scale-x-0"
-          />
+          <span className="font-mono text-[9px] text-white/50">[ {projects.length.toString().padStart(2, '0')} ]</span>
         </div>
-        <span className="font-mono text-[9px] text-obsidian/45">[ {projects.length.toString().padStart(2, '0')} ]</span>
       </div>
-
-      {selectedProject && createPortal(
-        <ProjectModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
-        />,
-        document.body
-      )}
     </div>
   );
 };
