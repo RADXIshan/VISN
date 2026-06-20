@@ -5,6 +5,21 @@ import { Code, Eye, Compass, Megaphone } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const splitText = (text) => {
+  return text.split("").map((char, index) => (
+    <span 
+      key={index} 
+      className="char-span inline-block"
+      style={{ 
+        display: char === " " ? "inline" : "inline-block",
+        willChange: "transform, opacity"
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
+};
+
 const BentoServices = () => {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
@@ -155,10 +170,14 @@ const BentoServices = () => {
     if (!container) return;
 
     const titleEl = container.querySelector('.bento-title-section');
+    const headerTitle = container.querySelector('.split-header');
+    const chars = headerTitle ? headerTitle.querySelectorAll('.char-span') : [];
+    const titleMeta = titleEl ? titleEl.querySelectorAll('h2, .bento-desc, .header-dot') : [];
     const cards = [card1Ref.current, card2Ref.current, card3Ref.current, card4Ref.current].filter(Boolean);
 
-    // Initial hidden state with premium 3D rotate/skew
-    gsap.set(titleEl, { opacity: 0, y: 50 });
+    // Initial hidden state
+    gsap.set(chars, { y: "115%", opacity: 0 });
+    gsap.set(titleMeta, { opacity: 0, y: 20 });
     gsap.set(cards, { 
       opacity: 0, 
       y: 80, 
@@ -175,13 +194,28 @@ const BentoServices = () => {
       }
     });
 
-    tl.to(titleEl, {
+    // Animate letters
+    if (chars.length) {
+      tl.to(chars, {
+        y: "0%",
+        opacity: 1,
+        duration: 0.95,
+        stagger: 0.015,
+        ease: "power3.out"
+      });
+    }
+
+    // Animate title meta (description & category tags)
+    tl.to(titleMeta, {
       opacity: 1,
       y: 0,
-      duration: 1.2,
-      ease: "power4.out"
-    })
-    .to(cards, {
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power2.out"
+    }, "-=0.6");
+
+    // Animate cards
+    tl.to(cards, {
       opacity: 1,
       y: 0,
       rotateX: 0,
@@ -189,7 +223,7 @@ const BentoServices = () => {
       duration: 1.3,
       stagger: 0.18,
       ease: "power4.out"
-    }, "-=0.8");
+    }, "-=0.7");
 
     return () => {
       tl.kill();
@@ -290,17 +324,22 @@ const BentoServices = () => {
         <div className="bento-title-section flex flex-col md:flex-row items-start justify-between gap-6 mb-16 select-none">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+              <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
               <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
                 CAPABILITIES
               </h2>
             </div>
-            <h3 className="text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
-              WHAT WE DO <br />
-              <span className="text-accent-gold">BEST</span>
+            <h3 className="split-header text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
+              <span className="inline-block overflow-hidden pb-1">
+                {splitText("WHAT WE DO")}
+              </span>
+              <br />
+              <span className="inline-block overflow-hidden pb-1 text-accent-gold">
+                {splitText("BEST")}
+              </span>
             </h3>
           </div>
-          <p className="max-w-xs text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">
+          <p className="bento-desc max-w-xs text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">
             By combining high-performance code engineering and editorial visual layout, we form websites that define your brand.
           </p>
         </div>

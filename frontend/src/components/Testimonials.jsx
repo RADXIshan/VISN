@@ -90,6 +90,21 @@ const TestimonialCard = ({ testimonial }) => (
   </div>
 );
 
+const splitText = (text) => {
+  return text.split("").map((char, index) => (
+    <span 
+      key={index} 
+      className="char-span inline-block"
+      style={{ 
+        display: char === " " ? "inline" : "inline-block",
+        willChange: "transform, opacity"
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
+};
+
 const Testimonials = () => {
   const containerRef = useRef(null);
   const headerRef = useRef(null);
@@ -108,21 +123,39 @@ const Testimonials = () => {
 
     if (!container) return;
 
-    // 1. Header fade-in and slide-up
-    const headerTween = gsap.fromTo(header,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.1,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: container,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
+    // 1. Header split text character and tag reveal
+    const headerTitle = header.querySelector('.split-header');
+    const chars = headerTitle ? headerTitle.querySelectorAll('.char-span') : [];
+    const headerMeta = header.querySelectorAll('h2, .header-dot');
+
+    gsap.set(chars, { y: "115%", opacity: 0 });
+    gsap.set(headerMeta, { opacity: 0, y: 15 });
+
+    const headerTween = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 80%",
+        toggleActions: "play none none none"
       }
-    );
+    });
+
+    if (chars.length) {
+      headerTween.to(chars, {
+        y: "0%",
+        opacity: 1,
+        duration: 0.95,
+        stagger: 0.02,
+        ease: "power3.out"
+      });
+    }
+
+    headerTween.to(headerMeta, {
+      opacity: 1,
+      y: 0,
+      duration: 0.75,
+      stagger: 0.1,
+      ease: "power2.out"
+    }, "-=0.6");
 
     // 2. Row wrappers fade-in and slide-up
     const rowsTween = gsap.fromTo([rowLeft, rowRight],
@@ -190,14 +223,19 @@ const Testimonials = () => {
       {/* Section header */}
       <div ref={headerRef} className="mx-auto max-w-6xl px-6 md:px-12 mb-16 select-none">
         <div className="flex items-center gap-3 mb-3">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+          <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
           <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
             TESTIMONIALS
           </h2>
         </div>
-        <h3 className="text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
-          WHAT CLIENTS <br />
-          <span className="text-accent-gold italic font-normal">SAY</span>
+        <h3 className="split-header text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
+          <span className="inline-block overflow-hidden pb-1">
+            {splitText("WHAT CLIENTS")}
+          </span>
+          <br />
+          <span className="inline-block overflow-hidden pb-1 text-accent-gold italic font-normal">
+            {splitText("SAY")}
+          </span>
         </h3>
       </div>
 

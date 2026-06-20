@@ -6,6 +6,21 @@ import Magnetic from './Magnetic';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const splitText = (text) => {
+  return text.split("").map((char, index) => (
+    <span 
+      key={index} 
+      className="char-span inline-block"
+      style={{ 
+        display: char === " " ? "inline" : "inline-block",
+        willChange: "transform, opacity"
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
+};
+
 const Pricing = () => {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
@@ -55,12 +70,18 @@ const Pricing = () => {
     if (!container) return;
 
     const titleEl = titleRef.current;
+    const headerTitle = titleEl ? titleEl.querySelector('.split-header') : null;
+    const chars = headerTitle ? headerTitle.querySelectorAll('.char-span') : [];
+    const titleMeta = titleEl ? titleEl.querySelectorAll('h2, p, .header-dot') : [];
+
     const s1El = step1Ref.current;
     const s2El = step2Ref.current;
     const s3El = step3Ref.current;
 
     // Initial hidden state
-    gsap.set([titleEl, s1El, s2El, s3El], { opacity: 0, y: 50 });
+    gsap.set(chars, { y: "115%", opacity: 0 });
+    gsap.set(titleMeta, { opacity: 0, y: 20 });
+    gsap.set([s1El, s2El, s3El], { opacity: 0, y: 50 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -70,13 +91,27 @@ const Pricing = () => {
       }
     });
 
-    tl.to(titleEl, {
+    // Animate letters
+    if (chars.length) {
+      tl.to(chars, {
+        y: "0%",
+        opacity: 1,
+        duration: 0.95,
+        stagger: 0.015,
+        ease: "power3.out"
+      });
+    }
+
+    // Animate header meta
+    tl.to(titleMeta, {
       opacity: 1,
       y: 0,
-      duration: 0.9,
-      ease: 'power3.out'
-    })
-    .to(s1El, {
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power2.out"
+    }, "-=0.6");
+
+    tl.to(s1El, {
       opacity: 1,
       y: 0,
       duration: 0.8,
@@ -164,14 +199,19 @@ const Pricing = () => {
         <div ref={titleRef} className="flex flex-col md:flex-row items-start justify-between gap-6 mb-20 select-none">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+              <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
               <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
                 INVESTMENT MODEL
               </h2>
             </div>
-            <h3 className="text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
-              TRANSPARENT <br />
-              <span className="text-accent-gold italic font-normal">PRICING</span>
+            <h3 className="split-header text-3xl md:text-5xl font-serif font-bold leading-tight uppercase text-obsidian">
+              <span className="inline-block overflow-hidden pb-1">
+                {splitText("TRANSPARENT")}
+              </span>
+              <br />
+              <span className="inline-block overflow-hidden pb-1 text-accent-gold italic font-normal">
+                {splitText("PRICING")}
+              </span>
             </h3>
           </div>
           <p className="max-w-xs text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">

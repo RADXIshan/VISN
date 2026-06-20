@@ -62,6 +62,21 @@ const categories = [
   }
 ];
 
+const splitText = (text) => {
+  return text.split("").map((char, index) => (
+    <span 
+      key={index} 
+      className="char-span inline-block"
+      style={{ 
+        display: char === " " ? "inline" : "inline-block",
+        willChange: "transform, opacity"
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
+};
+
 const WhyChooseUs = () => {
   const containerRef = useRef(null);
 
@@ -69,7 +84,9 @@ const WhyChooseUs = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Select header items
+    // Select header split characters and other header items
+    const headerTitle = container.querySelector('.split-header');
+    const chars = headerTitle ? headerTitle.querySelectorAll('.char-span') : [];
     const headerItems = container.querySelectorAll('.why-reveal-item');
     
     // Select table grid / cards
@@ -78,7 +95,8 @@ const WhyChooseUs = () => {
     const doodles = container.querySelectorAll('.decorative-doodle');
     
     // Set initial styles for entrance animation
-    gsap.set(headerItems, { opacity: 0, y: 40 });
+    gsap.set(chars, { y: "115%", opacity: 0 });
+    gsap.set(headerItems, { opacity: 0, y: 30 });
     gsap.set(doodles, { opacity: 0, scale: 0.7 });
     
     const tl = gsap.timeline({
@@ -89,14 +107,25 @@ const WhyChooseUs = () => {
       }
     });
 
-    // Animate Header
+    // Animate Header letters rising
+    if (chars.length) {
+      tl.to(chars, {
+        y: "0%",
+        opacity: 1,
+        duration: 0.95,
+        stagger: 0.015,
+        ease: "power3.out"
+      });
+    }
+
+    // Animate other header items
     tl.to(headerItems, {
       opacity: 1,
       y: 0,
-      duration: 1.0,
-      stagger: 0.12,
-      ease: "power3.out"
-    });
+      duration: 0.85,
+      stagger: 0.1,
+      ease: "power2.out"
+    }, "-=0.65");
 
     // Animate Doodles
     tl.to(doodles, {
@@ -203,9 +232,14 @@ const WhyChooseUs = () => {
             </h2>
           </div>
 
-          <h3 className="why-reveal-item text-4xl sm:text-5xl lg:text-6xl font-serif font-black leading-tight uppercase text-obsidian mb-6">
-            Everything You Need, <br />
-            <span className="text-accent-gold">Nothing You Have To Chase.</span>
+          <h3 className="split-header text-4xl sm:text-5xl lg:text-6xl font-serif font-black leading-tight uppercase text-obsidian mb-6">
+            <span className="inline-block overflow-hidden pb-1">
+              {splitText("Everything You Need,")}
+            </span>
+            <br />
+            <span className="inline-block overflow-hidden pb-1 text-accent-gold">
+              {splitText("Nothing You Have To Chase.")}
+            </span>
           </h3>
 
           <p className="why-reveal-item max-w-xl text-sm md:text-base text-obsidian/70 font-serif italic font-light leading-relaxed">

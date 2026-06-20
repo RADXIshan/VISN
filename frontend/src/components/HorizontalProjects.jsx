@@ -88,6 +88,21 @@ const projects = [
   }
 ];
 
+const splitText = (text) => {
+  return text.split("").map((char, index) => (
+    <span 
+      key={index} 
+      className="char-span inline-block"
+      style={{ 
+        display: char === " " ? "inline" : "inline-block",
+        willChange: "transform, opacity"
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
+};
+
 const HorizontalProjects = () => {
   const scrollRef = useRef(null);
   const containerRef = useRef(null);
@@ -171,10 +186,31 @@ const HorizontalProjects = () => {
       );
     });
 
+    // Split text animation for the section header
+    const headerTitle = document.querySelector('.split-header');
+    if (headerTitle) {
+      const chars = headerTitle.querySelectorAll('.char-span');
+      gsap.fromTo(chars,
+        { y: "115%", opacity: 0 },
+        {
+          y: "0%",
+          opacity: 1,
+          duration: 0.95,
+          stagger: 0.015,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerTitle,
+            start: "top 82%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    }
+
     return () => {
       scrollTween.kill();
       ScrollTrigger.getAll().forEach(t => {
-        if (t.vars.id === "projects-pin" || t.trigger === container) t.kill();
+        if (t.vars.id === "projects-pin" || t.trigger === container || t.trigger === headerTitle) t.kill();
       });
       // Restore navbar state on unmount
       const nav = document.querySelector('nav');
@@ -222,8 +258,13 @@ const HorizontalProjects = () => {
         <span className="text-[10px] font-sans font-bold tracking-[0.25em] text-accent-gold-dark uppercase">
           FEATURED WORK
         </span>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-obsidian mt-2 select-none">
-          Work That Speaks For Itself<span className="text-accent-gold-dark">.</span>
+        <h2 className="split-header text-4xl md:text-5xl lg:text-6xl font-serif font-black text-obsidian mt-2 select-none">
+          <span className="inline-block overflow-hidden pb-1">
+            {splitText("Work That Speaks For Itself")}
+          </span>
+          <span className="inline-block overflow-hidden pb-1 text-accent-gold-dark">
+            {splitText(".")}
+          </span>
         </h2>
         <p className="text-xs md:text-sm text-stone-500 font-sans mt-3">
           A selection of recent projects we’re proud of.

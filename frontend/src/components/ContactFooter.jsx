@@ -6,6 +6,21 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const splitText = (text) => {
+  return text.split("").map((char, index) => (
+    <span 
+      key={index} 
+      className="char-span inline-block"
+      style={{ 
+        display: char === " " ? "inline" : "inline-block",
+        willChange: "transform, opacity"
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
+};
+
 const ContactFooter = () => {
   const formRef = useRef(null);
   const containerRef = useRef(null);
@@ -40,12 +55,14 @@ const ContactFooter = () => {
 
     // Elements inside left column
     const leftTitle = leftCol.querySelector('.contact-title');
-    const leftHeader = leftCol.querySelector('h3');
+    const leftHeader = leftCol.querySelector('.split-header');
+    const chars = leftHeader ? leftHeader.querySelectorAll('.char-span') : [];
     const leftParagraph = leftCol.querySelector('p');
     const leftLinks = leftCol.querySelectorAll('.contact-block');
 
     // Initial hidden state for left column
-    gsap.set([leftTitle, leftHeader, leftParagraph], { opacity: 0, y: 30 });
+    gsap.set(chars, { y: "115%", opacity: 0 });
+    gsap.set([leftTitle, leftParagraph], { opacity: 0, y: 30 });
     gsap.set(leftLinks, { opacity: 0, y: 25 });
 
     // Initial hidden state for right column form card
@@ -70,9 +87,19 @@ const ContactFooter = () => {
       }
     });
 
-    tl.to(leftTitle, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" })
-      .to(leftHeader, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.5")
-      .to(leftParagraph, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+    tl.to(leftTitle, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" });
+
+    if (chars.length) {
+      tl.to(chars, {
+        y: "0%",
+        opacity: 1,
+        duration: 0.95,
+        stagger: 0.02,
+        ease: "power3.out"
+      }, "-=0.55");
+    }
+
+    tl.to(leftParagraph, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
       .to(leftLinks, { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power2.out" }, "-=0.5")
       .to(rightCol, { opacity: 1, y: 0, duration: 1.0, ease: "power4.out" }, "-=0.8")
       .to(formFields, { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: "power2.out" }, "-=0.6")
@@ -120,9 +147,14 @@ const ContactFooter = () => {
                   CONNECT WITH US
                 </h2>
               </div>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold uppercase leading-[1.05] tracking-tight text-obsidian mb-8">
-                START<br />
-                <span className="text-accent-gold italic font-normal">PROJECT</span>
+              <h3 className="split-header text-4xl md:text-5xl lg:text-6xl font-serif font-bold uppercase leading-[1.05] tracking-tight text-obsidian mb-8">
+                <span className="inline-block overflow-hidden pb-1">
+                  {splitText("START")}
+                </span>
+                <br />
+                <span className="inline-block overflow-hidden pb-1 text-accent-gold italic font-normal">
+                  {splitText("PROJECT")}
+                </span>
               </h3>
               <p className="max-w-md text-base text-obsidian/75 font-serif italic font-light leading-relaxed mb-12">
                 Have an ambitious concept? Need a developer-artist team to build your next monument? Share your coordinates below, and let's craft digital art.

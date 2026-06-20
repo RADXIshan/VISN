@@ -4,6 +4,21 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const splitText = (text) => {
+  return text.split("").map((char, index) => (
+    <span 
+      key={index} 
+      className="char-span inline-block"
+      style={{ 
+        display: char === " " ? "inline" : "inline-block",
+        willChange: "transform, opacity"
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </span>
+  ));
+};
+
 const DuoGlideGallery = () => {
   const containerRef = useRef(null);
   const colARef = useRef(null);
@@ -38,9 +53,30 @@ const DuoGlideGallery = () => {
       0
     );
 
+    // Split text animation for the section header
+    const headerTitle = container.querySelector('.split-header');
+    if (headerTitle) {
+      const chars = headerTitle.querySelectorAll('.char-span');
+      gsap.fromTo(chars,
+        { y: "115%", opacity: 0 },
+        {
+          y: "0%",
+          opacity: 1,
+          duration: 0.95,
+          stagger: 0.02,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerTitle,
+            start: "top 82%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    }
+
     return () => {
       ScrollTrigger.getAll().forEach(t => {
-        if (t.trigger === container) t.kill();
+        if (t.trigger === container || (headerTitle && t.trigger === headerTitle)) t.kill();
       });
     };
   }, []);
@@ -65,9 +101,14 @@ const DuoGlideGallery = () => {
             </h2>
           </div>
           
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold uppercase text-obsidian leading-tight">
-            THE ART OF <br />
-            <span className="italic font-light text-accent-gold">CONTRAST</span>
+          <h3 className="split-header text-3xl md:text-4xl lg:text-5xl font-serif font-bold uppercase text-obsidian leading-tight">
+            <span className="inline-block overflow-hidden pb-1">
+              {splitText("THE ART OF")}
+            </span>
+            <br />
+            <span className="inline-block overflow-hidden pb-1 italic font-light text-accent-gold">
+              {splitText("CONTRAST")}
+            </span>
           </h3>
           
           <p className="text-xs md:text-sm text-obsidian/70 font-serif italic font-light leading-relaxed">
