@@ -63,7 +63,7 @@ const CustomCursor = () => {
           gsap.to(ring, { 
             width: 72, 
             height: 72, 
-            backgroundColor: '#B59B75', // Champagne gold fill
+            backgroundColor: '#10B981', // Emerald green fill
             borderColor: 'transparent',
             mixBlendMode: 'normal',
             duration: 0.3 
@@ -75,7 +75,7 @@ const CustomCursor = () => {
           gsap.to(ring, { 
             width: 72, 
             height: 72, 
-            backgroundColor: '#B59B75', // Champagne gold fill
+            backgroundColor: '#10B981', // Emerald green fill
             borderColor: 'transparent',
             mixBlendMode: 'normal',
             duration: 0.3 
@@ -86,26 +86,26 @@ const CustomCursor = () => {
           gsap.to(ring, { 
             width: 44, 
             height: 44, 
-            borderColor: '#B59B75', 
+            borderColor: '#10B981', 
             borderWidth: 1.5, 
             scale: 1.15,
             backgroundColor: 'transparent',
             mixBlendMode: 'normal',
             duration: 0.3 
           });
-          gsap.to(dot, { scale: 1.4, backgroundColor: '#B59B75', duration: 0.2 });
+          gsap.to(dot, { scale: 1.4, backgroundColor: '#10B981', duration: 0.2 });
         }
       } else if (isClickable) {
         gsap.to(ring, { 
           width: 40, 
           height: 40, 
-          borderColor: '#151515', 
-          backgroundColor: 'rgba(21, 21, 21, 0.04)',
+          borderColor: '#10B981', 
+          backgroundColor: 'rgba(16, 185, 129, 0.08)',
           scale: 1.1, 
           mixBlendMode: 'normal',
           duration: 0.25 
         });
-        gsap.to(dot, { scale: 0.4, backgroundColor: '#151515', duration: 0.2 });
+        gsap.to(dot, { scale: 0.4, backgroundColor: '#10B981', duration: 0.2 });
       }
     };
 
@@ -119,13 +119,13 @@ const CustomCursor = () => {
           width: 28, 
           height: 28, 
           backgroundColor: 'transparent', 
-          borderColor: 'rgba(21, 21, 21, 0.28)', // Light charcoal border
+          borderColor: 'rgba(243, 240, 247, 0.28)', // Light obsidian border
           borderWidth: 1, 
           mixBlendMode: 'normal',
           scale: 1, 
           duration: 0.3 
         });
-        gsap.to(dot, { scale: 1, backgroundColor: '#B59B75', duration: 0.3 });
+        gsap.to(dot, { scale: 1, backgroundColor: '#10B981', duration: 0.3 });
         gsap.to(textEl, { opacity: 0, scale: 0.5, duration: 0.2 });
       }
     };
@@ -172,7 +172,7 @@ const CustomCursor = () => {
       {/* Inner Dot */}
       <div 
         ref={dotRef}
-        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-accent-gold pointer-events-none"
+        className="fixed top-0 left-0 h-1.5 w-1.5 rounded-full bg-accent-green pointer-events-none"
         style={{ transform: 'translate3d(-50%, -50%, 0)' }}
       />
     </div>

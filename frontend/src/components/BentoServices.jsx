@@ -327,17 +327,17 @@ const BentoServices = () => {
     <section 
       ref={containerRef}
       id="services"
-      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#12100d] via-[#14120f] to-[#100f0d] z-10 overflow-hidden"
+      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#0b0b0d] via-dark-card to-dark-bg z-10 overflow-hidden"
     >
       {/* Subtle neutral background glow */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/1 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-green/1 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl">
         {/* Title and description */}
         <div className="bento-title-section flex flex-col md:flex-row items-start justify-between gap-6 mb-16 select-none">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+              <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-green shadow-[0_0_6px_#10B981]" />
               <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
                 CAPABILITIES
               </h2>
@@ -347,7 +347,7 @@ const BentoServices = () => {
                 {splitText("WHAT WE DO")}
               </span>
               <br />
-              <span className="inline-block overflow-hidden pb-1 text-accent-gold">
+              <span className="inline-block overflow-hidden pb-1 text-accent-green">
                 {splitText("BEST")}
               </span>
             </h3>
@@ -365,7 +365,7 @@ const BentoServices = () => {
             ref={card1Ref}
             onMouseMove={(e) => handleCardMouseMove(e, card1Ref, 1)}
             onMouseLeave={() => handleCardMouseLeave(card1Ref, 1)}
-            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-[#1a1815]/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
               transformStyle: "preserve-3d"
@@ -378,7 +378,7 @@ const BentoServices = () => {
             />
             
             <div className="relative z-10 flex items-center justify-between">
-              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-green-dark">
                 <Code className="h-5 w-5" />
               </div>
               <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">[ DEV // LABS ]</span>
@@ -399,14 +399,14 @@ const BentoServices = () => {
             ref={card2Ref}
             onMouseMove={(e) => handleCardMouseMove(e, card2Ref, 2)}
             onMouseLeave={() => handleCardMouseLeave(card2Ref, 2)}
-            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-[#1a1815]/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
               transformStyle: "preserve-3d"
             }}
           >
             <div className="flex items-center justify-between">
-              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-green-dark">
                 <Compass className="h-5 w-5" />
               </div>
               <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">[ IDENTITY // ART ]</span>
@@ -415,8 +415,8 @@ const BentoServices = () => {
             {/* Rotating SVG orbits layout */}
             <div className="my-5 flex items-center justify-center relative h-24 pointer-events-none">
               <div className="absolute h-20 w-20 rounded-full border border-obsidian/5 flex items-center justify-center animate-[spin_16s_linear_infinite]" />
-              <div className="absolute h-14 w-14 rounded-full border border-accent-gold/20 flex items-center justify-center animate-[spin_10s_linear_infinite_reverse]">
-                <div className="h-1.5 w-1.5 rounded-full bg-accent-gold absolute top-0 shadow-[0_0_6px_#B59B75]" />
+              <div className="absolute h-14 w-14 rounded-full border border-accent-green/20 flex items-center justify-center animate-[spin_10s_linear_infinite_reverse]">
+                <div className="h-1.5 w-1.5 rounded-full bg-accent-green absolute top-0 shadow-[0_0_6px_#10B981]" />
               </div>
               <div className="absolute h-8 w-8 rounded-full border border-obsidian/10 animate-[spin_6s_linear_infinite]" />
             </div>
@@ -436,14 +436,14 @@ const BentoServices = () => {
             ref={card3Ref}
             onMouseMove={(e) => handleCardMouseMove(e, card3Ref, 3)}
             onMouseLeave={() => handleCardMouseLeave(card3Ref, 3)}
-            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-[#1a1815]/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            className="relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
               transformStyle: "preserve-3d"
             }}
           >
             <div className="flex items-center justify-between">
-              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-green-dark">
                 <Megaphone className="h-5 w-5" />
               </div>
               <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">[ GROWTH // CODE ]</span>
@@ -457,7 +457,7 @@ const BentoServices = () => {
               </div>
               <div className="h-10 w-px bg-obsidian/10" />
               <div>
-                <p className="text-3xl font-serif font-bold text-accent-gold-dark">+{stats.conversion}%</p>
+                <p className="text-3xl font-serif font-bold text-accent-green-dark">+{stats.conversion}%</p>
                 <p className="text-[9px] text-obsidian/45 tracking-wider mt-1">Conversion</p>
               </div>
             </div>
@@ -477,14 +477,14 @@ const BentoServices = () => {
             ref={card4Ref}
             onMouseMove={(e) => handleCardMouseMove(e, card4Ref, 4)}
             onMouseLeave={() => handleCardMouseLeave(card4Ref, 4)}
-            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-[#1a1815]/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
+            className="md:col-span-2 relative min-h-[300px] flex flex-col justify-between rounded-3xl border border-obsidian/10 bg-dark-card/45 p-8 overflow-hidden group select-none transition-shadow duration-300"
             style={{ 
               boxShadow: 'inset 0 0 30px rgba(0,0,0,0.01)',
               transformStyle: "preserve-3d"
             }}
           >
             <div className="flex items-center justify-between">
-              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+              <div className="bento-icon flex h-10 w-10 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-green-dark">
                 <Eye className="h-5 w-5" />
               </div>
               <span className="font-mono text-[9px] text-obsidian/45 tracking-wider">[ CREATIVE // ART ]</span>

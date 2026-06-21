@@ -96,7 +96,7 @@ const Preloader = ({ onComplete }) => {
     >
       {/* SVG Liquid morph wipe (Colored in Obsidian dark mode curtain) */}
       <svg 
-        className="absolute inset-0 h-full w-full fill-[#12100d] pointer-events-none"
+        className="absolute inset-0 h-full w-full fill-dark-bg pointer-events-none"
         viewBox="0 0 100 100" 
         preserveAspectRatio="none"
       >
@@ -112,13 +112,13 @@ const Preloader = ({ onComplete }) => {
         className="relative z-10 w-full h-full max-w-6xl mx-auto flex flex-col justify-between p-8 md:p-12 text-obsidian select-none"
       >
         {/* Subtle warm golden background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[500px] rounded-full bg-accent-gold/7 blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[500px] rounded-full bg-accent-green/7 blur-[120px] pointer-events-none" />
 
         {/* Top Metadata row */}
         <div className="flex items-center justify-between text-[8px] md:text-[9px] font-bold tracking-[0.35em] text-obsidian/40 uppercase">
           <span>VISN STUDIO // EST. 2026</span>
           <span className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75] animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-green shadow-[0_0_6px_#10B981] animate-pulse" />
             LOADING CREATIVE SUITE
           </span>
         </div>
@@ -129,7 +129,7 @@ const Preloader = ({ onComplete }) => {
           {/* Framed Artwork Display */}
           <div 
             ref={artworkFrameRef}
-            className="relative h-60 w-60 md:h-72 md:w-72 rounded-2xl border border-accent-gold/20 bg-[#181512]/40 overflow-hidden flex items-center justify-center shadow-2xl p-4"
+            className="relative h-60 w-60 md:h-72 md:w-72 rounded-2xl border border-accent-green/20 bg-dark-card/40 overflow-hidden flex items-center justify-center shadow-2xl p-4"
           >
             {/* Fine framing lines */}
             <div className="absolute inset-2 border border-obsidian/5 rounded-xl pointer-events-none" />
@@ -141,7 +141,7 @@ const Preloader = ({ onComplete }) => {
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
               style={{ 
-                filter: "drop-shadow(0 0 15px rgba(181, 155, 117, 0.45))",
+                filter: "drop-shadow(0 0 15px rgba(16, 185, 129, 0.45))",
                 transform: `scale(${0.9 + (count * 0.1) / 100})`,
                 opacity: count >= 5 ? 1 : 0
               }}
@@ -151,7 +151,7 @@ const Preloader = ({ onComplete }) => {
                 cx="50" 
                 cy="50" 
                 r="44" 
-                stroke="#B59B75" 
+                stroke="#10B981" 
                 strokeWidth="1.5" 
                 strokeDasharray="276.46"
                 strokeDashoffset={276.46 - (276.46 * count) / 100}
@@ -168,7 +168,7 @@ const Preloader = ({ onComplete }) => {
                 cx="50" 
                 cy="50" 
                 r="40" 
-                stroke="#B59B75" 
+                stroke="#10B981" 
                 strokeWidth="0.5" 
                 strokeDasharray="2 2" 
                 style={{
@@ -180,7 +180,7 @@ const Preloader = ({ onComplete }) => {
               {/* Precision Axis Lines (fade in) */}
               <line 
                 x1="50" y1="6" x2="50" y2="94" 
-                stroke="#B59B75" 
+                stroke="#10B981" 
                 strokeWidth="0.25" 
                 strokeDasharray="1 2" 
                 style={{
@@ -190,7 +190,7 @@ const Preloader = ({ onComplete }) => {
               />
               <line 
                 x1="6" y1="50" x2="94" y2="50" 
-                stroke="#B59B75" 
+                stroke="#10B981" 
                 strokeWidth="0.25" 
                 strokeDasharray="1 2" 
                 style={{
@@ -214,7 +214,7 @@ const Preloader = ({ onComplete }) => {
               {/* Secondary Inner Lens Path (Gold Accent) */}
               <path 
                 d="M 28 50 C 40 32, 60 32, 72 50 C 60 68, 40 68, 28 50 Z" 
-                stroke="#B59B75" 
+                stroke="#10B981" 
                 strokeWidth="0.75" 
                 style={{
                   opacity: Math.max(0, (count - 50) / 50 * 0.8),
@@ -227,7 +227,7 @@ const Preloader = ({ onComplete }) => {
                 cx="50" 
                 cy="50" 
                 r={Math.max(0, Math.min(11, ((count - 60) / 40) * 11))} 
-                fill="#B59B75" 
+                fill="#10B981" 
                 style={{
                   transition: 'r 300ms ease-out'
                 }}
@@ -236,7 +236,7 @@ const Preloader = ({ onComplete }) => {
               {/* Pupil (4-pointed star in Obsidian dark/background) */}
               <path 
                 d="M 50 43 L 52 48.5 L 57.5 50 L 52 51.5 L 50 57 L 48 51.5 L 42.5 50 L 48 48.5 Z" 
-                fill="#151515" 
+                fill="#08080a" 
                 style={{
                   opacity: Math.max(0, (count - 80) / 20),
                   transition: 'opacity 300ms ease-out'
@@ -248,7 +248,7 @@ const Preloader = ({ onComplete }) => {
           {/* Loader values */}
           <div className="flex flex-col items-center gap-2">
             {/* Rotating terms */}
-            <span className="text-[10px] md:text-xs font-bold tracking-[0.32em] text-accent-gold uppercase h-4">
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.32em] text-accent-green uppercase h-4">
               {words[wordIdx]}
             </span>
 
@@ -257,13 +257,13 @@ const Preloader = ({ onComplete }) => {
               <span className="text-4xl md:text-5xl font-serif font-light tracking-tight text-obsidian">
                 {count.toString().padStart(3, '0')}
               </span>
-              <span className="text-xs font-sans font-bold text-accent-gold % ml-1">%</span>
+              <span className="text-xs font-sans font-bold text-accent-green % ml-1">%</span>
             </div>
 
             {/* Fine loading bar indicator */}
             <div className="w-32 h-px bg-obsidian/10 mt-3 relative overflow-hidden rounded-full">
               <div 
-                className="absolute top-0 left-0 h-full bg-accent-gold transition-all duration-150 ease-out"
+                className="absolute top-0 left-0 h-full bg-accent-green transition-all duration-150 ease-out"
                 style={{ width: `${count}%` }}
               />
             </div>

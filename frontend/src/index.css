@@ -3,17 +3,17 @@
 @theme {
   --font-serif: 'Fraunces', serif;
   --font-sans: 'Outfit', sans-serif;
-  --color-accent-gold: #B59B75;
-  --color-accent-gold-dark: #9E825A;
-  --color-dark-bg: #0a0a0a;
-  --color-dark-card: #1b1814;
-  --color-obsidian: #f5f2eb;
+  --color-accent-green: #10B981;
+  --color-accent-green-dark: #065f46;
+  --color-dark-bg: #08080a;
+  --color-dark-card: #0d0d0f;
+  --color-obsidian: #f4f4f6;
 }
 
 @layer base {
   html, body {
-    background-color: #12100d;
-    color: #f5f2eb;
+    background-color: var(--color-dark-bg);
+    color: var(--color-obsidian);
     font-family: var(--font-sans);
     margin: 0;
     padding: 0;
@@ -70,30 +70,30 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #12100d;
+    background: var(--color-dark-bg);
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(245, 242, 235, 0.15);
+    background: rgba(243, 240, 247, 0.15);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #B59B75;
+    background: var(--color-accent-green);
   }
 }
 
 /* Custom Utilities and Animations */
 @utility text-stroke {
-  -webkit-text-stroke: 1px rgba(245, 242, 235, 0.18);
+  -webkit-text-stroke: 1px rgba(243, 240, 247, 0.18);
   color: transparent;
 }
 
 @utility text-stroke-glow {
-  -webkit-text-stroke: 1px rgba(181, 155, 117, 0.4);
+  -webkit-text-stroke: 1px rgba(16, 185, 129, 0.4);
   color: transparent;
 }
 
-@utility text-glow-gold {
-  text-shadow: 0 0 10px rgba(181, 155, 117, 0.15);
+@utility text-glow-green {
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
 }
 
 @utility bg-grid-pattern {

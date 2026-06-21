@@ -14,13 +14,13 @@ const projects = [
     year: "2026",
     cardTagline: "CLOUD AUTOMATION",
     tagline: "Building neural intelligence tools for enterprise cloud systems.",
-    icon: <Cpu className="h-5 w-5 text-accent-gold-dark" />,
-    color: "from-accent-gold/20 to-accent-gold-dark/5",
+    icon: <Cpu className="h-5 w-5 text-accent-green-dark" />,
+    color: "from-accent-green/20 to-accent-green-dark/5",
     image: "/images/neural-net.png",
     service: "AI Platform Development",
     outcome: "+43% Cloud Efficiency",
     mobileTheme: {
-      bg: "bg-linear-to-b from-stone-900 to-black",
+      bg: "bg-linear-to-b from-[#161619] to-[#08080a]",
       logo: "NN",
       tagline: "Neural intelligence tools for cloud systems.",
       cta: "EXPLORE PLATFORM"
@@ -34,13 +34,13 @@ const projects = [
     year: "2025",
     cardTagline: "PHYSICAL-DIGITAL DUALITY",
     tagline: "Sculpting immersive physical-digital brand experiences.",
-    icon: <Orbit className="h-5 w-5 text-accent-gold-dark" />,
-    color: "from-accent-gold-dark/20 to-stone-400/5",
+    icon: <Orbit className="h-5 w-5 text-accent-green-dark" />,
+    color: "from-accent-green-dark/20 to-accent-green/5",
     image: "/images/kinetic-labs.png",
     service: "WebSocket & 3D Interactive Design",
     outcome: "Real-time 3D Syncing",
     mobileTheme: {
-      bg: "bg-linear-to-b from-amber-955 via-stone-900 to-stone-950",
+      bg: "bg-linear-to-b from-[#161619] via-[#0d0d0f] to-[#08080a]",
       logo: "KL",
       tagline: "Sculpting immersive physical-digital experiences.",
       cta: "ENTER EXHIBIT"
@@ -54,13 +54,13 @@ const projects = [
     year: "2026",
     cardTagline: "NEURAL FEED MARKETING",
     tagline: "Generating explosive viral campaigns across neural feeds.",
-    icon: <Radio className="h-5 w-5 text-accent-gold-dark" />,
-    color: "from-amber-600/15 to-accent-gold/5",
+    icon: <Radio className="h-5 w-5 text-accent-green-dark" />,
+    color: "from-accent-green-dark/15 to-accent-green/5",
     image: "/images/eclipse-corp.png",
     service: "Viral Funnels & Content Strategy",
     outcome: "+260% Viral Reach",
     mobileTheme: {
-      bg: "bg-linear-to-b from-[#2c1a04] to-[#0a0500]",
+      bg: "bg-linear-to-b from-[#161619] to-[#08080a]",
       logo: "EC",
       tagline: "Generating explosive viral campaigns across feeds.",
       cta: "VIEW FUNNELS"
@@ -74,13 +74,13 @@ const projects = [
     year: "2026",
     cardTagline: "SMART CONTRACT EXPLORATION",
     tagline: "Forging next-generation smart contract visual explorers.",
-    icon: <Layers className="h-5 w-5 text-accent-gold-dark" />,
-    color: "from-stone-500/15 to-accent-gold-dark/5",
+    icon: <Layers className="h-5 w-5 text-accent-green-dark" />,
+    color: "from-accent-green-dark/15 to-accent-green/5",
     image: "/images/cyber-dock.png",
     service: "Web3 Contract Explorer UI",
     outcome: "Topographic Node Topology",
     mobileTheme: {
-      bg: "bg-linear-to-b from-slate-900 to-zinc-950",
+      bg: "bg-linear-to-b from-[#161619] to-[#08080a]",
       logo: "CD",
       tagline: "Next-gen smart contract visual explorers.",
       cta: "LAUNCH APP"
@@ -265,11 +265,11 @@ const HorizontalProjects = () => {
   return (
     <div className="w-full">
       {/* 1. Header Section - Normal document scroll flow */}
-      <div className="w-full relative overflow-hidden bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#131313] pt-24 pb-8 md:pt-32 md:pb-10 flex flex-col items-center text-center px-6">
+      <div className="w-full relative overflow-hidden bg-linear-to-b from-dark-bg via-dark-card to-dark-bg pt-24 pb-8 md:pt-32 md:pb-10 flex flex-col items-center text-center px-6">
         {/* Subtle warm golden background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-3xl aspect-2/1 rounded-full bg-accent-gold/2.5 blur-[100px] pointer-events-none -z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-3xl aspect-2/1 rounded-full bg-accent-green/2.5 blur-[100px] pointer-events-none -z-10" />
 
-        <span className="reveal-meta text-[10px] font-sans font-bold tracking-[0.25em] text-accent-gold-dark uppercase">
+        <span className="reveal-meta text-[10px] font-sans font-bold tracking-[0.25em] text-accent-green-dark uppercase">
           FEATURED WORK
         </span>
         <h2 
@@ -279,7 +279,7 @@ const HorizontalProjects = () => {
           <span className="inline-block overflow-hidden pb-1">
             {splitText("Work That Speaks For Itself")}
           </span>
-          <span className="inline-block overflow-hidden pb-1 text-accent-gold-dark">
+          <span className="inline-block overflow-hidden pb-1 text-accent-green-dark">
             {splitText(".")}
           </span>
         </h2>
@@ -288,9 +288,9 @@ const HorizontalProjects = () => {
         </p>
         <button 
           onClick={handleViewAllClick}
-          className="reveal-meta mt-6 flex items-center gap-2 px-6 py-2.5 rounded-full border border-obsidian/15 hover:border-accent-gold text-[10px] font-sans font-bold tracking-wider text-obsidian hover:text-accent-gold-dark uppercase transition-all duration-300 hover:bg-accent-gold/5 cursor-pointer"
+          className="reveal-meta mt-6 flex items-center gap-2 px-6 py-2.5 rounded-full border border-obsidian/15 hover:border-accent-green text-[10px] font-sans font-bold tracking-wider text-obsidian hover:text-accent-green-dark uppercase transition-all duration-300 hover:bg-accent-green/5 cursor-pointer"
         >
-          View All Works <ArrowRight className="h-3 w-3 text-accent-gold-dark" />
+          View All Works <ArrowRight className="h-3 w-3 text-accent-green-dark" />
         </button>
       </div>
 
@@ -298,7 +298,7 @@ const HorizontalProjects = () => {
       <div 
         ref={containerRef}
         id="projects"
-        className="relative h-screen w-full overflow-hidden bg-[#131313]"
+        className="relative h-screen w-full overflow-hidden bg-dark-bg"
       >
         {/* Horizontal Scroll Track Wrapper */}
         <div 
@@ -310,7 +310,7 @@ const HorizontalProjects = () => {
           {projects.map((project, idx) => (
             <div 
               key={project.id}
-              className="project-card relative shrink-0 w-screen h-screen flex flex-col md:flex-row justify-between bg-[#131313] pt-24 pb-24 md:pt-32 md:pb-28 px-8 md:px-24 overflow-hidden group select-none cursor-default border-r border-white/5"
+              className="project-card relative shrink-0 w-screen h-screen flex flex-col md:flex-row justify-between bg-dark-bg pt-24 pb-24 md:pt-32 md:pb-28 px-8 md:px-24 overflow-hidden group select-none cursor-default border-r border-white/5"
               style={{ 
                 opacity: idx === currentCardIndex ? 1 : 0.4,
                 scale: idx === currentCardIndex ? 1 : 0.98,
@@ -323,21 +323,21 @@ const HorizontalProjects = () => {
               
               {/* Left Column: Information */}
               <div className="w-full md:w-[45%] flex flex-col justify-start h-full whitespace-normal mt-4 md:mt-10">
-                <div className="text-[12px] font-sans font-bold tracking-wider text-accent-gold-dark mb-4">
+                <div className="text-[12px] font-sans font-bold tracking-wider text-accent-green-dark mb-4">
                   {project.number}
                 </div>
                 
                 {/* One-Line Classy Serif Title */}
-                <h4 className="text-3xl md:text-4xl lg:text-5xl font-serif font-black leading-tight text-white uppercase tracking-wide group-hover:text-accent-gold transition-colors duration-350 whitespace-nowrap overflow-hidden text-ellipsis">
+                <h4 className="text-3xl md:text-4xl lg:text-5xl font-serif font-black leading-tight text-white uppercase tracking-wide group-hover:text-accent-green transition-colors duration-350 whitespace-nowrap overflow-hidden text-ellipsis">
                   {project.title}
                 </h4>
 
-                <div className="text-[10px] font-sans font-bold tracking-[0.25em] uppercase text-accent-gold mt-2 block">
+                <div className="text-[10px] font-sans font-bold tracking-[0.25em] uppercase text-accent-green mt-2 block">
                   {project.cardTagline}
                 </div>
 
                 {/* Thin gold divider */}
-                <div className="w-14 h-[1.5px] bg-accent-gold/30 my-6" />
+                <div className="w-14 h-[1.5px] bg-accent-green/30 my-6" />
 
                 <p className="max-w-md text-xs md:text-sm text-stone-400 font-sans leading-relaxed font-light">
                   {project.tagline}
@@ -346,7 +346,7 @@ const HorizontalProjects = () => {
                 {/* Specs block inside card */}
                 <div className="my-6 space-y-4">
                   <div className="flex items-center gap-4">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-accent-gold">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-accent-green">
                       <Briefcase className="h-4 w-4" />
                     </div>
                     <div>
@@ -360,14 +360,14 @@ const HorizontalProjects = () => {
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-accent-gold">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-accent-green">
                       <TrendingUp className="h-4 w-4" />
                     </div>
                     <div>
                       <span className="block text-[8px] font-sans font-bold tracking-widest text-stone-500 uppercase">
                         OUTCOME
                       </span>
-                      <span className="text-xs md:text-sm font-serif italic text-accent-gold font-normal">
+                      <span className="text-xs md:text-sm font-serif italic text-accent-green font-normal">
                         {project.outcome}
                       </span>
                     </div>
@@ -376,7 +376,7 @@ const HorizontalProjects = () => {
 
                 {/* VIEW PROJECT Outline Pill Button with Direct Hover Actions */}
                 <div className="mt-5 flex">
-                  <button className="group/btn flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 group-hover:border-accent-gold group-hover:bg-accent-gold/10 text-[9px] md:text-[10px] font-sans font-bold tracking-widest text-white group-hover:text-accent-gold uppercase transition-all duration-300 hover:bg-accent-gold! hover:text-black! hover:border-accent-gold! hover:scale-105 hover:shadow-[0_0_15px_rgba(212,175,55,0.45)] active:scale-95 cursor-pointer">
+                  <button className="group/btn flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 group-hover:border-accent-green group-hover:bg-accent-green/10 text-[9px] md:text-[10px] font-sans font-bold tracking-widest text-white group-hover:text-accent-green uppercase transition-all duration-300 hover:bg-accent-green! hover:text-black! hover:border-accent-green! hover:scale-105 hover:shadow-[0_0_15px_rgba(16,185,129,0.45)] active:scale-95 cursor-pointer">
                     View Project <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1 group-hover/btn:translate-x-2" />
                   </button>
                 </div>
@@ -412,7 +412,7 @@ const HorizontalProjects = () => {
                   <div className={`relative flex-1 flex flex-col justify-between p-3 select-none text-white ${project.mobileTheme.bg}`}>
                     {/* Mini-app Header */}
                     <div className="flex items-center justify-between text-[6px] font-sans font-bold tracking-widest opacity-80 pt-0.5">
-                      <span className="font-serif italic font-black text-[8.5px] text-accent-gold">{project.mobileTheme.logo}</span>
+                      <span className="font-serif italic font-black text-[8.5px] text-accent-green">{project.mobileTheme.logo}</span>
                       <div className="flex flex-col gap-0.5 w-3.5 items-end">
                         <div className="h-[1.5px] w-full bg-white rounded-full" />
                         <div className="h-[1.5px] w-2/3 bg-white rounded-full" />
@@ -421,9 +421,9 @@ const HorizontalProjects = () => {
 
                     {/* Mini-app content */}
                     <div className="my-auto flex flex-col items-center text-center">
-                      <div className="text-[5.5px] font-sans tracking-[0.2em] uppercase text-accent-gold mb-0.5">{project.cardTagline}</div>
+                      <div className="text-[5.5px] font-sans tracking-[0.2em] uppercase text-accent-green mb-0.5">{project.cardTagline}</div>
                       <h5 className="font-serif text-[10px] font-bold leading-tight tracking-wide mb-0.5 uppercase">{project.title}</h5>
-                      <div className="w-3 h-[0.5px] bg-accent-gold/40 my-0.5" />
+                      <div className="w-3 h-[0.5px] bg-accent-green/40 my-0.5" />
                       <p className="text-[5px] font-sans text-stone-300 max-w-[95%] leading-relaxed">{project.mobileTheme.tagline}</p>
                     </div>
 
@@ -444,7 +444,7 @@ const HorizontalProjects = () => {
         {currentCardIndex > 0 && (
           <button 
             onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-            className="absolute left-6 md:left-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-dark-card/90 border border-obsidian/10 text-obsidian shadow-lg hover:bg-accent-gold/10 hover:border-accent-gold hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
+            className="absolute left-6 md:left-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-dark-card/90 border border-obsidian/10 text-obsidian shadow-lg hover:bg-accent-green/10 hover:border-accent-green hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
           >
             <ChevronLeft className="h-6 w-6 text-current" />
           </button>
@@ -453,7 +453,7 @@ const HorizontalProjects = () => {
         {currentCardIndex < projects.length - 1 && (
           <button 
             onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            className="absolute right-6 md:left-auto md:right-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-dark-card/90 border border-obsidian/10 text-obsidian shadow-lg hover:bg-accent-gold/10 hover:border-accent-gold hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
+            className="absolute right-6 md:left-auto md:right-12 top-[46%] md:top-[42%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-dark-card/90 border border-obsidian/10 text-obsidian shadow-lg hover:bg-accent-green/10 hover:border-accent-green hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer pointer-events-auto"
           >
             <ChevronRight className="h-6 w-6 text-current" />
           </button>
@@ -465,7 +465,7 @@ const HorizontalProjects = () => {
           <div className="flex-1 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
             <div 
               ref={progressFillRef}
-              className="absolute top-0 left-0 h-full w-full bg-accent-gold origin-left scale-x-0"
+              className="absolute top-0 left-0 h-full w-full bg-accent-green origin-left scale-x-0"
             />
           </div>
           <span className="font-mono text-[9px] text-white/50">[ {projects.length.toString().padStart(2, '0')} ]</span>

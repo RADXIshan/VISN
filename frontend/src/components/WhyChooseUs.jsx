@@ -203,10 +203,10 @@ const WhyChooseUs = () => {
     <section
       ref={containerRef}
       id="why-visn"
-      className="relative min-h-screen w-full px-6 py-32 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] z-10 overflow-hidden"
+      className="relative min-h-screen w-full px-6 py-32 md:px-12 bg-linear-to-b from-dark-bg via-dark-card to-dark-bg z-10 overflow-hidden"
     >
       {/* Background radial highlight */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-green/2 blur-[150px] pointer-events-none" />
 
       {/* Hairline top border in light mode */}
       <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-obsidian/10 to-transparent" />
@@ -218,7 +218,7 @@ const WhyChooseUs = () => {
           
           {/* Top Left Doodle */}
           <div className="decorative-doodle absolute -left-12 top-4 hidden md:block">
-            <svg viewBox="0 0 40 40" className="w-10 h-10 text-accent-gold stroke-current" fill="none" strokeWidth="2.5" strokeLinecap="round">
+            <svg viewBox="0 0 40 40" className="w-10 h-10 text-accent-green stroke-current" fill="none" strokeWidth="2.5" strokeLinecap="round">
               <path d="M 10,25 Q 15,15 25,10" />
               <path d="M 20,30 Q 25,22 35,20" />
               <path d="M 8,15 Q 18,12 22,2" />
@@ -233,7 +233,7 @@ const WhyChooseUs = () => {
           </div>
 
           <div className="flex items-center gap-3 mb-4 why-reveal-item">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-green shadow-[0_0_6px_#10B981]" />
             <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
               WHY CHOOSE VISN
             </h2>
@@ -244,7 +244,7 @@ const WhyChooseUs = () => {
               {splitText("Everything You Need,")}
             </span>
             <br />
-            <span className="inline-block overflow-hidden pb-1 text-accent-gold">
+            <span className="inline-block overflow-hidden pb-1 text-accent-green">
               {splitText("Nothing You Have To Chase.")}
             </span>
           </h3>
@@ -255,18 +255,18 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Table container for Desktop */}
-        <div className="desktop-table hidden lg:block relative mt-12 bg-[#14120f] rounded-3xl border border-obsidian/10 shadow-xs overflow-hidden">
+        <div className="desktop-table hidden lg:block relative mt-12 bg-dark-card rounded-3xl border border-obsidian/10 shadow-xs overflow-hidden">
           
           {/* 3 Column Grid Header */}
-          <div className="grid grid-cols-12 border-b border-obsidian/10 py-7 items-center bg-[#14120f]">
+          <div className="grid grid-cols-12 border-b border-obsidian/10 py-7 items-center bg-dark-card">
             {/* Category Header (FEATURES) */}
             <div className="col-span-4 pl-10 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-obsidian/40">
-              FEATURES
+               FEATURES
             </div>
             
             {/* VISN Header */}
             <div className="col-span-4 text-center px-4 flex flex-col items-center">
-              <div className="px-6 py-2 rounded-full bg-accent-gold/10 border border-accent-gold text-accent-gold-dark font-sans text-xs font-bold uppercase tracking-[0.2em] select-none scale-100 shadow-[0_0_15px_rgba(181,155,117,0.1)]">
+              <div className="px-6 py-2 rounded-full bg-accent-green/10 border border-accent-green text-accent-green-dark font-sans text-xs font-bold uppercase tracking-[0.2em] select-none scale-100 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
                 VISN.
               </div>
             </div>
@@ -281,7 +281,7 @@ const WhyChooseUs = () => {
           <div className="relative">
             
             {/* Vertical HIGHLIGHT visual overlay for VISN column (kept black/dark) */}
-            <div className="visn-column-highlight absolute top-0 bottom-0 left-[33.33%] w-[33.33%] border-l border-r border-white/5 bg-[#0a0807]/40 -z-10 transition-all duration-700" />
+            <div className="visn-column-highlight absolute top-0 bottom-0 left-[33.33%] w-[33.33%] border-l border-r border-white/5 bg-[#050506]/40 -z-10 transition-all duration-700" />
 
             {categories.map((cat) => {
               const Icon = cat.icon;
@@ -292,7 +292,7 @@ const WhyChooseUs = () => {
                 >
                   {/* Feature Title and Icon */}
                   <div className="col-span-4 pl-10 pr-6 flex items-center gap-5">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-green-dark">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-obsidian">
@@ -302,7 +302,7 @@ const WhyChooseUs = () => {
 
                   {/* VISN cell */}
                   <div className="col-span-4 px-10 flex items-start gap-4">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-gold text-white shadow-[0_2px_8px_rgba(181,155,117,0.3)] mt-0.5">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-green text-white shadow-[0_2px_8px_rgba(16,185,129,0.3)] mt-0.5">
                       <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
@@ -347,11 +347,11 @@ const WhyChooseUs = () => {
             return (
               <div 
                 key={cat.id} 
-                className="rounded-3xl border border-obsidian/10 bg-[#14120f] p-7 flex flex-col gap-5 shadow-xs"
+                className="rounded-3xl border border-obsidian/10 bg-dark-card p-7 flex flex-col gap-5 shadow-xs"
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-4 border-b border-obsidian/5 pb-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-gold-dark">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-obsidian/5 border border-obsidian/10 text-accent-green-dark">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-obsidian">
@@ -360,14 +360,14 @@ const WhyChooseUs = () => {
                 </div>
 
                 {/* VISN Block (Highlighted) */}
-                <div className="rounded-2xl border border-white/5 bg-[#1c1814]/70 p-5 flex items-start gap-3 shadow-xs">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-gold text-white mt-0.5 shadow-[0_2px_8px_rgba(181,155,117,0.25)]">
+                <div className="rounded-2xl border border-white/5 bg-[#121215]/70 p-5 flex items-start gap-3 shadow-xs">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-green text-white mt-0.5 shadow-[0_2px_8px_rgba(16,185,129,0.25)]">
                     <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </span>
                   <div>
-                    <span className="text-[9px] font-sans font-bold tracking-[0.15em] text-accent-gold-dark uppercase block mb-1">
+                    <span className="text-[9px] font-sans font-bold tracking-[0.15em] text-accent-green-dark uppercase block mb-1">
                       VISN
                     </span>
                     <span className="font-sans font-semibold text-obsidian text-[13px] leading-tight block">
@@ -405,7 +405,7 @@ const WhyChooseUs = () => {
 
         {/* Bottom Left Doodle */}
         <div className="decorative-doodle absolute -left-14 -bottom-10 hidden md:block">
-          <svg viewBox="0 0 50 50" className="w-12 h-12 text-accent-gold stroke-current opacity-70" fill="none" strokeWidth="2" strokeLinecap="round">
+          <svg viewBox="0 0 50 50" className="w-12 h-12 text-accent-green stroke-current opacity-70" fill="none" strokeWidth="2" strokeLinejoin="round">
             <path d="M 15,20 L 15,28 M 11,24 L 19,24" />
             <path d="M 35,15 L 35,21 M 32,18 L 38,18" />
             <path d="M 25,35 L 25,43 M 21,39 L 29,39" strokeWidth="1.5" />
@@ -414,7 +414,7 @@ const WhyChooseUs = () => {
 
         {/* Bottom Right Doodle with curvature */}
         <div className="decorative-doodle absolute right-6 -bottom-16 hidden md:block select-none pointer-events-none">
-          <svg viewBox="0 0 80 50" className="w-20 h-12 text-accent-gold-dark/45 stroke-current" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg viewBox="0 0 80 50" className="w-20 h-12 text-accent-green-dark/45 stroke-current" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M 70,10 Q 55,45 25,35" />
             <path d="M 32,41 L 23,35 L 31,29" />
           </svg>

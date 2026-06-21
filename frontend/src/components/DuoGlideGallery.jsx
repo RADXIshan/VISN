@@ -91,17 +91,17 @@ const DuoGlideGallery = () => {
     <section 
       ref={containerRef}
       id="manifesto-gallery"
-      className="relative min-h-[140vh] w-full px-6 py-32 md:px-12 bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] overflow-hidden flex flex-col justify-center select-none z-10"
+      className="relative min-h-[140vh] w-full px-6 py-32 md:px-12 bg-linear-to-b from-dark-bg via-dark-card to-dark-bg overflow-hidden flex flex-col justify-center select-none z-10"
     >
       {/* Background radial highlight */}
-      <div className="absolute top-[40%] right-[20%] -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2.0 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[40%] right-[20%] -z-10 h-[600px] w-[600px] rounded-full bg-accent-green/2.0 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
         {/* Left column: Sticky manifesto text */}
         <div className="lg:col-span-4 flex flex-col gap-6 lg:pr-8">
           <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-green shadow-[0_0_6px_#10B981]" />
             <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
               02 // MANIFESTO & GLIDE
             </h2>
@@ -112,7 +112,7 @@ const DuoGlideGallery = () => {
               {splitText("THE ART OF")}
             </span>
             <br />
-            <span className="inline-block overflow-hidden pb-1 text-accent-gold">
+            <span className="inline-block overflow-hidden pb-1 text-accent-green">
               {splitText("CONTRAST")}
             </span>
           </h3>
@@ -123,7 +123,7 @@ const DuoGlideGallery = () => {
 
           <div className="border-t border-obsidian/10 pt-6 mt-4 hidden lg:block">
             <p className="text-[8.5px] font-mono text-obsidian/40 uppercase tracking-widest">[ VISUAL METRICS ]</p>
-            <p className="text-[11px] font-serif italic text-accent-gold-dark mt-2 font-medium">
+            <p className="text-[11px] font-serif italic text-accent-green-dark mt-2 font-medium">
               Gliding ratio: 1.15x counter-parallax
             </p>
           </div>
@@ -146,19 +146,19 @@ const DuoGlideGallery = () => {
                 <svg className="w-32 h-32 md:w-44 md:h-44 text-obsidian/85" viewBox="0 0 100 100" fill="none">
                   {/* Grid layout */}
                   <rect x="10" y="10" width="80" height="80" stroke="currentColor" strokeWidth="0.4" strokeDasharray="2 2" />
-                  <circle cx="50" cy="50" r="30" stroke="#B59B75" strokeWidth="0.8" />
+                  <circle cx="50" cy="50" r="30" stroke="#10B981" strokeWidth="0.8" />
                   <line x1="50" y1="5" x2="50" y2="95" stroke="currentColor" strokeWidth="0.4" />
                   <line x1="5" y1="50" x2="95" y2="50" stroke="currentColor" strokeWidth="0.4" />
                   {/* Golden Ratio squares */}
-                  <rect x="20" y="20" width="60" height="60" stroke="#B59B75" strokeWidth="0.3" strokeDasharray="1 1" />
-                  <circle cx="50" cy="50" r="1.5" fill="#B59B75" />
+                  <rect x="20" y="20" width="60" height="60" stroke="#10B981" strokeWidth="0.3" strokeDasharray="1 1" />
+                  <circle cx="50" cy="50" r="1.5" fill="#10B981" />
                   {/* Typography marker */}
                   <text x="14" y="22" className="text-[3px] font-mono fill-obsidian/40 tracking-widest">PROP: 1.618</text>
-                  <text x="14" y="86" className="text-[3px] font-serif italic fill-accent-gold-dark font-black">VISN</text>
+                  <text x="14" y="86" className="text-[3px] font-serif italic fill-accent-green-dark font-black">VISN</text>
                 </svg>
               </div>
 
-              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-gold-dark uppercase mt-2">
+              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-green-dark uppercase mt-2">
                 STRUCTURE // SCALE
               </div>
             </div>
@@ -171,7 +171,7 @@ const DuoGlideGallery = () => {
               </div>
               
               <div className="my-auto flex items-center justify-center">
-                <svg className="w-32 h-32 md:w-44 md:h-44 text-accent-gold-dark" viewBox="0 0 100 100" fill="none">
+                <svg className="w-32 h-32 md:w-44 md:h-44 text-accent-green-dark" viewBox="0 0 100 100" fill="none">
                   {/* Golden Spiral Path */}
                   <path d="M 50,50 A 2,2 0 0,0 48,50 A 4,4 0 0,0 52,50 A 8,8 0 0,0 44,50 A 16,16 0 0,0 60,50 A 32,32 0 0,0 28,50 A 64,64 0 0,0 92,50" stroke="currentColor" strokeWidth="0.75" strokeLinecap="round" />
                   {/* Cosmic coordinates */}
@@ -182,7 +182,7 @@ const DuoGlideGallery = () => {
                 </svg>
               </div>
 
-              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-gold-dark uppercase mt-2">
+              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-green-dark uppercase mt-2">
                 NATURAL GROWTH
               </div>
             </div>
@@ -202,7 +202,7 @@ const DuoGlideGallery = () => {
                 </p>
               </div>
 
-              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-gold-dark uppercase mt-2">
+              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-green-dark uppercase mt-2">
                 SERIF SYSTEM
               </div>
             </div>
@@ -225,12 +225,12 @@ const DuoGlideGallery = () => {
                   <path d="M25,85 C30,65 35,45 45,35 C55,25 65,30 70,20 C72,15 70,10 65,10" stroke="currentColor" strokeWidth="0.85" strokeLinecap="round" />
                   <path d="M45,35 C42,48 38,62 35,85" stroke="currentColor" strokeWidth="0.6" strokeDasharray="1 1.5" />
                   {/* Decorative background sun */}
-                  <circle cx="68" cy="22" r="12" fill="#B59B75" fillOpacity="0.12" stroke="#B59B75" strokeWidth="0.4" />
-                  <line x1="68" y1="5" x2="68" y2="40" stroke="#B59B75" strokeWidth="0.25" strokeDasharray="2 2" />
+                  <circle cx="68" cy="22" r="12" fill="#10B981" fillOpacity="0.12" stroke="#10B981" strokeWidth="0.4" />
+                  <line x1="68" y1="5" x2="68" y2="40" stroke="#10B981" strokeWidth="0.25" strokeDasharray="2 2" />
                 </svg>
               </div>
 
-              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-gold-dark uppercase mt-2">
+              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-green-dark uppercase mt-2">
                 HUMAN CONTOUR
               </div>
             </div>
@@ -246,17 +246,17 @@ const DuoGlideGallery = () => {
                 <svg className="w-32 h-32 md:w-44 md:h-44 text-obsidian" viewBox="0 0 100 100" fill="none">
                   <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="0.35" />
                   <circle cx="50" cy="50" r="28" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 2" />
-                  <circle cx="50" cy="50" r="16" stroke="#B59B75" strokeWidth="0.6" />
+                  <circle cx="50" cy="50" r="16" stroke="#10B981" strokeWidth="0.6" />
                   {/* Orbits vectors */}
                   <line x1="12" y1="50" x2="88" y2="50" stroke="currentColor" strokeWidth="0.3" />
                   <line x1="50" y1="12" x2="50" y2="88" stroke="currentColor" strokeWidth="0.3" />
-                  <circle cx="50" cy="12" r="2.5" fill="#B59B75" />
+                  <circle cx="50" cy="12" r="2.5" fill="#10B981" />
                   <circle cx="78" cy="50" r="2" fill="currentColor" />
-                  <circle cx="50" cy="66" r="1.5" fill="#B59B75" />
+                  <circle cx="50" cy="66" r="1.5" fill="#10B981" />
                 </svg>
               </div>
 
-              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-gold-dark uppercase mt-2">
+              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-green-dark uppercase mt-2">
                 ORBITAL VECTORS
               </div>
             </div>
@@ -269,7 +269,7 @@ const DuoGlideGallery = () => {
               </div>
               
               <div className="my-auto flex items-center justify-center">
-                <svg className="w-32 h-32 md:w-44 md:h-44 text-accent-gold-dark" viewBox="0 0 100 100" fill="none">
+                <svg className="w-32 h-32 md:w-44 md:h-44 text-accent-green-dark" viewBox="0 0 100 100" fill="none">
                   {/* Star nodes */}
                   <g stroke="#151515" strokeWidth="0.4">
                     <line x1="20" y1="20" x2="45" y2="35" />
@@ -279,16 +279,16 @@ const DuoGlideGallery = () => {
                     <line x1="20" y1="20" x2="15" y2="60" />
                   </g>
                   {/* Stars circles */}
-                  <circle cx="20" cy="20" r="2.5" fill="#B59B75" />
+                  <circle cx="20" cy="20" r="2.5" fill="#10B981" />
                   <circle cx="45" cy="35" r="3" fill="#151515" />
-                  <circle cx="70" cy="25" r="2" fill="#B59B75" />
-                  <circle cx="50" cy="70" r="3.5" fill="#B59B75" />
+                  <circle cx="70" cy="25" r="2" fill="#10B981" />
+                  <circle cx="50" cy="70" r="3.5" fill="#10B981" />
                   <circle cx="80" cy="80" r="2.5" fill="#151515" />
-                  <circle cx="15" cy="60" r="1.5" fill="#B59B75" />
+                  <circle cx="15" cy="60" r="1.5" fill="#10B981" />
                 </svg>
               </div>
 
-              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-gold-dark uppercase mt-2">
+              <div className="text-[9px] font-bold tracking-[0.2em] text-accent-green-dark uppercase mt-2">
                 CELESTIAL CHART
               </div>
             </div>

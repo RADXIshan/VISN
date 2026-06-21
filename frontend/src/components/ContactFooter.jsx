@@ -137,9 +137,9 @@ const ContactFooter = () => {
     <section 
       ref={containerRef}
       id="contact"
-      className="relative w-full bg-linear-to-b from-[#12100d] via-[#1c1813] to-[#12100d] pt-24 pb-12 px-6 md:px-12 overflow-hidden z-10"
+      className="relative w-full bg-linear-to-b from-[#0b0b0d] via-dark-card to-dark-bg pt-24 pb-12 px-6 md:px-12 overflow-hidden z-10"
     >
-      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/2 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-green/2 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">
@@ -148,7 +148,7 @@ const ContactFooter = () => {
           <div ref={leftColRef} className="col-span-1 lg:col-span-5 flex flex-col justify-between select-none">
             <div>
               <div className="contact-title flex items-center gap-3 mb-5">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-accent-green shadow-[0_0_6px_#10B981]" />
                 <h2 className="text-[10px] font-serif font-bold uppercase tracking-[0.3em] text-obsidian/50">
                   CONNECT WITH US
                 </h2>
@@ -158,7 +158,7 @@ const ContactFooter = () => {
                   {splitText("START")}
                 </span>
                 <br />
-                <span className="inline-block overflow-hidden pb-1 text-accent-gold">
+                <span className="inline-block overflow-hidden pb-1 text-accent-green">
                   {splitText("PROJECT")}
                 </span>
               </h3>
@@ -170,15 +170,15 @@ const ContactFooter = () => {
             {/* Direct details formatted cleanly using typography */}
             <div className="flex flex-col gap-8 text-obsidian/80">
               <div className="contact-block flex flex-col gap-1.5">
-                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-gold uppercase">[ INQUIRIES ]</span>
-                <a href="mailto:hello@visn.agency" className="text-lg font-serif font-light text-obsidian hover:text-accent-gold transition-colors cursor-none inline-block">ishanroy3118107@gmail.com</a>
+                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-green uppercase">[ INQUIRIES ]</span>
+                <a href="mailto:hello@visn.agency" className="text-lg font-serif font-light text-obsidian hover:text-accent-green transition-colors cursor-none inline-block">ishanroy3118107@gmail.com</a>
               </div>
               <div className="contact-block flex flex-col gap-1.5">
-                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-gold uppercase">[ HOTLINE ]</span>
-                <a href="tel:+15559092026" className="text-lg font-serif font-light text-obsidian hover:text-accent-gold transition-colors cursor-none inline-block">+91 84201 39900</a>
+                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-green uppercase">[ HOTLINE ]</span>
+                <a href="tel:+15559092026" className="text-lg font-serif font-light text-obsidian hover:text-accent-green transition-colors cursor-none inline-block">+91 84201 39900</a>
               </div>
               <div className="contact-block flex flex-col gap-1.5">
-                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-gold uppercase">[ CODES & ORIGIN ]</span>
+                <span className="text-[8px] font-serif font-bold tracking-[0.25em] text-accent-green uppercase">[ CODES & ORIGIN ]</span>
                 <span className="text-lg font-serif font-light italic text-obsidian/75">Kolkata, West Bengal</span>
               </div>
             </div>
@@ -189,32 +189,32 @@ const ContactFooter = () => {
             <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8">
               
               {/* Form Input 1 */}
-              <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-gold transition-colors duration-500 pb-2">
-                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-gold uppercase">Your Name</label>
+              <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-green transition-colors duration-500 pb-2">
+                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-green uppercase">Your Name</label>
                 <input 
                   type="text" 
                   required
                   placeholder="e.g. John Doe"
                   className="w-full bg-transparent py-1 text-sm font-sans font-light text-obsidian placeholder-obsidian/20 focus:outline-none rounded-none"
                 />
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent-gold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent-green transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:w-full" />
               </div>
 
               {/* Form Input 2 */}
-              <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-gold transition-colors duration-500 pb-2">
-                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-gold uppercase">Email Address</label>
+              <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-green transition-colors duration-500 pb-2">
+                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-green uppercase">Email Address</label>
                 <input 
                   type="email" 
                   required
                   placeholder="e.g. john@example.com"
                   className="w-full bg-transparent py-1 text-sm font-sans font-light text-obsidian placeholder-obsidian/20 focus:outline-none rounded-none"
                 />
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent-gold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent-green transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:w-full" />
               </div>
 
               {/* Form Input 3 */}
-              <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-gold transition-colors duration-500 pb-2">
-                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-gold uppercase">Brief Description</label>
+              <div className="form-field group relative flex flex-col gap-2 w-full border-b border-obsidian/15 focus-within:border-accent-green transition-colors duration-500 pb-2">
+                <label className="text-[9px] font-serif font-bold tracking-[0.3em] text-accent-green uppercase">Brief Description</label>
                 <textarea 
                   id="contact-message"
                   rows="4"
@@ -222,13 +222,13 @@ const ContactFooter = () => {
                   placeholder="Tell us about your digital vision..."
                   className="w-full bg-transparent py-1 text-sm font-sans font-light text-obsidian placeholder-obsidian/20 focus:outline-none resize-none rounded-none"
                 />
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent-gold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent-green transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:w-full" />
               </div>
               
               <Magnetic strength={0.12} range={30}>
                 <button
                   type="submit"
-                  className="mt-4 flex w-full items-center justify-center gap-3 py-4 rounded-full bg-obsidian text-dark-bg font-bold text-[10px] uppercase tracking-[0.25em] hover:bg-accent-gold hover:text-white hover:shadow-[0_12px_30px_rgba(181,155,117,0.3)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
+                  className="mt-4 flex w-full items-center justify-center gap-3 py-4 rounded-full bg-obsidian text-dark-bg font-bold text-[10px] uppercase tracking-[0.25em] hover:bg-accent-green hover:text-white hover:shadow-[0_12px_30px_rgba(16,185,129,0.3)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
                 >
                   SEND MISSION DECK
                   <Send className="h-3.5 w-3.5" />
@@ -251,7 +251,7 @@ const ContactFooter = () => {
                 <a 
                   href="#"
                   onClick={(e) => e.preventDefault()}
-                  className="text-[10px] font-serif font-bold tracking-widest text-obsidian/50 hover:text-accent-gold-dark transition-colors cursor-none"
+                  className="text-[10px] font-serif font-bold tracking-widest text-obsidian/50 hover:text-accent-green-dark transition-colors cursor-none"
                 >
                   {social}
                 </a>
@@ -264,7 +264,7 @@ const ContactFooter = () => {
             <Magnetic strength={0.25} range={35}>
               <button
                 onClick={handleScrollTop}
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-obsidian text-dark-bg hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_20px_rgba(181,155,117,0.25)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-obsidian text-dark-bg hover:bg-accent-green hover:text-white hover:shadow-[0_10px_20px_rgba(16,185,129,0.25)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
                 title="Scroll to Top"
               >
                 <ArrowUp className="h-4 w-4" />
@@ -272,7 +272,7 @@ const ContactFooter = () => {
             </Magnetic>
             <button 
               onClick={handleScrollTop}
-              className="text-[8px] font-serif font-bold tracking-[0.3em] text-obsidian/45 hover:text-accent-gold transition-colors duration-300 uppercase cursor-none"
+              className="text-[8px] font-serif font-bold tracking-[0.3em] text-obsidian/45 hover:text-accent-green transition-colors duration-300 uppercase cursor-none"
             >
               BACK TO TOP
             </button>
@@ -282,7 +282,7 @@ const ContactFooter = () => {
         {/* Giant footer wordmark (Editorial Serif) */}
         <div className="w-full flex items-center justify-center mt-20 select-none pointer-events-none">
           <h2 ref={wordmarkRef} className="text-[18vw] font-serif font-bold leading-none uppercase tracking-tighter text-obsidian/3 text-center">
-            VISN<span className="text-accent-gold">.</span>
+            VISN<span className="text-accent-green">.</span>
           </h2>
         </div>
 

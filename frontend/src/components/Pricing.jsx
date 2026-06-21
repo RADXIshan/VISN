@@ -141,13 +141,28 @@ const Pricing = () => {
     };
   }, []);
 
+  // Close tooltip when clicking outside
+  useEffect(() => {
+    const handleGlobalClick = () => {
+      setActiveTooltip(null);
+    };
+    
+    if (activeTooltip) {
+      window.addEventListener('click', handleGlobalClick);
+    }
+    
+    return () => {
+      window.removeEventListener('click', handleGlobalClick);
+    };
+  }, [activeTooltip]);
+
   // Handler for booking meeting: scrolls to contact form and pre-fills selections
   const handleBookMeeting = (e) => {
     e.preventDefault();
     
     // Construct pre-filled description text
     const selectedAddons = [];
-    if (addons.backend) selectedAddons.push('Backend + Dynamic Site (₹30,000)');
+    if (addons.backend) selectedAddons.push('Dynamic Site + Backend (₹30,000)');
     if (addons.branding) selectedAddons.push('Branding + Marketing (₹12,000/month)');
     if (addons.animation) selectedAddons.push('Web Animation (₹10,000)');
 
@@ -197,10 +212,10 @@ const Pricing = () => {
     <section 
       ref={containerRef}
       id="pricing"
-      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-[#100f0d] via-[#14120f] to-[#12100d] z-10 overflow-hidden border-t border-obsidian/5"
+      className="relative min-h-screen w-full px-6 py-28 md:px-12 bg-linear-to-b from-dark-bg via-dark-card to-[#0b0b0d] z-10 overflow-hidden border-t border-obsidian/5"
     >
       {/* Subtle neutral background glow */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/1 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-green/1 blur-[150px] pointer-events-none" />
 
       <div className="mx-auto max-w-6xl">
         
@@ -208,7 +223,7 @@ const Pricing = () => {
         <div ref={titleRef} className="flex flex-col md:flex-row items-start justify-between gap-6 mb-20 select-none">
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+              <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-green shadow-[0_0_6px_#10B981]" />
               <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
                 INVESTMENT MODEL
               </h2>
@@ -218,7 +233,7 @@ const Pricing = () => {
                 {splitText("TRANSPARENT")}
               </span>
               <br />
-              <span className="inline-block overflow-hidden pb-1 text-accent-gold">
+              <span className="inline-block overflow-hidden pb-1 text-accent-green">
                 {splitText("PRICING")}
               </span>
             </h3>
@@ -231,7 +246,7 @@ const Pricing = () => {
         {/* STEP 1: CHOOSE YOUR FOUNDATION */}
         <div ref={step1Ref} className="mb-16">
           <div className="mb-6 select-none">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold font-sans block mb-1">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-green font-sans block mb-1">
               STEP 01
             </span>
             <h4 className="text-xl md:text-2xl font-serif font-semibold text-obsidian mb-1">
@@ -248,19 +263,19 @@ const Pricing = () => {
               onClick={() => setFoundation('02 – 05 Pages')}
               className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none relative overflow-hidden w-full gap-6 ${
                 foundation === '02 – 05 Pages'
-                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#121215] to-dark-bg border-accent-green shadow-[0_0_35px_rgba(16,185,129,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-dark-card/50 to-dark-bg/50 border-accent-green/15 hover:border-accent-green/45 hover:from-[#121215]/70 hover:to-dark-bg/70 hover:shadow-[0_0_25px_rgba(16,185,129,0.05)]'
               }`}
             >
               {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 foundation === '02 – 05 Pages' ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.03), transparent 70%)'
               }} />
 
-              {/* Glowing top gold edge line */}
-              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-gold/60 to-transparent transition-all duration-500 ${
+              {/* Glowing top green edge line */}
+              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-green/60 to-transparent transition-all duration-500 ${
                 foundation === '02 – 05 Pages' ? 'opacity-100 scale-100' : 'opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100'
               }`} />
 
@@ -268,22 +283,22 @@ const Pricing = () => {
                 {/* Custom radio indicator */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
                   foundation === '02 – 05 Pages' 
-                    ? 'border-accent-gold bg-accent-gold/5 shadow-[0_0_12px_rgba(181,155,117,0.4)]' 
-                    : 'border-accent-gold/25 group-hover:border-accent-gold/50 bg-transparent'
+                    ? 'border-accent-green bg-accent-green/5 shadow-[0_0_12px_rgba(16,185,129,0.4)]' 
+                    : 'border-accent-green/25 group-hover:border-accent-green/50 bg-transparent'
                 }`}>
-                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-gold transition-all duration-300 ${
+                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-green transition-all duration-300 ${
                     foundation === '02 – 05 Pages' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
                 <span className={`text-lg md:text-xl font-serif font-bold tracking-tight transition-colors duration-300 ${
-                  foundation === '02 – 05 Pages' ? 'text-accent-gold text-glow-gold' : 'text-obsidian'
+                  foundation === '02 – 05 Pages' ? 'text-accent-green text-glow-green' : 'text-obsidian'
                 }`}>
                   02 – 05 Pages
                 </span>
               </div>
 
               {/* Vertical Separator 1 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Description */}
               <div className="flex-1 z-10">
@@ -294,15 +309,15 @@ const Pricing = () => {
               </div>
 
               {/* Vertical Separator 2 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Price */}
               <div className="flex flex-col items-start md:items-end md:w-1/4 shrink-0 z-10">
-                <span className="text-[8px] font-bold tracking-widest text-accent-gold-dark uppercase mb-0.5 font-sans">
+                <span className="text-[8px] font-bold tracking-widest text-accent-green-dark uppercase mb-0.5 font-sans">
                   STARTING AT
                 </span>
                 <span className={`text-xl md:text-2xl font-serif font-bold tracking-tight transition-colors duration-300 ${
-                  foundation === '02 – 05 Pages' ? 'text-accent-gold text-glow-gold' : 'text-obsidian group-hover:text-accent-gold'
+                  foundation === '02 – 05 Pages' ? 'text-accent-green text-glow-green' : 'text-obsidian group-hover:text-accent-green'
                 }`}>
                   {formatPrice(prices.foundation['02 – 05 Pages'])}
                 </span>
@@ -314,19 +329,19 @@ const Pricing = () => {
               onClick={() => setFoundation('05+ Pages')}
               className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none relative overflow-hidden w-full gap-6 ${
                 foundation === '05+ Pages'
-                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#121215] to-dark-bg border-accent-green shadow-[0_0_35px_rgba(16,185,129,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-dark-card/50 to-dark-bg/50 border-accent-green/15 hover:border-accent-green/45 hover:from-[#121215]/70 hover:to-dark-bg/70 hover:shadow-[0_0_25px_rgba(16,185,129,0.05)]'
               }`}
             >
               {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 foundation === '05+ Pages' ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.03), transparent 70%)'
               }} />
 
-              {/* Glowing top gold edge line */}
-              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-gold/60 to-transparent transition-all duration-500 ${
+              {/* Glowing top green edge line */}
+              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-green/60 to-transparent transition-all duration-500 ${
                 foundation === '05+ Pages' ? 'opacity-100 scale-100' : 'opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100'
               }`} />
 
@@ -334,22 +349,22 @@ const Pricing = () => {
                 {/* Custom radio indicator */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
                   foundation === '05+ Pages' 
-                    ? 'border-accent-gold bg-accent-gold/5 shadow-[0_0_12px_rgba(181,155,117,0.4)]' 
-                    : 'border-accent-gold/25 group-hover:border-accent-gold/50 bg-transparent'
+                    ? 'border-accent-green bg-accent-green/5 shadow-[0_0_12px_rgba(16,185,129,0.4)]' 
+                    : 'border-accent-green/25 group-hover:border-accent-green/50 bg-transparent'
                 }`}>
-                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-gold transition-all duration-300 ${
+                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-green transition-all duration-300 ${
                     foundation === '05+ Pages' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
                 <span className={`text-lg md:text-xl font-serif font-bold tracking-tight transition-colors duration-300 ${
-                  foundation === '05+ Pages' ? 'text-accent-gold text-glow-gold' : 'text-obsidian'
+                  foundation === '05+ Pages' ? 'text-accent-green text-glow-green' : 'text-obsidian'
                 }`}>
                   05+ Pages
                 </span>
               </div>
 
               {/* Vertical Separator 1 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Description */}
               <div className="flex-1 z-10">
@@ -360,15 +375,15 @@ const Pricing = () => {
               </div>
 
               {/* Vertical Separator 2 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Price */}
               <div className="flex flex-col items-start md:items-end md:w-1/4 shrink-0 z-10">
-                <span className="text-[8px] font-bold tracking-widest text-accent-gold-dark uppercase mb-0.5 font-sans">
+                <span className="text-[8px] font-bold tracking-widest text-accent-green-dark uppercase mb-0.5 font-sans">
                   STARTING AT
                 </span>
                 <span className={`text-xl md:text-2xl font-serif font-bold tracking-tight transition-colors duration-300 ${
-                  foundation === '05+ Pages' ? 'text-accent-gold text-glow-gold' : 'text-obsidian group-hover:text-accent-gold'
+                  foundation === '05+ Pages' ? 'text-accent-green text-glow-green' : 'text-obsidian group-hover:text-accent-green'
                 }`}>
                   {formatPrice(prices.foundation['05+ Pages'])}
                 </span>
@@ -381,7 +396,7 @@ const Pricing = () => {
         {/* STEP 2: ENHANCE THE SYSTEM */}
         <div ref={step2Ref} className="mb-16">
           <div className="mb-6 select-none">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold font-sans block mb-1">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-green font-sans block mb-1">
               STEP 02
             </span>
             <h4 className="text-xl md:text-2xl font-serif font-semibold text-obsidian mb-1">
@@ -397,21 +412,23 @@ const Pricing = () => {
             {/* Addon 1 */}
             <div 
               onClick={() => toggleAddon('backend')}
-              className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative overflow-hidden w-full gap-6 ${
+              className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative w-full gap-6 ${
+                activeTooltip === 'backend' ? 'z-40' : 'z-10'
+              } ${
                 addons.backend
-                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#121215] to-dark-bg border-accent-green shadow-[0_0_35px_rgba(16,185,129,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-dark-card/50 to-dark-bg/50 border-accent-green/15 hover:border-accent-green/45 hover:from-[#121215]/70 hover:to-dark-bg/70 hover:shadow-[0_0_25px_rgba(16,185,129,0.05)]'
               }`}
             >
               {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 addons.backend ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.03), transparent 70%)'
               }} />
 
-              {/* Glowing top gold edge line */}
-              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-gold/60 to-transparent transition-all duration-500 ${
+              {/* Glowing top green edge line */}
+              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-green/60 to-transparent transition-all duration-500 ${
                 addons.backend ? 'opacity-100 scale-100' : 'opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100'
               }`} />
 
@@ -419,22 +436,23 @@ const Pricing = () => {
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
                   addons.backend 
-                    ? 'border-accent-gold bg-accent-gold/5 shadow-[0_0_12px_rgba(181,155,117,0.4)]' 
-                    : 'border-accent-gold/25 group-hover:border-accent-gold/50 bg-transparent'
+                    ? 'border-accent-green bg-accent-green/5 shadow-[0_0_12px_rgba(16,185,129,0.4)]' 
+                    : 'border-accent-green/25 group-hover:border-accent-green/50 bg-transparent'
                 }`}>
-                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-gold transition-all duration-300 ${
+                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-green transition-all duration-300 ${
                     addons.backend ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
-                <span className={`text-lg md:text-xl font-serif font-bold tracking-tight transition-colors duration-300 ${
-                  addons.backend ? 'text-accent-gold text-glow-gold' : 'text-obsidian'
+                <span className={`text-lg md:text-xl font-serif font-bold tracking-tight transition-colors duration-300 flex flex-col leading-tight ${
+                  addons.backend ? 'text-accent-green text-glow-green' : 'text-obsidian'
                 }`}>
-                  Backend + Dynamic Site
+                  <span>Dynamic Site</span>
+                  <span>+ Backend</span>
                 </span>
               </div>
 
               {/* Vertical Separator 1 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Description & Tooltip */}
               <div className="flex-1 flex items-center justify-between gap-4 z-10">
@@ -447,14 +465,14 @@ const Pricing = () => {
                   </p>
                 </div>
                 <div 
-                  className="relative shrink-0"
+                  className="static md:relative shrink-0"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <button 
                     onClick={() => setActiveTooltip(activeTooltip === 'backend' ? null : 'backend')}
                     onMouseEnter={() => setActiveTooltip('backend')}
                     onMouseLeave={() => setActiveTooltip(null)}
-                    className="h-6 w-6 rounded-full bg-obsidian/5 border border-obsidian/10 flex items-center justify-center text-obsidian/60 hover:text-accent-gold hover:border-accent-gold/40 transition-colors"
+                    className="h-6 w-6 rounded-full bg-obsidian/5 border border-obsidian/10 flex items-center justify-center text-obsidian/60 hover:text-accent-green hover:border-accent-green/40 transition-colors"
                     title="Learn more"
                   >
                     <HelpCircle className="h-3.5 w-3.5" />
@@ -462,23 +480,23 @@ const Pricing = () => {
                   
                   {activeTooltip === 'backend' && (
                     <div 
-                      className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
+                      className="absolute left-4 right-4 md:left-auto md:right-0 bottom-full mb-3 md:w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-green/40 text-xs z-50 transition-all duration-300 pointer-events-none"
                       style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
                     >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.backend}</p>
-                      <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
+                      <div className="absolute top-full right-6 md:right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-green/40 rotate-45 -mt-1.5" />
                     </div>
                   )}
                 </div>
               </div>
 
               {/* Vertical Separator 2 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Price */}
               <div className="flex flex-col items-start md:items-end md:w-1/4 shrink-0 z-10">
                 <span className={`text-lg font-serif font-bold transition-colors duration-300 ${
-                  addons.backend ? 'text-accent-gold text-glow-gold' : 'text-obsidian group-hover:text-accent-gold'
+                  addons.backend ? 'text-accent-green text-glow-green' : 'text-obsidian group-hover:text-accent-green'
                 }`}>
                   + {formatPrice(prices.addons.backend)}
                 </span>
@@ -488,21 +506,23 @@ const Pricing = () => {
             {/* Addon 2 */}
             <div 
               onClick={() => toggleAddon('branding')}
-              className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative overflow-hidden w-full gap-6 ${
+              className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative w-full gap-6 ${
+                activeTooltip === 'branding' ? 'z-40' : 'z-10'
+              } ${
                 addons.branding
-                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#121215] to-dark-bg border-accent-green shadow-[0_0_35px_rgba(16,185,129,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-dark-card/50 to-dark-bg/50 border-accent-green/15 hover:border-accent-green/45 hover:from-[#121215]/70 hover:to-dark-bg/70 hover:shadow-[0_0_25px_rgba(16,185,129,0.05)]'
               }`}
             >
               {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 addons.branding ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.03), transparent 70%)'
               }} />
 
-              {/* Glowing top gold edge line */}
-              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-gold/60 to-transparent transition-all duration-500 ${
+              {/* Glowing top green edge line */}
+              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-green/60 to-transparent transition-all duration-500 ${
                 addons.branding ? 'opacity-100 scale-100' : 'opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100'
               }`} />
 
@@ -510,22 +530,22 @@ const Pricing = () => {
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
                   addons.branding 
-                    ? 'border-accent-gold bg-accent-gold/5 shadow-[0_0_12px_rgba(181,155,117,0.4)]' 
-                    : 'border-accent-gold/25 group-hover:border-accent-gold/50 bg-transparent'
+                    ? 'border-accent-green bg-accent-green/5 shadow-[0_0_12px_rgba(16,185,129,0.4)]' 
+                    : 'border-accent-green/25 group-hover:border-accent-green/50 bg-transparent'
                 }`}>
-                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-gold transition-all duration-300 ${
+                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-green transition-all duration-300 ${
                     addons.branding ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
                 <span className={`text-lg md:text-xl font-serif font-bold tracking-tight transition-colors duration-300 ${
-                  addons.branding ? 'text-accent-gold text-glow-gold' : 'text-obsidian'
+                  addons.branding ? 'text-accent-green text-glow-green' : 'text-obsidian'
                 }`}>
                   Branding + Marketing
                 </span>
               </div>
 
               {/* Vertical Separator 1 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Description & Tooltip */}
               <div className="flex-1 flex items-center justify-between gap-4 z-10">
@@ -538,14 +558,14 @@ const Pricing = () => {
                   </p>
                 </div>
                 <div 
-                  className="relative shrink-0"
+                  className="static md:relative shrink-0"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <button 
                     onClick={() => setActiveTooltip(activeTooltip === 'branding' ? null : 'branding')}
                     onMouseEnter={() => setActiveTooltip('branding')}
                     onMouseLeave={() => setActiveTooltip(null)}
-                    className="h-6 w-6 rounded-full bg-obsidian/5 border border-obsidian/10 flex items-center justify-center text-obsidian/60 hover:text-accent-gold hover:border-accent-gold/40 transition-colors"
+                    className="h-6 w-6 rounded-full bg-obsidian/5 border border-obsidian/10 flex items-center justify-center text-obsidian/60 hover:text-accent-green hover:border-accent-green/40 transition-colors"
                     title="Learn more"
                   >
                     <HelpCircle className="h-3.5 w-3.5" />
@@ -553,26 +573,26 @@ const Pricing = () => {
                   
                   {activeTooltip === 'branding' && (
                     <div 
-                      className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
+                      className="absolute left-4 right-4 md:left-auto md:right-0 bottom-full mb-3 md:w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-green/40 text-xs z-50 transition-all duration-300 pointer-events-none"
                       style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
                     >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.branding}</p>
-                      <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
+                      <div className="absolute top-full right-6 md:right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-green/40 rotate-45 -mt-1.5" />
                     </div>
                   )}
                 </div>
               </div>
 
               {/* Vertical Separator 2 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Price */}
               <div className="flex flex-col items-start md:items-end md:w-1/4 shrink-0 z-10">
-                <span className="text-[8px] font-bold tracking-widest text-accent-gold-dark uppercase mb-0.5 font-sans">
+                <span className="text-[8px] font-bold tracking-widest text-accent-green-dark uppercase mb-0.5 font-sans">
                   STARTING AT
                 </span>
                 <span className={`text-lg font-serif font-bold transition-colors duration-300 ${
-                  addons.branding ? 'text-accent-gold text-glow-gold' : 'text-obsidian group-hover:text-accent-gold'
+                  addons.branding ? 'text-accent-green text-glow-green' : 'text-obsidian group-hover:text-accent-green'
                 }`}>
                   {formatPrice(prices.addons.branding)} <span className="text-[10px] font-normal text-obsidian/50">/ mo</span>
                 </span>
@@ -582,21 +602,23 @@ const Pricing = () => {
             {/* Addon 3 */}
             <div 
               onClick={() => toggleAddon('animation')}
-              className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative overflow-hidden w-full gap-6 ${
+              className={`group flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 rounded-3xl border transition-all duration-500 cursor-pointer select-none h-full relative w-full gap-6 ${
+                activeTooltip === 'animation' ? 'z-40' : 'z-10'
+              } ${
                 addons.animation
-                  ? 'bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border-accent-gold shadow-[0_0_35px_rgba(181,155,117,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
-                  : 'bg-linear-to-b from-[#161512]/50 to-[#100f0d]/50 border-accent-gold/15 hover:border-accent-gold/45 hover:from-[#1a1916]/70 hover:to-[#12110e]/70 hover:shadow-[0_0_25px_rgba(181,155,117,0.05)]'
+                  ? 'bg-linear-to-b from-[#121215] to-dark-bg border-accent-green shadow-[0_0_35px_rgba(16,185,129,0.12),inset_0_1px_1px_rgba(255,255,255,0.03)]'
+                  : 'bg-linear-to-b from-dark-card/50 to-dark-bg/50 border-accent-green/15 hover:border-accent-green/45 hover:from-[#121215]/70 hover:to-dark-bg/70 hover:shadow-[0_0_25px_rgba(16,185,129,0.05)]'
               }`}
             >
               {/* Ambient radial glow */}
               <div className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
                 addons.animation ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'
               }`} style={{
-                background: 'radial-gradient(circle at 50% 0%, rgba(181, 155, 117, 0.03), transparent 70%)'
+                background: 'radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.03), transparent 70%)'
               }} />
 
-              {/* Glowing top gold edge line */}
-              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-gold/60 to-transparent transition-all duration-500 ${
+              {/* Glowing top green edge line */}
+              <div className={`absolute top-0 left-12 right-12 h-px bg-linear-to-r from-transparent via-accent-green/60 to-transparent transition-all duration-500 ${
                 addons.animation ? 'opacity-100 scale-100' : 'opacity-0 scale-50 group-hover:opacity-60 group-hover:scale-100'
               }`} />
 
@@ -604,22 +626,22 @@ const Pricing = () => {
                 {/* Custom circular checkbox */}
                 <div className={`h-6 w-6 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
                   addons.animation 
-                    ? 'border-accent-gold bg-accent-gold/5 shadow-[0_0_12px_rgba(181,155,117,0.4)]' 
-                    : 'border-accent-gold/25 group-hover:border-accent-gold/50 bg-transparent'
+                    ? 'border-accent-green bg-accent-green/5 shadow-[0_0_12px_rgba(16,185,129,0.4)]' 
+                    : 'border-accent-green/25 group-hover:border-accent-green/50 bg-transparent'
                 }`}>
-                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-gold transition-all duration-300 ${
+                  <div className={`h-2.5 w-2.5 rounded-full bg-accent-green transition-all duration-300 ${
                     addons.animation ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                   }`} />
                 </div>
                 <span className={`text-lg md:text-xl font-serif font-bold tracking-tight transition-colors duration-300 ${
-                  addons.animation ? 'text-accent-gold text-glow-gold' : 'text-obsidian'
+                  addons.animation ? 'text-accent-green text-glow-green' : 'text-obsidian'
                 }`}>
                   Web Animation
                 </span>
               </div>
 
               {/* Vertical Separator 1 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Description & Tooltip */}
               <div className="flex-1 flex items-center justify-between gap-4 z-10">
@@ -632,14 +654,14 @@ const Pricing = () => {
                   </p>
                 </div>
                 <div 
-                  className="relative shrink-0"
+                  className="static md:relative shrink-0"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <button 
                     onClick={() => setActiveTooltip(activeTooltip === 'animation' ? null : 'animation')}
                     onMouseEnter={() => setActiveTooltip('animation')}
                     onMouseLeave={() => setActiveTooltip(null)}
-                    className="h-6 w-6 rounded-full bg-obsidian/5 border border-obsidian/10 flex items-center justify-center text-obsidian/60 hover:text-accent-gold hover:border-accent-gold/40 transition-colors"
+                    className="h-6 w-6 rounded-full bg-obsidian/5 border border-obsidian/10 flex items-center justify-center text-obsidian/60 hover:text-accent-green hover:border-accent-green/40 transition-colors"
                     title="Learn more"
                   >
                     <HelpCircle className="h-3.5 w-3.5" />
@@ -647,23 +669,23 @@ const Pricing = () => {
                   
                   {activeTooltip === 'animation' && (
                     <div 
-                      className="absolute right-0 bottom-full mb-3 w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-gold/40 text-xs z-30 transition-all duration-300 pointer-events-none"
+                      className="absolute left-4 right-4 md:left-auto md:right-0 bottom-full mb-3 md:w-64 bg-obsidian text-dark-bg p-4 rounded-xl border border-accent-green/40 text-xs z-50 transition-all duration-300 pointer-events-none"
                       style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
                     >
                       <p className="font-serif italic font-light leading-relaxed">{tooltips.animation}</p>
-                      <div className="absolute top-full right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-gold/40 rotate-45 -mt-1.5" />
+                      <div className="absolute top-full right-6 md:right-2.5 w-3 h-3 bg-obsidian border-b border-r border-accent-green/40 rotate-45 -mt-1.5" />
                     </div>
                   )}
                 </div>
               </div>
 
               {/* Vertical Separator 2 */}
-              <div className="hidden md:block h-12 w-px bg-accent-gold/15 shrink-0 z-10" />
+              <div className="hidden md:block h-12 w-px bg-accent-green/15 shrink-0 z-10" />
 
               {/* Price */}
               <div className="flex flex-col items-start md:items-end md:w-1/4 shrink-0 z-10">
                 <span className={`text-lg font-serif font-bold transition-colors duration-300 ${
-                  addons.animation ? 'text-accent-gold text-glow-gold' : 'text-obsidian group-hover:text-accent-gold'
+                  addons.animation ? 'text-accent-green text-glow-green' : 'text-obsidian group-hover:text-accent-green'
                 }`}>
                   + {formatPrice(prices.addons.animation)}
                 </span>
@@ -677,13 +699,13 @@ const Pricing = () => {
         <div ref={step3Ref} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Panel: Everything You Need Built In */}
-          <div className="lg:col-span-7 bg-linear-to-b from-[#181613]/30 to-[#100f0d]/30 border border-obsidian/10 rounded-3xl p-8 backdrop-blur-sm select-none relative overflow-hidden">
+          <div className="lg:col-span-7 bg-linear-to-b from-dark-card/30 to-dark-bg/30 border border-obsidian/10 rounded-3xl p-8 backdrop-blur-sm select-none relative overflow-hidden">
             {/* Ambient subtle glow */}
             <div className="absolute inset-0 rounded-3xl opacity-20 pointer-events-none" style={{
-              background: 'radial-gradient(circle at 0% 100%, rgba(181, 155, 117, 0.02), transparent 50%)'
+              background: 'radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.02), transparent 50%)'
             }} />
             
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-gold font-sans block mb-1">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-green font-sans block mb-1">
               STEP 03
             </span>
             <h4 className="text-xl md:text-2xl font-serif font-semibold text-obsidian mb-2">
@@ -694,11 +716,11 @@ const Pricing = () => {
             </p>
 
             {/* Grid of features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-accent-gold/10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-accent-green/10">
               
               {/* Feature 1 */}
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 shrink-0 rounded-xl bg-accent-gold/10 border border-accent-gold/20 flex items-center justify-center text-accent-gold">
+                <div className="h-10 w-10 shrink-0 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center text-accent-green">
                   <MessageSquare className="h-5 w-5" />
                 </div>
                 <div>
@@ -709,7 +731,7 @@ const Pricing = () => {
 
               {/* Feature 2 */}
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 shrink-0 rounded-xl bg-accent-gold/10 border border-accent-gold/20 flex items-center justify-center text-accent-gold">
+                <div className="h-10 w-10 shrink-0 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center text-accent-green">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
                 <div>
@@ -720,7 +742,7 @@ const Pricing = () => {
 
               {/* Feature 3 */}
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 shrink-0 rounded-xl bg-accent-gold/10 border border-accent-gold/20 flex items-center justify-center text-accent-gold">
+                <div className="h-10 w-10 shrink-0 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center text-accent-green">
                   <PenTool className="h-5 w-5" />
                 </div>
                 <div>
@@ -731,7 +753,7 @@ const Pricing = () => {
 
               {/* Feature 4 */}
               <div className="flex items-center gap-4">
-                <div className="h-10 w-10 shrink-0 rounded-xl bg-accent-gold/10 border border-accent-gold/20 flex items-center justify-center text-accent-gold">
+                <div className="h-10 w-10 shrink-0 rounded-xl bg-accent-green/10 border border-accent-green/20 flex items-center justify-center text-accent-green">
                   <CheckCircle className="h-5 w-5" />
                 </div>
                 <div>
@@ -744,22 +766,22 @@ const Pricing = () => {
           </div>
 
           {/* Right Panel: Estimated Cost Card */}
-          <div className="lg:col-span-5 bg-linear-to-b from-[#1c1a17] to-[#0f0e0c] border border-[#2e2e2e]/30 rounded-3xl p-8 flex flex-col justify-between min-h-[280px] shadow-[0_0_35px_rgba(181,155,117,0.06)] relative overflow-hidden group">
+          <div className="lg:col-span-5 bg-linear-to-b from-[#121215] to-dark-bg border border-[#2e2e2e]/30 rounded-3xl p-8 flex flex-col justify-between min-h-[280px] shadow-[0_0_35px_rgba(16,185,129,0.06)] relative overflow-hidden group">
             {/* Ambient radial glow */}
             <div className="absolute inset-0 rounded-3xl opacity-60 pointer-events-none" style={{
-              background: 'radial-gradient(circle at 100% 0%, rgba(181, 155, 117, 0.02), transparent 60%)'
+              background: 'radial-gradient(circle at 100% 0%, rgba(16, 185, 129, 0.02), transparent 60%)'
             }} />
             
             <div className="z-10">
-              <span className="text-[10px] font-serif font-bold tracking-widest text-accent-gold-dark uppercase block mb-1">
+              <span className="text-[10px] font-serif font-bold tracking-widest text-accent-green-dark uppercase block mb-1">
                 ESTIMATED INVESTMENT
               </span>
               <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                <h4 className="text-4xl md:text-5xl font-serif font-bold text-accent-gold text-glow-gold tracking-tight">
+                <h4 className="text-4xl md:text-5xl font-serif font-bold text-accent-green text-glow-green tracking-tight">
                   {formatPrice(totalOneTime)}
                 </h4>
                 {addons.branding && (
-                  <span className="text-xs font-medium text-accent-gold bg-accent-gold/10 px-2 py-0.5 rounded-md font-serif">
+                  <span className="text-xs font-medium text-accent-green bg-accent-green/10 px-2 py-0.5 rounded-md font-serif">
                     + {formatPrice(recurringCost)} / mo
                   </span>
                 )}
@@ -773,7 +795,7 @@ const Pricing = () => {
               <Magnetic strength={0.15} range={30}>
                 <button
                   onClick={handleBookMeeting}
-                  className="w-full flex items-center justify-center gap-4 py-4 rounded-full bg-obsidian text-dark-bg font-sans font-bold text-xs uppercase tracking-[0.25em] hover:bg-accent-gold hover:text-dark-bg transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-pointer shadow-sm hover:shadow-[0_12px_30px_rgba(181,155,117,0.25)]"
+                  className="w-full flex items-center justify-center gap-4 py-4 rounded-full bg-obsidian text-dark-bg font-sans font-bold text-xs uppercase tracking-[0.25em] hover:bg-accent-green hover:text-dark-bg transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-pointer shadow-sm hover:shadow-[0_12px_30px_rgba(16,185,129,0.25)]"
                 >
                   BOOK A MEETING
                   <ArrowRight className="h-4 w-4" />

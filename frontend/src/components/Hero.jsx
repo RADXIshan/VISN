@@ -225,11 +225,11 @@ const Hero = ({ isLoaded }) => {
             className="absolute bottom-0 left-0 right-0 h-[50vh] -z-10 pointer-events-none select-none"
           >
             {/* Main wide glow band */}
-            <div className="absolute bottom-[-15vh] left-1/2 -translate-x-1/2 w-[140vw] sm:w-[120vw] h-[45vh] rounded-[100%] bg-linear-to-t from-dark-bg via-accent-gold/45 to-accent-gold/0 blur-[130px] opacity-95" />
+            <div className="absolute bottom-[-15vh] left-1/2 -translate-x-1/2 w-[140vw] sm:w-[120vw] h-[45vh] rounded-[100%] bg-linear-to-t from-dark-bg via-accent-green/45 to-accent-green/0 blur-[130px] opacity-95" />
             {/* Left corner accent glow */}
-            <div className="absolute bottom-[-10vh] left-[5%] w-[60vw] h-[35vh] rounded-full bg-accent-gold/25 blur-[130px] opacity-85" />
+            <div className="absolute bottom-[-10vh] left-[5%] w-[60vw] h-[35vh] rounded-full bg-accent-green/25 blur-[130px] opacity-85" />
             {/* Right corner accent glow */}
-            <div className="absolute bottom-[-10vh] right-[5%] w-[60vw] h-[35vh] rounded-full bg-accent-gold/25 blur-[130px] opacity-85" />
+            <div className="absolute bottom-[-10vh] right-[5%] w-[60vw] h-[35vh] rounded-full bg-accent-green/25 blur-[130px] opacity-85" />
           </div>
           {/* Grid background in light mode */}
           <div className="absolute inset-0 -z-20 bg-grid-pattern-light opacity-25 pointer-events-none" />
@@ -237,7 +237,7 @@ const Hero = ({ isLoaded }) => {
           {/* Symmetrical Typography */}
           <div className="my-auto max-w-4xl mx-auto flex flex-col items-center text-center select-none">
             <div ref={tagLineRef} className="overflow-hidden mb-4 opacity-0">
-              <span className="text-xs md:text-sm font-sans font-bold tracking-[0.4em] uppercase text-accent-gold">
+              <span className="text-xs md:text-sm font-sans font-bold tracking-[0.4em] uppercase text-accent-green">
                 {splitLetters("CREATIVE DIRECTION & HIGH-END ENGINEERING")}
               </span>
             </div>
@@ -264,7 +264,7 @@ const Hero = ({ isLoaded }) => {
                 <a 
                   href="#contact"
                   onClick={handleScrollClick}
-                  className="group flex h-16 w-16 items-center justify-center rounded-full bg-dark-bg text-obsidian hover:bg-accent-gold hover:text-white hover:shadow-[0_10px_25px_rgba(181,155,117,0.35)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
+                  className="group flex h-16 w-16 items-center justify-center rounded-full bg-dark-bg text-obsidian hover:bg-accent-green hover:text-white hover:shadow-[0_10px_25px_rgba(16,185,129,0.35)] transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow,opacity] duration-300 cursor-none"
                   data-cursor="magnetic"
                 >
                   <ArrowDownRight className="h-6 w-6 group-hover:rotate-45 transition-transform duration-300" />
@@ -284,10 +284,10 @@ const Hero = ({ isLoaded }) => {
             <a 
               href="#why-visn"
               onClick={handleScrollClick}
-              className="group flex items-center gap-3 text-xs font-bold tracking-[0.3em] uppercase text-obsidian/50 hover:text-accent-gold transition-colors cursor-none"
+              className="group flex items-center gap-3 text-xs font-bold tracking-[0.3em] uppercase text-obsidian/50 hover:text-accent-green transition-colors cursor-none"
             >
               SCROLL TO DISCOVER
-              <span className="inline-block animate-bounce text-accent-gold font-black">↓</span>
+              <span className="inline-block animate-bounce text-accent-green font-black">↓</span>
             </a>
           </div>
         </div>
@@ -295,7 +295,7 @@ const Hero = ({ isLoaded }) => {
         {/* Layer 2: The Transition Zoom Slide (z-20) */}
         <div 
           ref={transitionSlideRef}
-          className="absolute inset-0 z-20 bg-[#13110e] overflow-hidden"
+          className="absolute inset-0 z-20 bg-dark-bg overflow-hidden"
           style={{ 
             transform: 'translateY(100%)',
             willChange: 'transform' 
@@ -309,14 +309,14 @@ const Hero = ({ isLoaded }) => {
             {/* Centered card that expands via clip-path */}
             <div 
               ref={clipCardRef}
-              className="absolute inset-0 w-full h-full overflow-hidden bg-linear-to-tr from-[#161310] via-dark-card to-[#13110e]"
+              className="absolute inset-0 w-full h-full overflow-hidden bg-linear-to-tr from-dark-card via-dark-card to-dark-bg"
               style={{ 
                 clipPath: 'inset(18% 22% 18% 22% round 24px)',
                 willChange: 'clip-path'
               }}
             >
-              {/* Luxury gold radial glow ornament */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[500px] rounded-full bg-accent-gold/18 blur-[120px] pointer-events-none" />
+              {/* Luxury green radial glow ornament */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[500px] rounded-full bg-accent-green/18 blur-[120px] pointer-events-none" />
 
               {/* Symmetrical Luxury Grid Content / Logo Container */}
               <div 
@@ -333,25 +333,25 @@ const Hero = ({ isLoaded }) => {
                   fill="none" 
                   xmlns="http://www.w3.org/2000/svg"
                   style={{
-                    filter: "drop-shadow(0 0 35px rgba(181, 155, 117, 0.45))",
+                    filter: "drop-shadow(0 0 35px rgba(16, 185, 129, 0.45))",
                   }}
                 >
-                  {/* Outer Golden Orbit */}
-                  <circle cx="50" cy="50" r="44" stroke="#B59B75" strokeWidth="1.5" />
-                  <circle cx="50" cy="50" r="40" stroke="#B59B75" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.6" />
+                  {/* Outer Green Orbit */}
+                  <circle cx="50" cy="50" r="44" stroke="#10B981" strokeWidth="1.5" />
+                  <circle cx="50" cy="50" r="40" stroke="#10B981" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.6" />
                   
                   {/* Precision Axis Lines */}
-                  <line x1="50" y1="6" x2="50" y2="94" stroke="#B59B75" strokeWidth="0.25" strokeDasharray="1 2" opacity="0.35" />
-                  <line x1="6" y1="50" x2="94" y2="50" stroke="#B59B75" strokeWidth="0.25" strokeDasharray="1 2" opacity="0.35" />
+                  <line x1="50" y1="6" x2="50" y2="94" stroke="#10B981" strokeWidth="0.25" strokeDasharray="1 2" opacity="0.35" />
+                  <line x1="6" y1="50" x2="94" y2="50" stroke="#10B981" strokeWidth="0.25" strokeDasharray="1 2" opacity="0.35" />
 
                   {/* Symmetrical Outer Lens (The Eye) */}
                   <path d="M 22 50 C 37 25, 63 25, 78 50 C 63 75, 37 75, 22 50 Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
                   
-                  {/* Secondary Inner Lens Path (Gold Accent) */}
-                  <path d="M 28 50 C 40 32, 60 32, 72 50 C 60 68, 40 68, 28 50 Z" stroke="#B59B75" strokeWidth="0.75" opacity="0.8" />
+                  {/* Secondary Inner Lens Path (Green Accent) */}
+                  <path d="M 28 50 C 40 32, 60 32, 72 50 C 60 68, 40 68, 28 50 Z" stroke="#10B981" strokeWidth="0.75" opacity="0.8" />
 
-                  {/* Iris Gold Circle */}
-                  <circle cx="50" cy="50" r="11" fill="#B59B75" />
+                  {/* Iris Green Circle */}
+                  <circle cx="50" cy="50" r="11" fill="#10B981" />
 
                   {/* Pupil (4-pointed star in current color) */}
                   <path d="M 50 43 L 52 48.5 L 57.5 50 L 52 51.5 L 50 57 L 48 51.5 L 42.5 50 L 48 48.5 Z" fill="currentColor" />
@@ -363,7 +363,7 @@ const Hero = ({ isLoaded }) => {
                 ref={transitionTextRef}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center text-center px-6 w-full max-w-2xl select-none"
               >
-                <span className="fade-item text-[9px] font-sans font-bold tracking-[0.35em] text-accent-gold uppercase mb-3 block">
+                <span className="fade-item text-[9px] font-sans font-bold tracking-[0.35em] text-accent-green uppercase mb-3 block">
                   [ SEC. 01 // MANIFESTO ]
                 </span>
                 <h2 className="fade-item text-3xl md:text-5xl lg:text-6xl font-serif font-medium tracking-tight text-white leading-[1.1] mb-4">

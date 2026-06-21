@@ -57,15 +57,15 @@ const testimonials = [
 ];
 
 const TestimonialCard = ({ testimonial }) => (
-  <div className="testimonial-card shrink-0 w-[340px] md:w-[400px] p-6 md:p-8 rounded-2xl border border-obsidian/8 bg-[#1a1815]/50 backdrop-blur-sm select-none">
+  <div className="testimonial-card shrink-0 w-[340px] md:w-[400px] p-6 md:p-8 rounded-2xl border border-obsidian/8 bg-dark-card/50 backdrop-blur-sm select-none">
     {/* Quote icon */}
     <div className="flex items-center justify-between mb-4">
-      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-gold/10 border border-accent-gold/15">
-        <Quote className="h-3.5 w-3.5 text-accent-gold-dark" />
+      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-green/10 border border-accent-green/15">
+        <Quote className="h-3.5 w-3.5 text-accent-green-dark" />
       </div>
       <div className="flex gap-0.5">
         {Array.from({ length: testimonial.rating }).map((_, i) => (
-          <Star key={i} className="h-3 w-3 fill-accent-gold text-accent-gold" />
+          <Star key={i} className="h-3 w-3 fill-accent-green text-accent-green" />
         ))}
       </div>
     </div>
@@ -221,15 +221,15 @@ const Testimonials = () => {
     <section
       ref={containerRef}
       id="testimonials"
-      className="relative w-full py-24 md:py-32 bg-linear-to-b from-[#100f0d] via-[#12100d] to-[#100f0d] overflow-hidden z-10"
+      className="relative w-full py-24 md:py-32 bg-linear-to-b from-dark-bg via-dark-card to-dark-bg overflow-hidden z-10"
     >
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-gold/1 blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[600px] w-[600px] rounded-full bg-accent-green/1 blur-[150px] pointer-events-none" />
 
       {/* Section header */}
       <div ref={headerRef} className="mx-auto max-w-6xl px-6 md:px-12 mb-16 select-none">
         <div className="flex items-center gap-3 mb-3">
-          <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-gold shadow-[0_0_6px_#B59B75]" />
+          <span className="header-dot h-1.5 w-1.5 rounded-full bg-accent-green shadow-[0_0_6px_#10B981]" />
           <h2 className="text-[10px] font-bold uppercase tracking-[0.3em] text-obsidian/50">
             TESTIMONIALS
           </h2>
@@ -239,7 +239,7 @@ const Testimonials = () => {
             {splitText("WHAT CLIENTS")}
           </span>
           <br />
-          <span className="inline-block overflow-hidden pb-1 text-accent-gold">
+          <span className="inline-block overflow-hidden pb-1 text-accent-green">
             {splitText("SAY")}
           </span>
         </h3>
