@@ -147,7 +147,7 @@ const Pricing = () => {
     
     // Construct pre-filled description text
     const selectedAddons = [];
-    if (addons.backend) selectedAddons.push('Backend + Dynamic Site (₹30,000)');
+    if (addons.backend) selectedAddons.push('Dynamic Site + Backend (₹30,000)');
     if (addons.branding) selectedAddons.push('Branding + Marketing (₹12,000/month)');
     if (addons.animation) selectedAddons.push('Web Animation (₹10,000)');
 
@@ -429,7 +429,7 @@ const Pricing = () => {
                 <span className={`text-lg md:text-xl font-serif font-bold tracking-tight transition-colors duration-300 ${
                   addons.backend ? 'text-accent-gold text-glow-gold' : 'text-obsidian'
                 }`}>
-                  Backend + Dynamic Site
+                  Dynamic Site <span className="whitespace-nowrap">+ Backend</span>
                 </span>
               </div>
 
@@ -520,7 +520,7 @@ const Pricing = () => {
                 <span className={`text-lg md:text-xl font-serif font-bold tracking-tight transition-colors duration-300 ${
                   addons.branding ? 'text-accent-gold text-glow-gold' : 'text-obsidian'
                 }`}>
-                  Branding + Marketing
+                  Branding <span className="whitespace-nowrap">+ Marketing</span>
                 </span>
               </div>
 
